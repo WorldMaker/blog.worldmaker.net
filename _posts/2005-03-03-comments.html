@@ -1,0 +1,11 @@
+---
+date: 2005-03-03 22:11:47
+db_id: 52
+db_updated: 2008-02-21 15:16:50.919280
+layout: post
+redirect_from:
+- /node/53/
+tags: ''
+title: Comments
+---
+<p>The only comments I get are spam, so I keep wondering if there was something I wasn't doing to encourage comments.  I finally moved the add comment form to the bottom of the "read more" pages (and highlighted the read more links), but the reason I didn't do it earlier was I'm a stickler for good CSS and nice looking printed output (go ahead, try Print Preview on one of my articles or stories).  The problem is that Drupal 4.4's comment module produces some nasty, un-semantic HTML.  I finally got it so that the form and its header won't print, but it's an ugly CSS 2/3 hack that works in Firefox but not IE.  (For the curious, the needed selectors, with the comment options bar below the comments, were <code>form[action="comment"] + form[action="comment"]</code> for the comment options, <code>form[action="comment"] + h2</code> for the "Post new comment" header, and <code>form[action^="comment/reply"]</code> for the post comment form itself.)</p>

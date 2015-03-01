@@ -1,0 +1,15 @@
+---
+date: 2011-09-08 22:44:00.209593
+db_id: 620
+db_updated: 2011-09-08 22:44:00.209619
+layout: post
+tags: louisville transportation
+title: 8671 "Veteran's Parkway" Concept
+---
+Here's my crazy and yet pragmatic transportation idea for downtown Louisville: terminate I-71 at I-264, converting a few blocks of I-71 into a Parkway. I've mentioned this concept before, but now that I'm driving this path every weekday I think about it a bit more. I appreciate 8664's wild-eyed optimism, but I still don't feel it is a pragmatic solution and I don't feel that the majority of its proponents actually drive I-64 downtown often enough to appreciate the "weight" of the plan. 8671 I think is much cheaper and much more pragmatic, even if it certainly doesn't have the raw aesthetic appeal that 8664 commands...
+
+Anyway, background and details: I-71 already terminates in Louisville (in fact it is a fairly short interstate terminating in one end at Louisville and the other at Cincinnati), only currently it terminates in the sprawl of flyovers belovedly called "spaghetti junction". The interconnections with I-65 and I-64 are useful, but not an important or necessary components (from what I understand of I-71's design intent) of the current I-71. I think that terminating I-71 only a few miles "early" is an acceptable compromise for the current access afforded. Trucks and regional through traffic can reroute through I-264 or I-265 (particularly once the East End Bridge is finally built) to both I-64 and I-65. Removing I-71 from the mix drops four lanes and several requisite flyovers from "spaghetti junction". That removal and a few sign changes are all that are needed to terminate I-71 at I-264... It should be doable with existing spaghetti junction funds.
+
+The part of I-71 to be cut off, which is currently marked by signs as the "Veteran's Memorial Freeway" is interesting because it would still remain useful for local traffic and could be converted as a very nice Parkway relative to Mellwood Ave and River Road. The name "Veteran's Parkway" is the obvious choice to discuss this concept due to the aforementioned signage (itself likely due to the proximity to the VA Hospital). Veteran's Parkway, like all of the best Louisville Parkways, would in fact lead to one of the city's great parks: the most likely place to "drop" the Parkway back to the normal street grid and terminate the other end (with the existing ends being Zorn Ave and the I-71/I-264 junction) would be E. Witherspoon St, which it currently overflies. Witherspoon joins with River Road not too far from the current flyover at the foot of the Big Four Bridge (a central feature of Waterfront Park).
+
+I think the proposal is relatively pragmatic. It shouldn't change traffic patterns anywhere near as much as 8664 would, but it would majorly simplify spaghetti junction. As a fan of the pragmatic, yet beautiful Olmstead Parkways, I see the concept as a rather fitting change to downtown traffic patterns. I don't expect this "simple" proposal to get anything at all like the attention that 8664 gets, but it interests me at least.

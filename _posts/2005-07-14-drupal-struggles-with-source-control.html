@@ -1,0 +1,12 @@
+---
+date: 2005-07-14 20:49:54
+db_id: 141
+db_updated: 2008-02-21 15:16:49.584320
+layout: post
+redirect_from:
+- /node/143/
+tags: ''
+title: 'Drupal: Struggles with Source Control'
+---
+<p>Working on CosmWiki today I hit up a huge problem...  making changes to the .module file had no effect.  I spent a couple of hours poring through documentation looking for some way to "clear the cache".  Lo and behold, and I feel like an idiot, but do to Drupal's module loading system, for some reason it was latching onto one of the copies in my _darcs source control directory.  So I re-<tt>init</tt>ted up in the main drupal directory and problem solved.  Now I just feel like an idiot for not trying that sooner.</p>
+

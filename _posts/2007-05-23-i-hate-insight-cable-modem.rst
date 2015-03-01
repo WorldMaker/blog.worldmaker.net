@@ -1,0 +1,9 @@
+---
+date: 2007-05-23 16:58:06.098347
+db_id: 334
+db_updated: 2008-02-21 15:16:45.616620
+layout: post
+tags: ''
+title: I hate this Insight Cable Modem
+---
+5 months with this cable modem and 2 service interruptions/degradations.  Yuck.  The last time it was revealed that the source of the problem was: 1) not enough power at the pole, and 2) squirrels.  I'm assuming it is a combination of the exact same two problems again this time and I really don't feel up to making the necessary calls again...  Sigh.  Not too many other options either.

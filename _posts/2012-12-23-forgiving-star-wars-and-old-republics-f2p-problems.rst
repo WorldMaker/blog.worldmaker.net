@@ -1,0 +1,25 @@
+---
+date: 2012-12-23 18:13:08.799223
+db_id: 1087
+db_updated: 2012-12-23 18:13:08.799251
+layout: post
+tags: games
+title: On Forgiving Star Wars and The Old Republic's F2P Problems
+---
+Between Disney buying out *Star Wars* [1]_ and letting "free-to-pay" [2]_ tempt me back to *Star Wars: The Old Republic* I seem to have forgiven the franchise for some of its worst excesses, bad politics, and general silliness. I won't rehash here the history of how I burnt out on *Star Wars* in High School, particularly the Expanded Universe, and began to balk at its politics and usage of "sci-fi drag" to retell serialized fairy tales, because I'm sure the internet has indexed plenty of those rants already. Instead, I shall only have to acknowledge that somehow a majority of my anger has melted away into laughter and enjoyment. [3]_ It has become easier for me to remember that contrary the seriousness of so much of the "Star Wars EU" and its fandom: *Star Wars* as a franchise always has and really always should be seen as the relative to *Indiana Jones* as it in fact is; *Star Wars* is an extension and a piece of the on-going "tradition" of sci-fi serials like *Buck Rodgers* and *Flash Gordon*.
+
+So I may have learned to stop worrying and love the bomb, or at least, laugh at it a lot. Laughter, at least, is a good form of amusement. [4]_
+
+That out of the way, I wanted to rant a bit about *Star Wars: The Old Republic* and the crazy way it seems to have implemented F2P which bothers me more than it should. It's not the increasingly standard for all F2P game' over-reliance on random lottery tickets [5]_, but more a basic confusion at the intended goals of the F2P conversion. For the most part the F2P seems biased towards giving single player content out for free and charging for any multiplayer content whatsoever. This seems somewhat inappropriate for what is ostensibly supposed to be a *massively multiplayer* game. On the one hand, it did seem to encourage me to resubscribe in that a) I hate to play an MMO and not group at least some of the time, and b) my "main" Jedi Knight has reached a strange sort of solo wall where she seems strangely ineffectual in solo play of her own story content without a lot of seemingly grinding. On the other hand, this strategy seems likely to leave this only a short-while fling as I will get bored and move on: group play seems as scarce and hard to find as it ever was, and the real money involvement in this scarcity seems to be growing a worrying "one-and-done" mentality where groups never seem to last more than a single "unit" of a multiplayer session. It isn't helping SWTOR's image as a "massively single player" experience where there are a lot of strangely named NPCs that sometimes pretend to be PCs.
+
+It's hard now not to wonder what might have been if EA and BioWare had instead attempted a model of trying to push the multiplayer content closer to free at the expense of more expensive content gates and story gates. But I'll refrain from armchair quarterbacking any further. For now I expect to just chuckle my way through at least a bit more content.
+
+PS, rest in peace *City of Heroes*. I may not miss your grinding, but I will nostalgically reminisce about old times and missed friends, NPCs and PCs alike, and my own now entirely unfinished lost stories.
+
+----
+
+.. [1] Also, the rest of LucasFilm, but everyone knows *Star Wars* was the focus, and the cost savings of owning Industrial Light and Magic outright surely secondary. I'm still hopeful Disney may find good uses of the LucasArts franchises for which I'm a huge fan. For instance, putting direct "Grim Fandango" references in the supposedly in development day-of-the-dead--themed Pixar film might only interest a small fan following, but it would be awesome.
+.. [2] I decided to intentionally drop the *l* here. Clearly this is more honest.
+.. [3] Arguably I let the anger flow through me and let that anger push me deeper towards the *Hipster Side* so that I can more easily ironically enjoy the retro fashions of *Star Wars*...
+.. [4] Which leads in part to why I've been watching some of Star Trek's most earnest and yet most campy films (such as *Star Trek: The Motion Picture* and *Star Trek IV: The Voyage Home*) as requisite lead up (aka, prewhelming) for the *Star Trek Into Darkness* release. I take *Star Trek* very **seriously** and thus my fandom senses have been tingling with huge worry that *STID* will be much too dark for what Star Trek does best, and that it will thusly be terrible. Hopefully with proper prewhelming I will hit the right edge between ironic detachment and overly serious deconstructionism, between expecting a terrible action film in Star Trek drag and an enjoyable action film that fits somewhere in the existing wide spectrum that is Star Trek films... We shall see how successful this strategy may play out in the coming months.
+.. [5] At the moment I can't recall if I've yet written down my long-winded rant on the strange economics of *Star Trek Online* "lock boxes".

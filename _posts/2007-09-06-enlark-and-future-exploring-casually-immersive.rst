@@ -1,0 +1,19 @@
+---
+date: 2007-09-06 11:44:07.555521
+db_id: 394
+db_updated: 2008-02-21 15:16:45.017469
+layout: post
+tags: game-design
+title: 'Enlark and the Future: Exploring "Casually Immersive"'
+---
+I haven't yet written the "Business Plan".  I'd rather not right one, but one of these days I probably will have to.  Even though I don't have the formal documentation I certainly have considered plans for the future.  I just recently mentioned `Enlark`_'s `opening gambit`_, and I wanted to at least touch on where *I* see the company going in the mid-to-long term.  (This is personal speculation, there is certainly not exactly official stand point, yet.)  The first project, the `Pink Godzilla Dev Kit`_, is pretty firmly in what today people are calling the "casual" space.  Some developers quarrel with the term (and some studies are showing that "casual players" are anything but casual); I'm a bit more ambivalent towards the term.  I'm pretty happy with that.  "Casual" is a growing space and there are a lot of good things happening there.  There are much worse places to try to be, especially for a small start up.  I think there are two good rules in the current casual space that I would be applying regardless of the subject matter or the game.  Both rules boil down to Keep It Simple Stupid (KISS): the game should be easy to pick up and play and the game should be easy to put down should "real life" intervene.
+
+The place I see Enlark pushing into and exploring, because it interests me, are some of the more immersive sides of the casual space.  I can't say that we'll be the first in that niche, as I think the "casual industry" is mostly about applying older game styles and ideas to new games.  (That is one of the reasons I prefer the "Arcade" term for the casual space...  In many ways the casual industry is about reintroducing the "quarter eater" style of games to both new and existing audiences.  The KISS rules of casual are very classic in this sense.)  I think there are a lot of old ideas and new ideas that can be brought to the table to build very interesting "casually immersive" games.  There's a wide range of what's possible, everything from the classic sort of "easy to learn, hard to master" style of games (such as board game challenges like chess, go, or even backgammon) to games that have a surprising depth of story/world-building behind the "lens" of a simple game style.  I think there is a lot of untapped potential in this case, some of which I've discussed before on my blog.  
+
+As an example, one sort of depth creation is what I call the "risk example".  Risk at large is not very "casual" for a board game in that it is hard to put down, as such.  Playing the major rule sets of Risk takes hours, not to mention the setup time and match-making if that is an issue...  Risk in pieces is much simpler: make a few simple decisions at a time and wait for the consequences.  This isn't a new idea, there are sometimes elaborate Play-By-Email (PBEM) versions of just this sort of thing.  I think there are some interesting tools from the ARG world that can make these sorts of games all the more immersive, or at least integrated, into a person's world.  Just imagine Risk battles showing up in your RSS feed like any other news sources...  Then sending "army maneuvers" via text message during your lunch break...  
+
+The other sorts of immersion I can think of I'll leave for another post, or perhaps save for the actual doing of them.  This post has gotten long enough and I think I've illustrated my points.
+
+.. _Enlark: http://www.enlark.com/
+.. _opening gambit: /2007/aug/28/pax-enlark-announces-first-project/
+.. _Pink Godzilla Dev Kit: http://www.pgdevkit.com/

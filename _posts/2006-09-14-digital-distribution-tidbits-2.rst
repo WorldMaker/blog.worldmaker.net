@@ -1,0 +1,17 @@
+---
+date: 2006-09-14 23:19:39.932703
+db_id: 261
+db_updated: 2008-02-21 15:16:47.215430
+layout: post
+tags: games
+title: 'Digital Distribution Tidbits 2: Steam Powered Death Match'
+---
+I'm a huge fan of digital distribution, and now it seems finally approaching not just the mainstream (game portals like Shockwave, Yahoo or MSN Games have long been in the mainstream), but starting to approach the "mainstream" of game publishers.  I mentioned Windows Marketplace just recently.  I heard an interesting date to watch that website, but I'm not certain it is correct and much less certain I can talk about it.  I also mentioned that Ubi-soft has at least one upcoming game hitting Steam.  
+
+Steam appears to finally be paying out for Valve.  So many people mocked Steam early on (I was one of the very early people to plug my CD keys into Steam and stop patching the old way, and I remember some of the funny things people told me when I decided to do it).  So, Pop Cap already has games on Steam and Majesco just recently added Bloodrayne 1 & 2, as well as Advent Rising.  Psychonauts is supposed to follow in October!
+
+Meanwhile, GameTap has announced that Sam & Max Episode 1: Culture Shock will be launching October 17.
+
+I think there is going to be some very interesting competition over the next few months as all of the players start to really build libraries: GameTap, Microsoft's Marketplaces, Nintendo's Virtual Console Service, and Steam.  I've already started making game purchases based upon what is available on GameTap as I browse the Xbox Live Marketplace, regardless if the game might be an easy way to get achievements...
+
+Sony just announced a joint venture with Xfire for Xbox Live-style messaging.  I'm wondering how they plan to compete with the digital distribution centers on the 360 and Wii.  At this point I wouldn't be surprised if they made some sort of crazy deal with Steam, but I'm going to doubt that they see digital distribution anywhere near as important as Microsoft or Nintendo at this point.

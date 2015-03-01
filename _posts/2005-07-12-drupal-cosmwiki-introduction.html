@@ -1,0 +1,26 @@
+---
+date: 2005-07-12 00:30:48
+db_id: 138
+db_updated: 2008-02-21 15:16:49.601137
+layout: post
+redirect_from:
+- /node/140/
+tags: ''
+title: 'Drupal: CosmWiki Introduction'
+---
+<p>For <a href="http://www.mythoi.com/">Mythoi.com</a> I wanted a easy to use, powerful, and partitionable (across a taxonomy hierarchy) Wiki engine to mount inside of <a href="http://www.drupal.org/">Drupal</a>.  Last week I did the briefest amount of work getting acquainted with the Drupal API (via DrupalDocs).  With DrupalDocs down today I was resorting to Vim searches and the <a href="irc://freenode/drupal">Drupal chatroom</a>.</p>
+
+<p>Today I got some good prototypes started on the main UI for the wiki.  I created it to respond to wiki/ and wiki/edit/ paths.  The first attempts to load the proper node based on the title and the second attempts to edit/create it.  So far the only thing I've ascertained works correctly is that without a proper node reference the wiki/Some/Page will display a message saying that no such page yet exists and if the user has the proper access rights it will display a link to the wiki/edit/Some/Page.  A small start, obviously, but a good foundation for the next pieces.  Here's what I need to do:</p>
+
+<ul>
+<li>I need to implement cosmwiki_admin() so that the admin can select the "cosm vocabulary".</li>
+<li>I need to look into how to connect a slash-delimited path to a term's taxonomy id from the "cosm vocabulary".</li>
+<li>I need to implement hook_node_form() so that I can add the Body and modified taxonomy form (taxonomy form minus the "cosm vocabulary" field).</li>
+<li>I need to implement hook_node_validate() so that I can produce a reasonable error when the user attempts to change the title (since I can't disable the title form field, because it is buried in node_form()).</li>
+<li>I need to implement hook_node_view() for displaying the node.</li>
+<li>I need to implement submission abilities and test form, validation, taxonomy, and display.</li>
+<li>I need to implement hook_filter() for WikiFormatting.  I'll probably either "borrow" the existing wiki.module or the code from another small PHP Wiki such as <a href="http://tavi.sourceforge.net/">Tavi</a>.</li>
+<li><b>Test Everything</b></li>
+</ul>
+
+<p>Currently I'm writing against the 4.6 API, because it is relatively stable, but at some point I'll need to forward it to HEAD so that I can upload it to the CVS server.  However, right now that isn't a big deal because the servers are down and I don't have a CVS account, anyway.  My biggest worry is that I'm relying too heavily on the internals of node.module instead of calling its exposed API.  What I'm doing is that I'm mostly using the internals of node_page(), because I'm trying to present a "closer" integration to the Wiki than most node types do.  I have to worry that node_page() might change quite a bit of time and keeping up with it could be a pain.</p>

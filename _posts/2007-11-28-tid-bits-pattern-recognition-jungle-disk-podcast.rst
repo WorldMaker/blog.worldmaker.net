@@ -1,0 +1,49 @@
+---
+date: 2007-11-28 11:19:55.705796
+db_id: 412
+db_updated: 2008-02-21 15:16:44.679760
+layout: post
+tags: ''
+title: 'Tid Bits: Pattern Recognition, Jungle Disk, Podcast'
+---
+I've been on a Gibson catch-up kick lately and I've made my way
+through to *Pattern Recognition* now.  I'm about a fourth of the way
+through and enjoying it immensely.  Gibson's books are interesting
+because there's an obvious closing of the gap between how far
+out/fantastical his work and how contemporary his worlds seem.  I
+think it's an obvious mix of maturity in his writing style and the
+fact that the future is just catching up with him too fast...  Pattern
+Recognition is interesting because it's almost a novel of examples
+from some near future marketing textbook, and isn't boring in doing
+so.  It involves a main character with an allergy to classic
+trademarks [#]_ and revolves around what Hugh_ has been calling
+"Social Objects"...  The idea of the marketing object not being a
+one-way-street brand item like a logo or a trademark but something
+intentionally designed to spark conversations and spread in the ways
+that we speak to each other...  Plus, my copy of Pattern Recognition
+in this case is itself a social object for me.  I found a hardcover
+copy in Half-Price Books in amazing condition with what appears to be
+Gibson's signature in it.  No idea how it ended up in a Half-Price
+Books but I find it interesting to speculate.
+
+I've decided that S3 via `Jungle Disk`_ is the right "set it and
+forget it" backup solution for me.  I've also been slowly moving some
+of the more static elements of this website to my S3 storage as well.
+I doubt anyone has much noticed that ``media.worldmaker.net`` (and
+thus all my CSS, JS, images on most pages) now is entirely S3 served.
+Some times it's even faster than previously...
+
+I finally moved the `Umphrey's McGee`_ podcast from Google Reader
+where it wasn't doing me much good to Banshee and...  wow.  The
+podcast episodes now get mixed in with my normal crazy full-library
+shuffle thing that I do and every one that I randomly end up on has
+been just fantastic and well worth the cost of admission (free
+podcast).  Makes me wonder if I own enough of their albums...  On the
+other hand, their ranking on `my Last.fm profile`_ should shoot up
+even further from all the podcast episodes...
+
+.. _Hugh: http://www.gapingvoid.com/
+.. _Jungle Disk: http://www.jungledisk.com/
+.. _Umphrey's McGee: http://www.umphreys.com/
+.. _my Last.fm profile: http://www.last.fm/user/WorldMaker/
+.. [#] I can certainly empathize.  I've gotten to the point where my own auto-immune response to advertising seems almost like an allergy. Nowhere near as bad as the protagonist's, because mine manifests more in cynicism, derision, and tourette's...

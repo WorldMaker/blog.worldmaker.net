@@ -1,0 +1,326 @@
+---
+date: 2008-08-09 04:29:31.589815
+db_id: 482
+db_updated: 2008-08-09 04:29:31.589857
+layout: post
+tags: fiction derby
+title: Days of Decadence and Depravity
+---
+===============================
+Days of Decadence and Depravity
+===============================
+
+It began, earnestly enough, over a course of thick vegetable soup.  It
+was loaded with vegetables, time-shifted into this early May lunch
+through diligent, or at least dreary, work from cross-national food
+conglomerates, and chunks of a well-cooked slow roasted chuck roast.
+Between greedy mouthfuls and long sips of sweetened iced tea he
+alternated story telling and dips of dripping grilled American cheese
+sandwich.  He talked of how much it reminded him of his grandmother's
+version of the vegetable soup, only that it needed fresh okra and good
+Kentucky lima beans so big that they qualified as steaks in some
+countries, and so juicy that eating one was its own mini-bowl of soup.
+
+The place was packed and at a general level even more excited than he
+was.  It was a pharmacist's lunch counter, grade A Americana, spelled
+with a capital Kitsch, and filled with a couple of college students and
+a huge gathering of "horse people"; jockeys and trainers and contingent
+staff.  People that were making huge bonuses this week, compared to
+their generally meager blue collar lot in life, but they did it for love
+and they did it for fame and they particularly did it for *Derby*.  
+
+It was obvious that the couple, even amongst his stories of nearly blue
+collar grandparents and actual blue collar relatives, could be seen as
+disparate objects in this place.  He suggested it, a known haunt from
+his own college days, because it was "quaint" and "real" and miles away
+from celebrité, even as it stood under the shadows of that weeks' most
+important place.  She wasn't well enough known that the blue collar
+crowds would recognize her outside of her act, and she was happy to
+accompany him, to have a native guide on this small vacation in early
+May.
+
+She interrupted his rambling to point out that she had only a passing
+knowledge of okra.  He finished drinking the tomato broth remaining in
+his bowl, stared at her for a few minutes, lost in thought, and then
+stood up, pulling on his light jacket, proceeding round the table to help
+her do so.  He walked with her to the pharmaceutical counter to pay for
+what she took to be an astoundingly cheap meal.  He asked for a 750 of
+Woodford Reserve, which was both a good bourbon on prominent display
+behind the counter and a shared luxury amongst the classes.  He inquired
+as to a flask, having none on him, and acquired one to add to his tab.
+
+He stashed the bourbon in their rental car, but not before pouring some
+into his flask and stashing the flask in a pocket, and with that he
+invited her to walk with him a few blocks.  She hesitated for a few
+moments, not too inclined to walk in her heels, but with his insistence
+and the plain beauty of a sun-drenched afternoon she relented.  Almost
+immediately she nearly slipped upon the gravel in the few feet between
+the car and the sidewalk, but he was a perfect gentleman, both keeping
+her upright and simultaneously feigning ignorance of her stumble.
+
+The walk was nearly a block too long for her, she huffed.  The walk
+having been a nearly depressing one as they passed a mixture of churches
+and nice houses betwixt awful rotting ones and dubious businesses, the
+sun brightly illuminating both unkempt and well loved buildings equally.
+Nestled just before an ugly train aqueduct and just across from an
+abandoned and equally graffiti-ed gas station was a blue and white
+colored fried fish restaurant that filled the air with the smells of
+fried temptation.  He joked about nearly leading her to the better,
+hole-in-the-wall fish place five or six blocks further north.
+
+The counter was staffed by a couple of low income high school aged kids,
+but they were relatively quick with the simple order of fried mushrooms
+and fried okra.  He requested a container of the restaurant's carefully
+hoarded cocktail sauce and they sat down at a boring, and to her
+startlingly clean, fast-food booth.  He had ordered another sweetened
+iced tea, and to this one he added a splash of bourbon from his flask.
+Her curiosity got the best of her and she took a small sip of now
+alcoholic tea.  At which point he introduced her to the wonder of fried
+okra.  He warned her about the hot bursts of water contained in the
+fried foods after nearly burning his mouth in his impatience to eat one
+of the fried mushrooms he had entirely coated in cocktail sauce.  At
+first bite of the okra she was a little unimpressed, but he coaxed her
+to notice the sweet undertones of the vegetable versus its tangy
+exterior and the fish-tasting fried batter.
+
+Once they had finished she let him know on few uncertain terms that she
+was not prepared to walk the full length to the car.  He assuaged her
+worries and suggested using the bus.  He lead her out of the fish
+restaurant and west into the afternoon sun.  As they walked the single
+block to the nearest major bus stop he further suggested they take it in
+the opposite direction of her rental car to spend a few hours at a good
+pub.  She look at the slender gold watch around her wrist, shrugged, and
+then agreed.  Already waiting at the bus stop was a low income man
+heading to some afternoon job blocks away from his home and a homeless
+man getting ready for his own late shift haranguing the club-hopping
+rich for spare change.
+
+The stop was in front of a chain drugstore, contrasting with lunch's
+mom and pop shop.  Across the street they had just followed from the
+fish place was a dingy looking chain discount shoe retailer.  A gas
+station anchored the diametric corner and he pointed out the pizzeria
+beside it as a great place to get Chicago-style deep dish.  Houses in
+various states of repair and negligence filled up much of the rest of
+the view as they waited, just as they had seen on the rest of their
+walk.
+
+The bus ride was a rather uneventful journey over a dozen blocks north.
+He pointed out a local coffee shop and Central Park and the main library
+branch brushed past just prior to their arrival at the stop he warned
+her they were getting off at, Broadway.  She watched in fascination as
+nearly all of the people on the bus lined up to exit at that
+intersection with nearly half that many people waiting patiently to get
+onto the bus.
+
+The pub, a local micro-brewery, was just across Broadway and past a
+large business building across from a major hotel tower.  They sidled up
+to an outer bar and he ordered a beer, receiving it in a larger mug
+reserved for the bar's patrons.  She wondered at his barfly nature given
+that this mug was chosen based solely on recognition of him by the
+bartender.  He encouraged her to try a Mint Julep and she found herself
+intrigued enough to try one.   She found the mix of fresh mint and
+bourbon too heady and strong and he suggested she temper it with a
+little bit of club soda.  
+
+He informed her that some considered the sparkly club soda verboten in a
+"real" mint julep, but in his own well regarded opinion just enough club
+soda to suit an individual's taste was perfectly warranted.  The club
+soda-infused Mint Julep would prove to be her undoing that afternoon.
+
+A few older ladies staying at the hotel across the street had wound up
+at the bar near to the couple and it was shortly after that when the
+ladies recognized her and begged her autograph.  Hearing the commotion
+the manager on duty happily comped the couple's next round and before
+long the afternoon had passed over the course of several more rounds and
+evening proceeded much the same with brief intermissions for bites of
+pub food.  A small crowd of onlookers, fans, and soon to be fans
+gathered around the couple, hanging on to every word and laughing at the
+opportune moments in the conversation.  Every now and then word would be
+passed that some larger star had been spotted further north unto the
+depths of crass commercial clubs and sections of the hovering crowd
+would break away to follow those rumors, only to be replenished by
+newcomers.
+
+Following pressure from the surrounding crowd the couple even relented
+to join in a few pub games, including the  suggestively named
+"cornhole"; the couple displayed an admirable mixture of lack of skill
+and loss of skill due to increasing alcohol consumption.
+
+The temporal and spatial disparity between the pub and the delivery of
+breakfast at precisely half past ten the following morning, as
+requested, led the couple to speculate on which one had driven the
+distance to the hotel drunk.  In addition, a morning Mimosa and
+breakfast Bloody Mary had been thoughtfully provided by the hotel, and
+that led only to further suspicions of how drunk they must have been
+upon arrival.  Neither had much remorse for having driven drunk for the
+rest they had received, but were particularly remorseless given the
+wonderful outlook for the coming day provided by waking up to eggs and
+champagne.  
+
+It should be noted that drunk driving is not to be condoned in any
+manner and that conveyance had been obtained via the wise counsel of the
+microbrewery that involved a combination of taxi cab and scooter-based
+designated driver service, both of which were handsomely paid in tips
+for their services.
+
+Upon the slow activation of communication devices her publicist finally
+managed to get a hold of her and insure that she was well versed in the
+days activities.  The publicist also managed to drop the word that her
+concerted effort in schmoozing the management at Churchill Downs had
+finally paid off into throwing in Millionaire's Row access on top of
+their already acquired last minute seats at the track.  The publicist
+let them know to expect the passes to be left by courier at the hotel's
+front desk sometime prior to them setting out the next day.
+
+A taxi had been requisitioned by the publicist, under the publicist's
+budget of funds, to get the already inebriated couple to the days
+activities upon the Bardstown Road area.  They ate a wild smattering of
+worldly appetizers at a local café for a simple late lunch.  At his
+behest they then walked the block to a well-regarded local bookstore.
+Having been well introduced to his pedestrianating ways the day before
+she had wisely worn flats and refused to complain any further about his
+wandering.
+
+At the bookshop he stumbled into a relative, whom he introduced to her
+and by whom he was introduced to the store's owner.  That lead to
+discussions of his humble published work, which the owner had stocked a
+surprising number of as something of a local curio.  A few customers
+leaked into the discussion and soon he found himself roped into an
+impromptu signing session as the bookstore sold several new copies.  The
+adjoining local coffee shop offered free caffeinated beverages to the
+couple.
+
+Following the impromptu signing event they managed to be a few minutes
+late to her scheduled appearance at the local music store several blocks
+south.  Her publicist had done her job admirably and there was precious
+delay between her timely, albeit late, arrival and her short solo
+acoustic set.  A few of the pub-goers from the night before had
+wonderfully thickened the crowded reception.  Stacks of her group's
+recent album seemed to disappear.
+
+A few in the crowd may have noticed the looks the couple shared as she
+sung.  She sung with great emotion and given the ear and the heart for
+it, perhaps there were those that caught the undertones of the real
+emotions, the raw chemistry at work upon her vocal chords.  Even those
+that did catch fragments of that emotional core to her work that
+afternoon would not catch as well as he did that most of the words she
+sung that day were his.  She had kept the set list from him, and his
+smile was all she needed in reception to her choice.  It was something
+of a gift to him, for him and his hometown and a small but attentive
+audience in a small, intimate venue.  It was just the right sort of set
+for such an audience.  The few that recognized her would not be the sort
+of fans to clamour for her to cover more of her group's more
+recognizable songs.  It was enough that she fill the space with her
+music and her emotion.
+
+An employee that helped her set up approached him and gently tapped his
+shoulder.  This employee introduced him to an unusual but well regarded
+guest to the store standing discreetly out of the crowd, someone that
+would have been recognized if it weren't for the rapt attention the
+audience paid to the singer before them.  This guest, a wealthy twin of
+some local renown, shook his hand and chatted with him between breaks
+between songs.  This twin noticed at least some of how he reacted to
+each new song and dared not disturb such a beautiful rapport.  But
+slowly the twin spun from him enough of the couple's story to satisfy
+curiosity.  With that as her token, this twin, wove for him an invite to
+the party she co-hosts, a charitable ball of worldly wonder and a vast
+cross-roads of celebrity, where she should have been embroiled in last
+minute planning rather than visiting a small musical set nearby.  The
+twin insisted upon conveying them from their hotel at the right hour via
+an available limo service.  Somewhat flustered he did his best to
+politely accept the invitation and then asked his leave to place more
+attention on the closing songs of her set.
+
+Immediately as the publicity agent's workers set to their arrangements
+to get what equipment needed to travel to its next destinations he
+pulled her out from the fracas and enveloped her in a warm embrace, a
+tender kiss, a whispered nothing.  She looked into his eyes and saw his
+wonder and inquired as to what had happened.  He explained the party
+invitation, and then he explained the party's significance, and then he
+explained the need to hurry back to the hotel to change.
+
+On the taxi ride back to the hotel she reminded him to call his mother
+and postpone their earlier dinner plans.  His mother wasn't exactly
+ecstatic, but she was poor at hiding her lack of disappointment.  He
+assumed that some small neighborly work may have gone into that
+invitation.  Louisville can be small town for such a large city and
+he couldn't shake the impression that what was made to appear an
+invitation upon a belated lark had in fact been an orchestrated plot by
+his friends and family.  But he couldn't press his mother on the
+subject.  He knew well enough that she would tell him in her own way
+sometime later, and he didn't really care to know definitively.
+
+What followed included the general haze of a rush to change clothes
+while simultaneously attempting some small decompression and take a
+quick breather in the middle of a hectic day.  The limo arrived in time
+and the couple was generally resplendent in attire, as they were
+expected to be.
+
+The party followed in a somewhat relaxed manner, a night of warm toasts
+and good wine and a handful of diverse conversations and a million
+introductions, including many celebrities and individuals of much
+"higher status" than the couple.  She was gently coaxed into joining in
+several impromptu and wild jam sessions, including a few with her
+musical idols.  She pressured him into joining into a gentle duet on one
+of the songs he had written for her.
+
+They drank like fish and spoke of charity and celebrity.  They danced
+in the hall and under the stars and with each other and without.  The
+couple laughed there way through the evening and into the limo appointed
+to convey them back to the hotel and into to bed, regaling each other
+with stories of the night before dozing off.
+
+In the morning he drove their rental car to the track, having a few
+ideas of where to find cheaper parking.  He lead her to the track and
+she marveled at how different the area seemed from only a few days
+prior.  She barely recognized the pharmacy as they passed it, so she
+verified it with him.
+
+Just about every lot was packed, even as early as their ten
+o'clock arrival, and local residents hawked precious lawn space as
+parking lot space.  Police maneuvered walls of pedestrians and walls of
+cars around each other.  Street vendors further cluttered some of the
+streets, promoting memorabilia and foods of dubious value, just as
+street vendors attempt to ween cash from tourist throngs everywhere.
+
+They watched a few races and visited Millionaire's Row with the pass her
+publicist had procured for them.  They had gotten over their shock of
+rubbing elbows with bigger celebrities in the drunken camaraderie of the
+previous night's party, but they made small talk and posed for a few
+photos and were pressured into making a few bets.  They contemplated
+wandering back to their other seats, but stayed for the amazing food,
+most made with local ingredients by a talented and enthusiastic
+five-star chef.  She drank club soda-tempered and he stayed relatively
+sober sticking to a few glasses of expensive wine.  They lost just about
+all the money they bet on the horses, but they whooped and hollered with
+everyone else during the races...
+
+.. admonition:: The Kentucky Derby *is* Decadent and Depraved
+
+   Hunter S. Thompson, is of course, entirely correct, the Kentucky
+   Derby is decadent and depraved, but there is a certain majesty to it,
+   nonetheless.  Being a native to Louisville I have a much different
+   view of the sporting event than non-natives.  Most obviously, I know
+   what so much of the area looks like during a more normal week, and
+   thus the story germinated just about where the story begins:
+   
+   I was eating lunch in the mentioned fish place on a dirty
+   intersection both a few blocks from Churchill Downs and a few blocks
+   from campus.  It was finals week **and** Derby Week, a University of
+   Louisville experience probably hard to match.  (An amazing
+   intersection of hectic class schedules, crazy events to partake in,
+   and then the normal Spring finals celebration running headlong into
+   wild Derby partying.)  I was listening to a few low-ish class diners
+   complain about ordinary struggles and thinking about Derby tradition
+   and royalty and how I was merely days away from the huge crowds that
+   would be centered on the track only blocks away...
+
+   I meant to finish this story *by* Derby Day, but obviously that plan
+   fell by the wayside in all the other activities that happened.  The
+   story is better for it as I think I plugged some obvious gaps it had
+   needed.  Maybe next Derby I'll think about posting an annotated
+   "Special Edition" to explain some of the in-jokes and provide a map
+   of some the places visited in this tale...
+
+   Interestingly this story is a lot longer than I intended, which is
+   neat because I used to have such a hard time inflating short stories.

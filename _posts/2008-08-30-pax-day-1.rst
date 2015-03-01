@@ -1,0 +1,15 @@
+---
+date: 2008-08-30 12:48:04.376692
+db_id: 489
+db_updated: 2008-08-31 03:34:17.242210
+layout: post
+tags: games enlark awesome pax
+title: PAX Day 1
+---
+Friday was my day of requisite linestanding.  I stood in a line before lunch to get an easy access wrist band for my biggest guilty pleasure of what is ostensibly a "business trip": the Friday night concert.  Whoever scheduled the concerts this year possibly read my mind in that the three acts that I most wanted to see were all lumped into one concert of awesome.  I stayed late for amazing sets by The One-Ups, Freezepop, and Jonathan Coulton.
+
+In between I had a nice late lunch with my good friend Dierdra_, had a chance to hang out and talk about all sorts of fun random topics.  I got a chance to do a brief "test demo" before a couple of "hardcore" Dev Kit players and got all sorts of good feedback and bug reproductions in just an hour of showing things off.   Everyone seemed to like what they saw and I'm thrilled.  For dinner I was invited to a wildly intimate Hothead "luau party" with Dierdra where I got to meet even more of Hothead's people, had good food and a little beer, and had a new opportunity to try not to come off as too much of a crazy fanboy to Dierdra's boss, the one and only Ron Gilbert.  Hothead is awesome and definitely on my short list of cool companies I'd love to try working for.
+
+Today and tomorrow the plan is simple: I'm going to spend as much of the day as I can demoing my alpha-quality "work in progress", known bugs and all, in the Tabletop Area in the Pike Annex.  Tomorrow is the annual PAX Dev Kit tournament, so I expect to see at least a bunch of interested people tomorrow.
+
+.. _Dierdra: http://dierdrakiai.com/

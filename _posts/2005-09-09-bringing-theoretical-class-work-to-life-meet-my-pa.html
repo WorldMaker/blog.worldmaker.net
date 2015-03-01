@@ -1,0 +1,161 @@
+---
+date: 2005-09-09 06:08:11
+db_id: 178
+db_updated: 2008-02-21 15:16:48.913314
+layout: post
+redirect_from:
+- /node/180/
+tags: ''
+title: 'Bringing Theoretical Class Work to Life: Meet My Pal the DFA'
+---
+<p>Just to prove it was quite easy to do, and also to show to my friends in Automata that the stuff might be more practical than they think, I put together an actual implementation of the Problem 11, an ugly DFA assigned to us as homework.  Problem 11 was to prove that L = { <i>vwv</i> : <i>v</i>, <i>w</i> &isin; {a, b}*, |v| = 2} defines a regular language.  The easiest way to do this is to build the DFA.  In this case the DFA is a large 19 state system.</p>
+
+<p>Here's the diagram (generated with <a href="http://www.graphviz.org/">Graphviz</a>'s dot):<br />
+<a href="/cecs504/prob11.png"><img src="/cecs504/prob11.png" alt="Problem 11 DFA Graph" width="300" /></a></p>
+<!--break-->
+<p>Here's the DOT file code that generated this (color highlighting by <a href="http://www.vim.org/">VIM</a>):<br />
+
+<code><pre>
+<font color="#804040"><b>digraph</b></font> <font color="#008080">prob11</font> <font color="#804040"><b>{</b></font>
+        <font color="#008080">q0</font> <font color="#804040"><b>[</b></font><font color="#2e8b57"><b>style</b></font><font color="#804040"><b>=</b></font><font color="#008080">filled</font>, <font color="#2e8b57"><b>color</b></font><font color="#804040"><b>=</b></font><font color="#008080">green</font><font color="#804040"><b>]</b></font><font color="#804040"><b>;</b></font>
+        <font color="#008080">q9</font> <font color="#804040"><b>[</b></font><font color="#2e8b57"><b>shape</b></font><font color="#804040"><b>=</b></font><font color="#008080">doublecircle</font><font color="#804040"><b>]</b></font><font color="#804040"><b>;</b></font>
+        <font color="#008080">q12</font> <font color="#804040"><b>[</b></font><font color="#2e8b57"><b>shape</b></font><font color="#804040"><b>=</b></font><font color="#008080">doublecircle</font><font color="#804040"><b>]</b></font><font color="#804040"><b>;</b></font>
+        <font color="#008080">q15</font> <font color="#804040"><b>[</b></font><font color="#2e8b57"><b>shape</b></font><font color="#804040"><b>=</b></font><font color="#008080">doublecircle</font><font color="#804040"><b>]</b></font><font color="#804040"><b>;</b></font>
+        <font color="#008080">q18</font> <font color="#804040"><b>[</b></font><font color="#2e8b57"><b>shape</b></font><font color="#804040"><b>=</b></font><font color="#008080">doublecircle</font><font color="#804040"><b>]</b></font><font color="#804040"><b>;</b></font>
+        <font color="#008080">q0</font> <font color="#804040"><b>-&gt;</b></font> <font color="#008080">q1</font> <font color="#804040"><b>[</b></font><font color="#2e8b57"><b>label</b></font><font color="#804040"><b>=</b></font><font color="#008080">a</font><font color="#804040"><b>]</b></font><font color="#804040"><b>;</b></font>
+        <font color="#008080">q0</font> <font color="#804040"><b>-&gt;</b></font> <font color="#008080">q2</font> <font color="#804040"><b>[</b></font><font color="#2e8b57"><b>label</b></font><font color="#804040"><b>=</b></font><font color="#008080">b</font><font color="#804040"><b>]</b></font><font color="#804040"><b>;</b></font>
+        <font color="#008080">q1</font> <font color="#804040"><b>-&gt;</b></font> <font color="#008080">q3</font> <font color="#804040"><b>[</b></font><font color="#2e8b57"><b>label</b></font><font color="#804040"><b>=</b></font><font color="#008080">a</font><font color="#804040"><b>]</b></font><font color="#804040"><b>;</b></font>
+        <font color="#008080">q1</font> <font color="#804040"><b>-&gt;</b></font> <font color="#008080">q4</font> <font color="#804040"><b>[</b></font><font color="#2e8b57"><b>label</b></font><font color="#804040"><b>=</b></font><font color="#008080">b</font><font color="#804040"><b>]</b></font><font color="#804040"><b>;</b></font>
+        <font color="#008080">q2</font> <font color="#804040"><b>-&gt;</b></font> <font color="#008080">q5</font> <font color="#804040"><b>[</b></font><font color="#2e8b57"><b>label</b></font><font color="#804040"><b>=</b></font><font color="#008080">a</font><font color="#804040"><b>]</b></font><font color="#804040"><b>;</b></font>
+        <font color="#008080">q2</font> <font color="#804040"><b>-&gt;</b></font> <font color="#008080">q6</font> <font color="#804040"><b>[</b></font><font color="#2e8b57"><b>label</b></font><font color="#804040"><b>=</b></font><font color="#008080">b</font><font color="#804040"><b>]</b></font><font color="#804040"><b>;</b></font>
+        <font color="#008080">q3</font> <font color="#804040"><b>-&gt;</b></font> <font color="#008080">q8</font> <font color="#804040"><b>[</b></font><font color="#2e8b57"><b>label</b></font><font color="#804040"><b>=</b></font><font color="#008080">a</font><font color="#804040"><b>]</b></font><font color="#804040"><b>;</b></font>
+        <font color="#008080">q3</font> <font color="#804040"><b>-&gt;</b></font> <font color="#008080">q7</font> <font color="#804040"><b>[</b></font><font color="#2e8b57"><b>label</b></font><font color="#804040"><b>=</b></font><font color="#008080">b</font><font color="#804040"><b>]</b></font><font color="#804040"><b>;</b></font>
+        <font color="#008080">q4</font> <font color="#804040"><b>-&gt;</b></font> <font color="#008080">q11</font> <font color="#804040"><b>[</b></font><font color="#2e8b57"><b>label</b></font><font color="#804040"><b>=</b></font><font color="#008080">a</font><font color="#804040"><b>]</b></font><font color="#804040"><b>;</b></font>
+        <font color="#008080">q4</font> <font color="#804040"><b>-&gt;</b></font> <font color="#008080">q10</font> <font color="#804040"><b>[</b></font><font color="#2e8b57"><b>label</b></font><font color="#804040"><b>=</b></font><font color="#008080">b</font><font color="#804040"><b>]</b></font><font color="#804040"><b>;</b></font>
+        <font color="#008080">q5</font> <font color="#804040"><b>-&gt;</b></font> <font color="#008080">q13</font> <font color="#804040"><b>[</b></font><font color="#2e8b57"><b>label</b></font><font color="#804040"><b>=</b></font><font color="#008080">a</font><font color="#804040"><b>]</b></font><font color="#804040"><b>;</b></font>
+        <font color="#008080">q5</font> <font color="#804040"><b>-&gt;</b></font> <font color="#008080">q14</font> <font color="#804040"><b>[</b></font><font color="#2e8b57"><b>label</b></font><font color="#804040"><b>=</b></font><font color="#008080">b</font><font color="#804040"><b>]</b></font><font color="#804040"><b>;</b></font>
+        <font color="#008080">q6</font> <font color="#804040"><b>-&gt;</b></font> <font color="#008080">q16</font> <font color="#804040"><b>[</b></font><font color="#2e8b57"><b>label</b></font><font color="#804040"><b>=</b></font><font color="#008080">a</font><font color="#804040"><b>]</b></font><font color="#804040"><b>;</b></font>
+        <font color="#008080">q6</font> <font color="#804040"><b>-&gt;</b></font> <font color="#008080">q17</font> <font color="#804040"><b>[</b></font><font color="#2e8b57"><b>label</b></font><font color="#804040"><b>=</b></font><font color="#008080">b</font><font color="#804040"><b>]</b></font><font color="#804040"><b>;</b></font>
+        <font color="#008080">q7</font> <font color="#804040"><b>-&gt;</b></font> <font color="#008080">q8</font> <font color="#804040"><b>[</b></font><font color="#2e8b57"><b>label</b></font><font color="#804040"><b>=</b></font><font color="#008080">a</font><font color="#804040"><b>]</b></font><font color="#804040"><b>;</b></font>
+        <font color="#008080">q7</font> <font color="#804040"><b>-&gt;</b></font> <font color="#008080">q7</font> <font color="#804040"><b>[</b></font><font color="#2e8b57"><b>label</b></font><font color="#804040"><b>=</b></font><font color="#008080">b</font><font color="#804040"><b>]</b></font><font color="#804040"><b>;</b></font>
+        <font color="#008080">q8</font> <font color="#804040"><b>-&gt;</b></font> <font color="#008080">q9</font> <font color="#804040"><b>[</b></font><font color="#2e8b57"><b>label</b></font><font color="#804040"><b>=</b></font><font color="#008080">a</font><font color="#804040"><b>]</b></font><font color="#804040"><b>;</b></font>
+        <font color="#008080">q8</font> <font color="#804040"><b>-&gt;</b></font> <font color="#008080">q7</font> <font color="#804040"><b>[</b></font><font color="#2e8b57"><b>label</b></font><font color="#804040"><b>=</b></font><font color="#008080">b</font><font color="#804040"><b>]</b></font><font color="#804040"><b>;</b></font>
+        <font color="#008080">q9</font> <font color="#804040"><b>-&gt;</b></font> <font color="#008080">q9</font> <font color="#804040"><b>[</b></font><font color="#2e8b57"><b>label</b></font><font color="#804040"><b>=</b></font><font color="#008080">a</font><font color="#804040"><b>]</b></font><font color="#804040"><b>;</b></font>
+        <font color="#008080">q9</font> <font color="#804040"><b>-&gt;</b></font> <font color="#008080">q7</font> <font color="#804040"><b>[</b></font><font color="#2e8b57"><b>label</b></font><font color="#804040"><b>=</b></font><font color="#008080">b</font><font color="#804040"><b>]</b></font><font color="#804040"><b>;</b></font>
+        <font color="#008080">q10</font> <font color="#804040"><b>-&gt;</b></font> <font color="#008080">q11</font> <font color="#804040"><b>[</b></font><font color="#2e8b57"><b>label</b></font><font color="#804040"><b>=</b></font><font color="#008080">a</font><font color="#804040"><b>]</b></font><font color="#804040"><b>;</b></font>
+        <font color="#008080">q10</font> <font color="#804040"><b>-&gt;</b></font> <font color="#008080">q10</font> <font color="#804040"><b>[</b></font><font color="#2e8b57"><b>label</b></font><font color="#804040"><b>=</b></font><font color="#008080">b</font><font color="#804040"><b>]</b></font><font color="#804040"><b>;</b></font>
+        <font color="#008080">q11</font> <font color="#804040"><b>-&gt;</b></font> <font color="#008080">q11</font> <font color="#804040"><b>[</b></font><font color="#2e8b57"><b>label</b></font><font color="#804040"><b>=</b></font><font color="#008080">a</font><font color="#804040"><b>]</b></font><font color="#804040"><b>;</b></font>
+        <font color="#008080">q11</font> <font color="#804040"><b>-&gt;</b></font> <font color="#008080">q12</font> <font color="#804040"><b>[</b></font><font color="#2e8b57"><b>label</b></font><font color="#804040"><b>=</b></font><font color="#008080">b</font><font color="#804040"><b>]</b></font><font color="#804040"><b>;</b></font>
+        <font color="#008080">q12</font> <font color="#804040"><b>-&gt;</b></font> <font color="#008080">q11</font> <font color="#804040"><b>[</b></font><font color="#2e8b57"><b>label</b></font><font color="#804040"><b>=</b></font><font color="#008080">a</font><font color="#804040"><b>]</b></font><font color="#804040"><b>;</b></font>
+        <font color="#008080">q12</font> <font color="#804040"><b>-&gt;</b></font> <font color="#008080">q10</font> <font color="#804040"><b>[</b></font><font color="#2e8b57"><b>label</b></font><font color="#804040"><b>=</b></font><font color="#008080">b</font><font color="#804040"><b>]</b></font><font color="#804040"><b>;</b></font>
+        <font color="#008080">q13</font> <font color="#804040"><b>-&gt;</b></font> <font color="#008080">q13</font> <font color="#804040"><b>[</b></font><font color="#2e8b57"><b>label</b></font><font color="#804040"><b>=</b></font><font color="#008080">a</font><font color="#804040"><b>]</b></font><font color="#804040"><b>;</b></font>
+        <font color="#008080">q13</font> <font color="#804040"><b>-&gt;</b></font> <font color="#008080">q14</font> <font color="#804040"><b>[</b></font><font color="#2e8b57"><b>label</b></font><font color="#804040"><b>=</b></font><font color="#008080">b</font><font color="#804040"><b>]</b></font><font color="#804040"><b>;</b></font>
+        <font color="#008080">q14</font> <font color="#804040"><b>-&gt;</b></font> <font color="#008080">q15</font> <font color="#804040"><b>[</b></font><font color="#2e8b57"><b>label</b></font><font color="#804040"><b>=</b></font><font color="#008080">a</font><font color="#804040"><b>]</b></font><font color="#804040"><b>;</b></font>
+        <font color="#008080">q14</font> <font color="#804040"><b>-&gt;</b></font> <font color="#008080">q14</font> <font color="#804040"><b>[</b></font><font color="#2e8b57"><b>label</b></font><font color="#804040"><b>=</b></font><font color="#008080">b</font><font color="#804040"><b>]</b></font><font color="#804040"><b>;</b></font>
+        <font color="#008080">q15</font> <font color="#804040"><b>-&gt;</b></font> <font color="#008080">q13</font> <font color="#804040"><b>[</b></font><font color="#2e8b57"><b>label</b></font><font color="#804040"><b>=</b></font><font color="#008080">a</font><font color="#804040"><b>]</b></font><font color="#804040"><b>;</b></font>
+        <font color="#008080">q15</font> <font color="#804040"><b>-&gt;</b></font> <font color="#008080">q14</font> <font color="#804040"><b>[</b></font><font color="#2e8b57"><b>label</b></font><font color="#804040"><b>=</b></font><font color="#008080">b</font><font color="#804040"><b>]</b></font><font color="#804040"><b>;</b></font>
+        <font color="#008080">q16</font> <font color="#804040"><b>-&gt;</b></font> <font color="#008080">q16</font> <font color="#804040"><b>[</b></font><font color="#2e8b57"><b>label</b></font><font color="#804040"><b>=</b></font><font color="#008080">a</font><font color="#804040"><b>]</b></font><font color="#804040"><b>;</b></font>
+        <font color="#008080">q16</font> <font color="#804040"><b>-&gt;</b></font> <font color="#008080">q17</font> <font color="#804040"><b>[</b></font><font color="#2e8b57"><b>label</b></font><font color="#804040"><b>=</b></font><font color="#008080">b</font><font color="#804040"><b>]</b></font><font color="#804040"><b>;</b></font>
+        <font color="#008080">q17</font> <font color="#804040"><b>-&gt;</b></font> <font color="#008080">q16</font> <font color="#804040"><b>[</b></font><font color="#2e8b57"><b>label</b></font><font color="#804040"><b>=</b></font><font color="#008080">a</font><font color="#804040"><b>]</b></font><font color="#804040"><b>;</b></font>
+        <font color="#008080">q17</font> <font color="#804040"><b>-&gt;</b></font> <font color="#008080">q18</font> <font color="#804040"><b>[</b></font><font color="#2e8b57"><b>label</b></font><font color="#804040"><b>=</b></font><font color="#008080">b</font><font color="#804040"><b>]</b></font><font color="#804040"><b>;</b></font>
+        <font color="#008080">q18</font> <font color="#804040"><b>-&gt;</b></font> <font color="#008080">q16</font> <font color="#804040"><b>[</b></font><font color="#2e8b57"><b>label</b></font><font color="#804040"><b>=</b></font><font color="#008080">a</font><font color="#804040"><b>]</b></font><font color="#804040"><b>;</b></font>
+        <font color="#008080">q18</font> <font color="#804040"><b>-&gt;</b></font> <font color="#008080">q18</font> <font color="#804040"><b>[</b></font><font color="#2e8b57"><b>label</b></font><font color="#804040"><b>=</b></font><font color="#008080">b</font><font color="#804040"><b>]</b></font><font color="#804040"><b>;</b></font>
+<font color="#804040"><b>}</b></font>
+</pre></code>
+
+<p>...and with a few simple changes to that I created the <a href="http://www.haskell.org/">Haskell</a> file:</p>
+<code><pre>
+q 0 [] = False
+q 1 [] = False
+q 2 [] = False
+q 3 [] = False
+q 4 [] = False
+q 5 [] = False
+q 6 [] = False
+q 7 [] = False
+q 8 [] = False
+q 9 [] = True
+q 10 [] = False
+q 11 [] = False
+q 12 [] = True
+q 13 [] = False
+q 14 [] = False
+q 15 [] = True
+q 16 [] = False
+q 17 [] = False
+q 18 [] = True
+q 0 ('a':xs) = q 1 xs
+q 0 ('b':xs) = q 2 xs
+q 1 ('a':xs) = q 3 xs
+q 1 ('b':xs) = q 4 xs
+q 2 ('a':xs) = q 5 xs
+q 2 ('b':xs) = q 6 xs
+q 3 ('a':xs) = q 8 xs
+q 3 ('b':xs) = q 7 xs
+q 4 ('a':xs) = q 11 xs
+q 4 ('b':xs) = q 10 xs
+q 5 ('a':xs) = q 13 xs
+q 5 ('b':xs) = q 14 xs
+q 6 ('a':xs) = q 16 xs
+q 6 ('b':xs) = q 17 xs
+q 7 ('a':xs) = q 8 xs
+q 7 ('b':xs) = q 7 xs
+q 8 ('a':xs) = q 9 xs
+q 8 ('b':xs) = q 7 xs
+q 9 ('a':xs) = q 9 xs
+q 9 ('b':xs) = q 7 xs
+q 10 ('a':xs) = q 11 xs
+q 10 ('b':xs) = q 10 xs
+q 11 ('a':xs) = q 11 xs
+q 11 ('b':xs) = q 12 xs
+q 12 ('a':xs) = q 11 xs
+q 12 ('b':xs) = q 10 xs
+q 13 ('a':xs) = q 13 xs
+q 13 ('b':xs) = q 14 xs
+q 14 ('a':xs) = q 15 xs
+q 14 ('b':xs) = q 14 xs
+q 15 ('a':xs) = q 13 xs
+q 15 ('b':xs) = q 14 xs
+q 16 ('a':xs) = q 16 xs
+q 16 ('b':xs) = q 17 xs
+q 17 ('a':xs) = q 16 xs
+q 17 ('b':xs) = q 18 xs
+q 18 ('a':xs) = q 16 xs
+q 18 ('b':xs) = q 18 xs
+</pre></code>
+
+<p>...and loading that into a Haskell interpreter I can then "run" the dfa and test some sample inputs for acceptance.</p>
+
+<code><pre>
+   ___         ___ _
+  / _  /  // __(_)
+ / /_// /_/ / /  | |      GHC Interactive, version 6.4, for Haskell 98.
+/ /_\/ __  / /___| |      http://www.haskell.org/ghc/
+____// /_/____/|_|      Type :? for help.
+
+Loading package base-1.0 ... linking ... done.
+Compiling Main             ( prob11.hs, interpreted )
+Ok, modules loaded: Main.
+*Main> q 0 "ab"
+False
+*Main> q 0 "aaaa"
+True
+*Main> q 0 "aaaaab"
+False
+*Main> q 0 "aaaaabbbb"
+False
+*Main> q 0 "aaaabbbb"
+False
+*Main> q 0 "bbbb"
+True
+*Main> q 0 "bbbbbbaaaaaa"
+False
+*Main> q 0 "babaaaaaaba"
+True
+*Main> q 0 "abbbbab"
+True
+*Main> q 0 "abab"
+True
+</pre></code>
+
+<p>So, as far as I can tell, this crazy convoluted DFA does do the job, and the answer to the given problem is the language is regular.  I just wanted to show that with surprisingly little work I had a working "model" and pretty graph.  I guess that's pretty geeky and none of my friends actually care, but I felt like sharing.</p>

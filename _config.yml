@@ -7,6 +7,20 @@ baseurl: "" # the subpath of your site, e.g. /blog/
 url: "http://blog.worldmaker.net" # the base hostname & protocol for your site
 twitter_username: WorldMaker
 github_username:  WorldMaker
+permalink: pretty
+
+# Collections
+collections:
+  worlds:
+    output: true
+    permalink: /world/:path/
+  works:
+    output: true
+    permalink: /work/:path/
 
 # Build settings
 markdown: kramdown
+
+# Gems
+gems:
+ - jekyll-redirect-from

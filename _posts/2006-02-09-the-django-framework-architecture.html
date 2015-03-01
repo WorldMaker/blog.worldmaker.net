@@ -1,0 +1,31 @@
+---
+date: 2006-02-09 20:27:02
+db_id: 209
+db_updated: 2008-02-21 15:16:48.552598
+layout: post
+redirect_from:
+- /node/211/
+tags: ''
+title: The Django Framework Architecture
+---
+<p>One of the issues that people that are new to <a href="http://www.djangoproject.com/">Django</a> struggle with is in trying to get the feel for the framework from an MVC standpoint (<a href="http://www.djangoproject.com/documentation/faq/#django-appears-to-be-a-mvc-framework-but-you-call-the-controller-the-view-and-the-view-the-template-how-come-you-don-t-use-the-standard-names">the FAQ entry on this</a>).  Django does follow much of the good design principles that architecture frameworks like MVC were designed to promote, but doesn't follow the strict MVC pattern.  The strict MVC pattern doesn't apply very well to web development, particularly because its circular control/feedback flow doesn't work as well in a stateless environment such as HTTP.  (These strong ties between the three components of MVC is a fairly big flaw in MVC architecture, in my opinion at least.)</p>
+
+<p>Perhaps a better view of the Django Framework exists in reframing it from the point of view of the PCMEF Framework (Maciaszek, Liong).  PCMEF uses a hierarchy of layers that are looser coupled than MVC components.  In brief these are Presentation, Control, Mediator, Entity, and Foundation.  Django actually fits within these tiers reasonably well and appears to follow most of the PCMEF principles.  (It may be interesting to research if following them even more closely might benefit Django.)</p>
+
+<h3>Presentation</h3>
+<p>The Presentation subsystem handles human-computer interactions.  In Django this is the template engine and template loaders which take the information and present (often via HTML) to the user.  The URL Configuration system is also a part of the Presentation layer.  The Presentation Layer then depends on the Control subsystem.</p>
+
+<h3>Control</h3>
+<p>The Control subsystem is the program/application logic.  In Django these are the Views and Manipulators.  Django's Views are often confused with MVC's Views, as they are a part of the Control logic and don't perform Presentation logic (instead "upwardly notifying" to the Presentation layer).  For Django this term makes sense, as the most often control logic is to select business objects to "view", as this is also the most often performed action in a website (HTTP GET requests are expected to get some object to view).  PCMEF does not have its own "View" term, removing any such confusion.  The Control Layer than depends on the Domain layer, which is composed of Mediator and Entity subsystems.</p>
+
+<h3>Mediator</h3>
+<p>The Mediator subsystem handles interactions between the Entity subsystems and the Foundation subsytem.  Mediators handle Object-Relational Mapping, so this obviously corresponds to Django's generic/powerful ORM engine.  Mediator objects in Django have been heavily coupled with Entity objects, but the magic-removal branch has worked to decouple this and has created first class Mediator objects known as Managers.  The Mediator objects then have dependencies on the Foundation and the Entity objects.</p>
+
+<h3>Entity</h3>
+<p>The Entity subsystem handles the business objects.  In Django the Object-Relational Mapper provides a simple and standard why to write Entity objects.</p>
+
+<h3>Foundation</h3>
+<p>The Foundation subsystem's primary work is to handle the low level work with the Database.  Django has support at the Foundation level for several Databases, with more in the works/testing.</p>
+
+<h3>Implications</h3>
+<p>Because of the strong Mediator and Foundation layers provided by Django it leaves application developers alone to only need to build Entity objects and the Control and Presentation logic for them.  Django's included Administration application further provides a very useful generic Control+Presentation engine for any Entity supported by the Mediator and Foundation subsystems.  I'm hoping a refactoring of this post as a generally written article might serve as a good architectural bird's eye overview of Django and working with Django in your own development.</p>

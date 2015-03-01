@@ -1,0 +1,22 @@
+---
+date: 2008-06-13 03:55:09.269746
+db_id: 468
+db_updated: 2008-06-13 03:55:09.269817
+layout: post
+tags: games game-design art abstarcia
+title: !!python/str "Des R\xEAves \xC9lastiques Avec Mille Insectes Nomm\xE9s Georges"
+---
+`Deirdra Kiai`_ just released her latest solo game project named *Des Rêves Élastiques Avec Mille Insectes Nommés Georges* or "elastic dreams with a thousand insects named george" or DREAMING_.  *Dreaming* flirts with existentialism and meta-commentary about the nature of games and the nature of writing for games.  It's a fun, quick to play, useful to replay game as winding conversation through a dazzling diversity of scenery.  It evokes the mood of something of a gaming equivalent of Richard Linklater's *Waking Life*.
+
+One of the scenes in the game uses some of my "artwork".  Curious to see where Deirdra would take it I passed along a collection of abstract art work that I created in High School during my "Abstarcia" period.  Weirdly enough, according to google, I seem to be the only person to really use that term.  Deirdra asked for us not to provide a background so that she could better play off of whatever her creativity came from seeing the background.
+
+For the curious, "The Kingdom of Abstarcia" began as a series of abstract line drawings in Paint using nothing more than the default 16 color palette from Paint's Windows 95 era, made during free time in the school's computer lab.  Each file was saved to floppy disk with an absurdly long name full of whimsical references to kings and temples and such.  Somewhere around this time I started to come to the full realization that making a game required a lot of artwork and if I wanted to actually finish a game with only a few other contributors I would have to figure some way to use my own limited artistic talents.  I combined the writing from the abstarcia images with idea of using the things that populated the doodles in my notebooks: various unicellular organisms with goofy faces and the "dynamite duck".  As with so many other scripts of mine from that time, I believe what script I wrote has migrated to the *Bit Bucket Eternal*.
+
+It is good to see some of that spirit make into any game, just for the weird experience of that.  To spoil the over-plot of the game that I had been writing, the main website of which still is easily findable, since it is probably unlikely that it will ever see the light: The game was to be about an apocalyptic prophesy of the unicellular organisms.  The actual threat being that cartoonish dynamite stick that my "dynamite duck" loves to hold, as you see that the known kingdom of the unicellular creatures, the Kingdom of Abstarcia, was in fact the three-"fingered" hand of that duck.  Needless to say that part of the plot centered around the idea that the unicellular organism's shorter lifespans left the response to the dynamite as a multi-generational concern.  Between the "prophetic discovery" of the crisis and any attempt to do anything about it was an entire generation and the recovery period of bandaging as the duck's dumb scorched "hand" healed was several generations long.
+
+Ultimately the whole thing becomes something of a weird tongue-in-cheek satire of stereotypical feudal fantasy and the normal hero's quest and the entire concept of "Armageddon".  Honestly, did the duck ever think to wonder how many innocent amoebas he would kill with his stupidity?
+
+I was quite amused with dialog that Deirdra saw fit to give my characters.  Quite possibly there were too many layers of irony and jolly satire to count.
+
+.. _Deirdra Kiai: http://www.deirdrakiai.com/
+.. _DREAMING: http://www.deirdrakiai.com/dreaming/

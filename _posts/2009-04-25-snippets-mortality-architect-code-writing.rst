@@ -1,0 +1,25 @@
+---
+date: 2009-04-25 17:53:32.615318
+db_id: 527
+db_updated: 2009-04-25 17:53:32.615363
+layout: post
+tags: games death code
+title: 'Snippets: Mortality, Architect, Code, Writing'
+---
+The last few weeks have been a bit crazy and there are probably a handful of posts that I've wanted to make. They probably still deserve individual posts, but I'm going to just do it as a bunch of snippets.
+
+* My maternal grandfather passed away a few hours before my birthday. I will miss him, and I've been meaning to write some sort of memorial thing, but the words haven't come yet and I've been preoccupied. Now both of my grandfathers have passed away, within the span of almost exactly two years. So it goes.
+
+* I used a bit of my birthday money towards a couple of games. Perhaps the principle poor choice was to spend another month for *City of Heroes/City of Villains*, and I say that in a loving fashion. Certainly I've already spent more hours than I planned to within the Rogue Isles. The game is certainly as slot-machine addictive as ever, if possibly more so with even more flashy things that go *ding* every so often and the near elimination of my biggest arch-nemesis of all, debt, which was arguably a silly idea in the first place.
+
+  The particular reason for the visit to Paragon City and the Rogue Isles was to play with the new Architect system. First of all, I feel that I must point out that I feel a little queasy every time that I see a press release, and unfortunately there have been several, proclaiming that the Architect system is the first of its kind, ever for an MMO. It's possible if you narrowly define MMO to include just the Diku-derived graphical MMOs that have been a steady progression from the *EverQuest* template, that it might be considered the first. But as someone whom has enjoyed, for instance, MUSH/MUCKs where user-derived missions/storytelling are not just accessible, but in fact the norm and a considerable "player's right", I do take umbrage at the idea that the City franchise is **not** treading somewhat trodden, if not well-trodden paths.
+
+  If there is something innovative in the City approach to user-built missions, it is perhaps the walled garden/sandbox in which the Architect system is ensconced. In fact, part of my intent was to berate the walls and laugh at what is not possible in the system. To be fair, I've found that things were somewhat better than I expected from prose descriptions of the system. The rewards aren't terribly far removed from those elsewhere in the game (and there are certainly plenty of early exploits with overly ample rewards, as has happened in every new system of every game since perhaps the dawn of human history). Architect Tickets sound like a second-class citizen, but in a game that has been slowly drenched in overly complicated rewards systems, it soon becomes obvious that they share a lot with their brethren Merit Rewards and Vanguard Merit Rewards. I would suggest that the game has too many overly similar psuedo-currencies, but I'm thinking that currency exchange is actually a decent idea for economic systems. The fact that the game at some point while I was away added actual auction houses helps a little bit; but it might be even nicer to have more direct currency exchange mechanisms as well.
+
+  I was expecting the mission creator to be a somewhat simplified tool compared to those that an in-house designer might use. They've managed to make me a believer that the tool they build in-game is as good, if not better, than the one used prior by in-house designers. On the other hand, it has given nothing but affirmations that the majority of the missions throughout the game are little more than cookie-cutter encounters that follow somewhat predictable routines. To see level facts quantified such as a "this map supports 3 ambush or patrol encounters in the back" is somewhat odd, most particularly when you can think back to the number of times you've seen that map and know that the number is pretty accurate representation of all that you have encountered.
+
+  I would kill (more virtual heroes/villains) for acess to a real scripting language, and a chance to edit my text directly in a text editor of my choice (probably, gVim). That said, I've got a silly little story arc in progress and will announce it when its done, if it gets done.
+
+* I'm working on rewriting some of the AwardsDemo stuff from two articles over at Ziggyware and I'm debating writing an article to go with my changes. Either way I expect to post my code ammendments.
+
+* At this point I'm not expecting to finish a Round Table post this month, marking only my third month since I started participating that I'll be silent here. I sort of feel that it's part of my job at the moment, but right now the priority is that I'm still trying to push ahead towards that early May deadline that is heckling me from nearby. Meanwhile, I still need to finish that Early Review for *Inside Straight* and I hope to get that done soon.

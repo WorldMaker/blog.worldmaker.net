@@ -1,0 +1,59 @@
+---
+date: 2007-09-13 15:00:38.520806
+db_id: 396
+db_updated: 2008-02-21 15:16:44.967186
+layout: post
+tags: game-design world-design
+title: 'Come Join the Militari: Some Game Ideas'
+---
+Something the other day just reminded me of one of my far out, really expensive game
+ideas...  I don't foresee having the budget to pull it off any time
+soon but I figured it might be interesting to talk about it.  One of
+my disdains in virtual worlds these days is with the over-use of
+mechanic "vending machine NPCs".  One answer you hear a lot is "build
+better NPCs", which is an interesting choice but pits you head to head
+with the Turing Test every day.  I prefer the idea of as much as
+possible using real people.  The King you hear about in the town?  An
+actual player with "duties" and "responsibilities" befitting a King.
+The crazy cat lady that gives you those weird quests into the Dark and
+Damp Dungeon of Doom?  Sometimes it's anyone who is bored and wants to
+try a hand at giving a few cryptic clues and laughing at the corpses
+of idiot adventurers that failed to heed the warnings...
+
+So one of my ideas was to build "the ultimate sci-fi military throw
+down"...  Invite a bunch of the leading military sci-fi writers to
+pitch ideas for cool weapons technology, interesting battle scenarios,
+world building, timelines, etc, then build a virtual world around it
+as sort of the "military sci-fi author's playground set".  Throw in
+everything but the kitchen sink: twitch FPS mode, leadership-based RTS
+modes, everything.  Then tell a drawn out campaign with it...  Here's
+the fun part, I'd be very interested in putting the writer's
+themselves in the early leadership openings (Generals, Admirals,
+whatnot).  If the military sci-fi leaders had virtual armies at their
+command, whose strategy would reign supreme?  It could be the Iron
+Chef of Military Battles.  Who do you think would win?  David Ringo?
+Eric Flint?  David Drake?  Harry Turtledove?  Someone else?  How many
+readers would relish the chance to try their hard-earned
+Starcraft/Halo skills against a favorite author?
+
+Considering Baen seems to be publishing, what, 75% (95%?) of the
+military sci-fi these days it might not even be that hard to get an
+interesting assortment of authors.  I love the idea of including in
+the compensation package the ability for each author to have the full
+rights to novelize the game.  (Include in the EULA the player's waiver
+for the author's to use their actions in novels...  to "tape" their
+battles to study...)  Would they become "historians" of battles that
+they themselves help enact?  Given the tools to do so, would they
+explore and prototype battles before putting them on paper?  Would it
+add "realism" (or at least continuity of battle)?  Would the author's
+continue their online battles in the books?  (Wouldn't it be neat for
+such point of view feuds with books potentially on the same subject
+(such as opposing sides of some example Battle of Omicron Persei 8) with author's choosing partisan sides
+and defending them in their own work?  I have to admit, I'd relish
+such a neat chance for interesting cross-book pollination.)  Would
+people actually bother buying and reading tales of battles they fought
+in or otherwise saw unfold "first hand"?
+
+Anyway, just a small glimpse into the ideas in my head.  This would be
+a very neat thing to do should I magically get a multi-million dollar
+investment.

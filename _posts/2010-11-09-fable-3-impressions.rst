@@ -1,0 +1,146 @@
+---
+date: 2010-11-09 20:50:57.680750
+db_id: 580
+db_updated: 2010-11-09 20:50:57.680775
+layout: post
+tags: games fable
+title: Fable 3 Impressions
+---
+Last night I pushed through to the credits for my first playthrough of
+Fable 3. I haven't done any of the side quest cleanup, and I'm not sure
+I'm going to. I also haven't gotten very far in a second, evil
+playthrough, but I probably will push that one further. I liked the
+game, but I feel that invites a lot of its own criticism.
+
+Fable 3 seems to me like an okay sequel that might have possibly made a
+great expansion or DLC bundle. Much of Fable 3 feels no more than an
+abridged version of Fable 2 with a new epilogue and a slightly new skin.
+Unfortunately for Fable 3, every time that it invokes memories from
+Fable 2 it generally compares poorly.
+
+What things are particularly new for Fable 3 seem odd, and have
+questionable merit in the grand scheme of the game. Having played many
+hours of the game, I'm still not sure what they really add to the series
+or to what Fable 2 accomplished.
+
+Most obvious is the "Sanctuary" menu system. I know that it has gotten
+flack for various reasons. It feels to me like a system that was planned
+for Fable 2 but didn't make the cut. It certainly reminds me of what
+Fable 1 tried with its Guild Hall. From a technical perspective the
+Sanctuary was much better than Fable 1's Guild Hall: the Sanctuary is
+apparently always loaded in memory and load times are nearly absent.
+
+I kind of liked the Sanctuary as an experiment and a place to visit or
+hang out. I don't feel like the game made a strong case for why it was
+necessary or worth the obviously large amount of time and effort that
+went into building it. It is a very cool tech demo, and decent, if not
+great effort, at internalizing the menus within the game fiction, but
+was it required?
+
+Much less successful for me was the "Road to Rule". For whatever reason
+I felt the "metaphor as place" to be really silly and nearly fiction
+breaking. As a possible extension of one of the series' more insane
+characters it almost can be forgiven, if it didn't feel so disconnected
+from most of the rest of the game. Particularly given that the "book"
+metaphor in Fable 2 worked mostly just fine (and remains for dog
+training), I see the Road to Rule as an extravagant use of resources.
+
+I liked the always accessible place to view snapshots in a character's
+history provided by its plinths. However, I think there is probably some
+better compromise between the Road to Rule and Fable 2's usage of
+snapshots in statues and in the finale.
+
+Switching gears, as a sometimes steampunk enthusiast I wanted to love
+the aesthetic changes in Fable 3, but they seemed lackluster at best and
+invisible/non-existent at worse. I realize that only 50 years is
+supposed to have elapsed between Fables 2 and 3, but there still seems
+to have been better room for exploring the aesthetic change. Emblematic
+to me is the underground monorail with only one station. It makes for a
+gorgeous set piece, but it is missing at least one station, if not more.
+
+Finally, but most verbosely, I generally make it known that I'm somewhat
+antagonistic towards Fantasy as a genre. I'm very picky about the series
+that I follow that are or contain Fantasy, particularly without a
+healthy dose of "Science". In particular, I think Fantasy going back in
+particular to Tolkien shows a lot of ugly seams of luddite thinking and
+couched racism in its literature. I praised Fable 2 for avoiding many of
+those traps, but Fable 3 had a couple of moments that worried me. I was
+not worried greatly enough to give up on the series altogether, yet, but
+enough that I will have more involved debating before any future
+purchases.
+
+.. admonition:: Spoiler Alert
+
+   Spoilers below as I discuss some of the story of the game.
+
+What I saw was a sort of unintentional racism. I'm hoping that it was
+unintentional, of course, and I'm not really in a position to judge, but
+I do think it should be brought up. Frankly, I felt that much of Aurora,
+a persian/middle-eastern pastiche on the Fable 3 map, seemed somewhat
+*wrong* to me. I'm not sure if any of the stereotypes it played upon
+were necessarily offensive (and I am sure that they have been used in
+games many times over before, even if they are offensive).
+
+It isn't the place that most worried me, however. I was more worried by
+the lazy treatment of the Shadows in this game. After some good usage
+and examination of the Shadows in Fable 2, some of the lazy plotting for
+them in Fable 3 felt like they were bordering on some worrying questions
+of religion and race:
+
+Because the Shadows are (spoiler) the big bad of this game, they are
+reserved mostly until the latter half of the game. Because of this,
+their big presence moment is that ever-present point in the story cycle
+where the player visits some far-off fantastical new place, and in this
+case it is on the way to Aurora that the player has a major Shadow
+encounter in this game. This is troublesome to me for several reasons,
+which I will return to.
+
+There might have been an attempt here at showing sort of an
+"enlightenment" concept that the world was shrinking, the people of the
+world were shining lights into the world and pushing the Shadows further
+out into the edges. (Which would reasonably explain why they are so
+desperate and so forceful as an inciting event in this game.) However, I
+think that message isn't as well delivered as it might be.
+
+What troubles me about this, is that the site of evil from which the
+Shadows operate in Fable 3 seems larger and more powerful than the
+others I've seen in previous games. While this makes sense from a story
+respect that you want the big bad to be the most powerful thing that you
+will see, it seems poorly placed.
+
+Beyond the simple fact that the upgraded Shadow effects now feel ripped
+straight out of 2008's *Prince of Persia*, there's the worrying
+implication that the Shadows might be closer to their seat of power,
+their "home". I'm, again, hoping that this is not what was meant by
+Lionhead and an unfortunate oversight, but I'm having a hard time not
+referencing the many years of history and context of the real England
+and the real fertile crescent when examining these parts of Fable 3's
+storyline.
+
+Regardless of whether the implication was an accident or not, it seems
+to me a very bad idea to have the source of much of the game's
+worst, most concentrated evil be based out of Aurora's Arabian analog to
+attack Albion's British analog in a psuedo-historic, albeit fantastical
+situation. I think there is too much historical, political, religious,
+and racist baggage attached to these things; it is a can of worms that
+seems better left unopened.
+
+Having opened it--- intentionally or not--- the game doesn't seem to
+have anything real to say about it, other than using it for somewhat
+obvious, telegraphed and clichéd hero's journey goobledygook. It is just
+one more failure of the game to communicate any deeper message than
+silly vanilla morality. But it is just that sort of silly black and
+white morality of the series that mostly works in the previous games and
+that seems to so worringly place this one somewhere disturbingly in a
+real life shades of grey moral quandary.
+
+It is easier to assume naivety or laziness on the part of Lionhead here,
+than any sort of racism or religious motivation. But the game brought up
+these worries to me and I am a History-averse white male American. This
+made the game a little bit less fun for me, and I consider myself on the
+sidelines for most of the issues this brings up... Again considering
+that is within earshot of the Tolkien-heritage Fantasy that much more
+routinely evokes this sort of outrage in me, I may be over-reacting
+somewhat, or at least keep a watchful eye for just this sort of thing
+and finding it because I am looking for it. Has anyone else been
+pondering about this?

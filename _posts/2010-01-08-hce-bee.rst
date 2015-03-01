@@ -1,0 +1,26 @@
+---
+date: 2010-01-08 16:53:47.751773
+db_id: 556
+db_updated: 2010-01-08 16:53:47.751808
+layout: post
+tags: coding hce
+title: The HCE Bee
+---
+I've introduced the "Bee" choreographer bot for playing HoneyComb Engine games by Wave, Email, or IM before. However, this is probably closer to the official "launch" of the bot: all three front ends (Wave, Email and IM) are now available and should now work (knock on wood). I've finally setup the code site for the bot, and the full darcs repository is now available for perusal as open source under the Microsoft Reciprocal License:
+
+http://hce-bee.code.worldmaker.net/
+
+I'm hosting the main instance of the bot, and I encourage people to use it as I can most easily watch its logs to help fix bugs. If anyone does find interesting reasons to fork the bot, I'd love to hear them.
+
+I'll be rewriting this into the issues log of the repository/code site in the near future, but for those that want a brief overview of my agenda going forward:
+
+* More visual elements, particularly displays for the LifeWheel and maps
+* More Channel moderation tools, including archiving games and basic security tools such as a whitelist
+* Update the game mechanics to the most recent HCE edition, particularly the new Heroic Actions
+* Audit the game mechanics for missing checks and remaining TODOs.
+* Finish support for defensive actions
+* Update the language documentation to better reflect the implemented game mechanics
+* Determine the best approach to support additional "dialects" where HCE elements/influences/et al can take on more domain-appropriate names for individual games (such as "sanity" for "ego" in a lovecraftian setting)
+* Test, test, test
+
+Obviously there is plenty left to do, so any interest in helping me better prioritize these features for real player scenarios or even collaborating on features is welcome. I'm also interested in exploring opportunities for "commercial support", but don't have any interesting ideas in that department just yet.

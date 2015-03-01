@@ -1,0 +1,26 @@
+---
+date: 2007-12-02 14:36:53.355787
+db_id: 414
+db_updated: 2008-02-21 15:16:44.663427
+layout: post
+tags: ''
+title: '...and there went my daily allotment of faith in humanity...'
+---
+Woke up early, invigorated.  Headed out the door and discovered some
+jackass had egged my car overnight.  On the fortunate side was that I
+had woke up early and headed out the door...  otherwise I might not
+have noticed until Tuesday or Wednesday.  Also fortunate it was
+raining today, keeping it from getting too hard, other than the fact
+that I felt like an idiot using a car wash on a rainy day.
+
+I park on the street (because we have 4 cars between a 2-car garage
+and a small driveway), and the obvious explanation is just the fact
+that jackasses hate that I park on the street because it does a little
+bit to slow down the 45+ MPH traffic flow on a supposedly 15 MPH speed
+limit neighborhood street, but people use it as a damn shortcut
+between Hurstbourne Road and Shelbyville Road...  I've even seen
+semi-trucks do that and it's fucking ridiculous.  Oh my gosh, people
+are parking in the street in a suburban neighborhood!  People wonder
+why I have such a low opinion of just about everything related to the
+modern car...  I guess someone took their holiday traffic angst out on
+my car.

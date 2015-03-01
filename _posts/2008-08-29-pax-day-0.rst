@@ -1,0 +1,9 @@
+---
+date: 2008-08-29 11:23:26.451615
+db_id: 488
+db_updated: 2008-08-29 11:24:55.331651
+layout: post
+tags: games pax
+title: PAX Day 0
+---
+Couldn't get a later plane flight so I had a Thursday that ran 0300-2330 PST (0600-0230 EST).  Because I knew I was coming in so early I registered for the Pre-PAX Dinner, so I got to my hotel in time for a quick shower and a nice jog to catch the buses that I needed to get to Seattle's Lake Union Park (from Overlake, at the edge of Bellevue and Redmond, aka Microsoft's campus).  Food was ok, but the keynote from Chris Taylor (founder Gas Powered Games, makers of Total Annihilation, Space Siege, et al), despite technical issues, was great.  He gave something of an overview of my PAX trip this year, talking about working towards your passions and a little bit of the lessons learned from starting his own business.  Afterwards I talked with him a little bit and I got a little bit of free demo practice/coaching from a couple of guys on Bioware's community team.  I think the night was worth the crazy sleep deprivation.

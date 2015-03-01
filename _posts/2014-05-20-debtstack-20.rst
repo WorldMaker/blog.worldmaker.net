@@ -1,0 +1,92 @@
+---
+date: 2014-05-20 00:05:19.186631
+db_id: 1164
+db_updated: 2014-05-20 00:06:06.073897
+layout: post
+tags: coding f# wpf
+title: Debtstack 2.0
+---
+I'm calling the latest release of Debstack version 2.0 as it is a fairly
+big rewrite compared to the original version. (`Debtstack binaries`_;
+`Introductory blog post on Debtstack`__; `Current Debtstack code site`_)
+The big deal with this rewrite is it now uses a mostly **immutable**
+data model, plus a couple of basic new features.
+
+__ http://blog.worldmaker.net/2012/apr/29/introducing-debtstack/
+.. _Debtstack binaries: http://dl.dropbox.com/u/3936701/Debtstack.zip
+.. _Current Debtstack code site: http://debtstack.code.worldmaker.net
+
+Immutable Model
+===============
+
+I realized that from the beginning I should have built Debtstack on top
+of a strongly immutable model, and its part of why I chose F# as the
+language to begin with. (I of course didn't quite follow through on that
+initially.) It really seems like the *right way* to go for this project,
+not least because provides better insight into how the algorithms work
+and easier debugging and asynchronicity, but more importantly because
+when dealing with financial data (even just for a read only viewer like
+Debtstack) it makes sense to try as much as possible never, ever, lose
+information or even to change things without a log of the change. It hit
+me early on in this particular rewrite process that essentially the
+immutable model that I'm using is an interesting (and logical) extreme
+form of `double-entry accounting`_. I'm pleased at the idea that the
+code now largely resembles a long-standing accounting best practice.
+
+.. _double-entry accounting: http://en.wikipedia.org/wiki/Double-entry_bookkeeping_system
+
+New Features
+============
+
+Most of the new features exist largely because the new data model
+facilitates them.
+
+Transaction details
+  Transactions now have an inspection window showing the complete
+  breakdown of how the chosen algorithm affected them, by
+  double-clicking them in the "Open" list up top or clicking the
+  "Details" button in the grid of Closed items.
+
+"Naive" algorithm
+  I refer to this as the "But You Don't Have to Take My Word For It"
+  button. This presents the view everyone tends to calculate in their
+  head when looking at a recent statement. This is the simple *first in,
+  first out* queue view that the other two algorithms are designed to be
+  more interesting in comparison to. I didn't see a use for it in the
+  old version, but with the new immutable model it is a bit more
+  interesting and a bit more useful to directly compare the results.
+
+Date filtering
+  After choosing one of the algorithms to look at, you can now filter it
+  back in time to see historical views ("What did my balance look like
+  last month?", for instance).
+
+Evolutionary Tangents
+=====================
+
+This version swaps ``ImpromptuInterface.MVVM`` for ReactiveUI_ and (my)
+ReflexUX_, but neither is all that strongly used (because they don't
+really need to be, largely in part due to the new immutable data model)
+and for the moment the difference between the two dynamic MVVM backends
+is a wash for this project.
+
+.. _ReactiveUI: http://www.reactiveui.net/
+.. _ReflexUX: https://github.com/WorldMaker/ReflexUX
+
+Full Disclosure
+===============
+
+Since writing version 1.0 of Debtstack, I'm now employed by a credit
+card processing company. Debtstack is a hobby project for my own
+personal use and amusement. So far as I know the company I work for has
+no interest in Debtstack and certainly does not endorse it (and probably
+knows nothing about it). This project and any opinions espoused about it
+are entirely my own.
+
+I don't think it matters to actually disclose it, and Debtstack has zero
+to do with the area of the company that I work in (Sales software), but
+it seemed somewhat relevant, and also I feel special now because I've
+never really felt I needed a full disclosure for some bit of Open Source
+work before.
+
+.. vim: ai spell tw=72

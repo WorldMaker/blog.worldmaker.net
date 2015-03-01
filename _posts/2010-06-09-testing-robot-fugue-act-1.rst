@@ -1,0 +1,13 @@
+---
+date: 2010-06-09 22:49:27.900056
+db_id: 569
+db_updated: 2010-06-09 22:49:27.900087
+layout: post
+tags: games game-design keylimepie
+title: 'Testing A Robot Fugue: Act 1'
+---
+So a company that I'd love to work for has announced they are working on two other franchises that are dear to me from childhood... In talking and scheming about how I might coax employment out of that business, *A Robot Fugue* was brought up.
+
+I feel like I should prove that it is a real project in an interestingly good shape. I'm mostly happy with the first act so far (of an expected six), and thought I'd share it with anyone willing to understand that its all just a rough demo of a work in progress and that it still has a bit left to finish, but what is finished is a lot of the optional, early expository stuff. (It should give you a strong overview of its world if you feel like exploring its edges.) I'd love any feedback that I can get. If you find yourself reading this and want to be invited to this very rough and early *alpha* test/experience, email me to let me know your interest and the primary email of your Google account.
+
+There will be more to come, but I'm actually excited by how well it seems to be working, many rough edges and missing acts and all. This is one of the first builds of the game using the *proper* KeyLimePie engine (as opposed to its Celtx script, command line testing tools, and Ren'Py pretending to be KeyLimePie) and I'm excited by that. One of the next big stages in testing down the road, I expect, will be when I build KeyLimePie's "secret" save game/progress system. I'll have a bigger call for testers then, for now this is just an early rough test/analysis.

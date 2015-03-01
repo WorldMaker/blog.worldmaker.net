@@ -1,0 +1,13 @@
+---
+date: 2007-05-29 02:23:22.881622
+db_id: 336
+db_updated: 2008-02-21 15:16:45.590613
+layout: post
+tags: music programming
+title: 'The Social: Ruminations on Facebook, Zune, Last.fm'
+---
+Congratulations to Facebook for stirring some amazing buzz for their new platform initiative.  Facebook is attempting to be *the* Social Networking platform, and this platform initiative may help to cement that.  For those who haven't heard, Facebook has opened up development upon their platform so that a developer can build applications that get hosted inside of the actual Facebook pages, just like plug-ins or extensions in a Desktop application, and even more interesting are giving application writers access to just about all of the information in their Social Graph.  Facebook will even start hosting applications for developers make it possibly a very interesting place for a social startup venture.  Facebook is now going to be not just one of the highest used social sites, but is now definitely the most open one with a large backing of useful data.  Where Ning has tried to be an open platform for social websites, Facebook is going to be an open platform for social website tools...  Portal sites have long add the idea of bringing in a mixture of content from internally and externally under the same roof.  Facebook is basically the first "social portal".
+
+Congratulations to the Zune team for breaking a million sales.  I'll use this oppurtunity to point out that the only reason I wouldn't buy a Zune is still just Ogg Vorbis support.  It is a bit of a breaking issue for me, and if the Zune had it I would definitely consider buying one.  Also, I was thinking about the "Welcome to the Social" tag line and how people sometimes comment on the lack of an actual community feeling and the Facebook announcement and Microsoft's involvement in it (they are trying to push Silverlight and Popfly as fun Facebook app development tools)...  and what hit me was that a Facebook+Zune mash-up might be a very interesting thing.  Imagine being in a college library, seeing people near you with Zunes and in addition to sharing music you could scroll through their Facebook profile...  From the other side, show some Zune information in your own profile to someone browsing from anywhere and you have a mini-Last.fm in the making.
+
+Speaking of Last.fm, seems like an obvious integration to add to the Facebook platform...  I'm tempted to offer to write it, but I won't.  The Last.fm guys may even think to do it themselves.

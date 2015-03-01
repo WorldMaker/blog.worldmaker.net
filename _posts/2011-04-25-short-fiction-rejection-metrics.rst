@@ -1,0 +1,17 @@
+---
+date: 2011-04-25 22:34:11.071349
+db_id: 617
+db_updated: 2011-04-25 22:34:11.071372
+layout: post
+tags: ''
+title: Short Fiction Rejection Metrics
+---
+Thanks to Duotrope_ I tracked my lone recent experiment in selling short fiction to a short fiction market. All things considered, attempting to sell my short story has felt like too much work for too many rejections. I've got too few stories in my back catalog (primarily because how terribly easy it is to just post things to my blog) and too few hours in my day, unfortunately.
+
+.. _Duotrope: http://www.duotrope.com/
+
+The short story involved in this experiment was called *Princesses for Planetary Peace*, quite possibly one of the best I've written, I think. It uses design ideas I had from gaming and I felt it was ahead of the zeitgeist when it was written, and seems now to be set directly in the zeitgeist of last week: It uses a riff on *The Last Starfighter* to play with the hardcore/casual "divide". At 4900 words it is one of my longest short stories to date (my personal high school short story "bar" was 1500 words, so this is three high school stories long), about middle of the road for short fiction markets, and apparently too short for its early "beta" reader fans. (All two of them. Hi!)
+
+I submitted it for inspection to four markets for a combined 293 days of consideration time. First submission was on June 19, 2010 and fourth rejection was April 19, 2011. Shortest rejection was two days and the longest accounted for 215 days out. (The large standard deviation of 83 and a half days should thus be unsurprising.) All four markets required exclusive access, so the story was only ever in a single market's queue at a time. 
+
+I'm still debating how and when I'm going to publish this short story. I'm somewhat tempted by the idea of an extreme vanity anthology project because I want to see stories of mine available for purchase for the Kindle at least. May have some less extreme leads to follow as well. Also, there's always the old lazy standby of just publishing it to this blog.

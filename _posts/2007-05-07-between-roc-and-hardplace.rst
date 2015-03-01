@@ -1,0 +1,108 @@
+---
+date: 2007-05-07 00:45:14.410538
+db_id: 329
+db_updated: 2008-02-21 15:16:45.721918
+excerpt: ''
+layout: post
+redirect_from:
+- /work/pirates-eastern-standard-tribe/3/
+story_abstract: ''
+story_commentary: ''
+story_number: 3
+story_work: pirates-eastern-standard-tribe
+tags: ''
+title: Between Roc and HardPlace
+---
+I had pinned the Jolly Roger business card to the bulletin board behind my main display.  Considering it was a standard, Spartan menâs dorm room, the brilliant gold fill was basically the only decoration in the room.  Somewhere in the middle of the term I became restless.  I wanted to do something new and challenging; school just didnât look like it would ever offer me a challenge I might enjoy.  It was in this funk that I found myself staring at the card.
+
+McRavenâs words tumbling in my head, I decided to seek the key to unlocking the cardâs secrets.  I wish I could tell you that McRavenâs words, or that the card itself had been some mind-racking riddle.  After staring at it, and thinking about it for hours, I was amazed at how simple the solution was.  When I asked McRaven about it later he told me that it wasnât so much of a puzzle, but a question of allegiance and the ability to try the obvious solution for a non-obvious puzzle, or something like that.
+
+After countless hours, when I couldnât figure it out on my own, I went to the group.  I went to the Tribe.  Researchers say that a person can only reasonably know about 150 people well; they call it `Dunbarâs Number`__.  The Tribes, largely anarchic power structures subcutaneously controlling society, were there to help you reach outside of your 150.  Through digital handshakes the Tribes were huge extended families, built on layers upon layers of trust.  There were Tribes focused around most modern aspects of life and modern differentiations of people, but the most powerful of the Tribes were established with the time zones.  People in the same time zone often shared the same circadian rhythm, and a time zone was just about the size of the speed of thought; itâs boundaries about the length of ordinary cultural diffusion in the modern globally connected world.
+
+__ http://www.escapistmagazine.com/issue/84/23
+
+I live in Louisville, Kentucky, one of the border cities of the Eastern Standard Tribe.  For being often ignored or forgotten about by many of the East Coast members, there is still something of an active involvement in the Tribe in this city.  I was inducted into the Tribe as a part of my collegiate social activities.  At first, I thought the Tribe was merely a social club, a fraternity of like-minded people.  It was pretty quick that I learned some of the larger aspects of the Tribe.  
+
+I had been told that there were agents and double agents playing the Tribes.  I had been told that a lot of world politics and technology is controlled by the Tribes and that the Tribes try to sabotage each other.  Most people donât believe in those stories and see them as something of a modern era myth, but being on the border of the Tribe, I had some opportunity to see some of it first hand:  up north in Indiana, in some of the parts that still didnât follow Daylight Savings Time, regardless of legislation, there was a fairly odd group known as the Swingers.  The Swingersâ allegiance followed a lack of Daylight Savings Time.  In that part of the year when the Swingers were in EST, they were some of our best friends and allies.  The other half of the year they spent trying to sabotage some of our Tribeâs efforts working for the Central Standard Tribe.  Because of the Swingers, and some of the stories I later could tell of CSTist incursions âacross the borderâ, I had an easy time believing some of the wilder stories I would hear of Tribe allegiance.
+
+My part, even though it had been relatively small, in some of the infamous âSwinger Negotiationsâ a spring before had garnered me some respect and trust within the Tribe.  It had also helped me in learning how to recognize many of the unspoken, unwritten laws of Tribal trust.  I had come to respect the opinions and knowledge of the people who would often frequent the many encrypted Tribe comm. channels.  I knew if anyone could help me solve a riddle on a pirateâs business card, it would probably be a fellow Tribe memberâ¦
+
+::
+
+  ## Joined encrypted channel #EST.Think
+
+  Roc: What brings you here today, Sarc?
+
+  Sarc: Iâm tring to work my way through a puzzle.
+
+  HardPlace: Ooh, let me guess, it has a hundred pieces and reveals a dog when you finish it?  That was so first gradeâ¦
+
+  Sarc: No, this is more of a riddle.
+
+  Roc: You can ignore him, he has an odd sense of humor.
+
+  HardPlace: Do not; youâre the one with the sense of humor.
+
+  Roc: So what sort of riddle is it that is bugging you?
+
+  Sarc: Iâve got this cardâ¦
+
+  HardPlace: The Four of Hearts?
+
+  Sarc: No, a business card.
+
+  Roc: â¦and you canât call the number?
+
+  Sarc: It doesnât have one.  The man who gave it to me told me Iâd know what to do with it.
+
+  ## HardPlace is now known as Cor
+
+  Cor: Golden Skull?
+
+  Roc: Pirate Captain?
+
+  Cor: McRaven?
+
+  Roc: *The* McRaven?
+
+  Cor bows.
+
+  Roc bows.
+
+  ## Cor is now known as Nest
+
+  Sarc: Slow down.  You know this guy?
+
+  Roc: We know him.  His exploits are spoken of throughout the EST.
+
+  ## Parrot has joined channel #EST.Think
+
+  Parrot: Rawk!
+
+  ## Nest has left channel #EST.Think
+
+  Roc: Aye, Parrot?
+
+  Parrot: The Captainâs compliments, Rawk.  Now, fly away.
+
+  ## Roc has left channel #EST.Think
+
+  ## Parrot has locked #EST.Think
+
+  ## Parrot has renamed #EST.Think to #EST.McRaven.Recruiting
+
+  Sarc:  Whoa!  Whatâs going on here?  Why do you have Channel Admin rights?
+
+  Sarc: /private #chanserv Who is Parrot?
+
+  ## ChanServ: Access Denied
+
+  McRaven:  Calm down, me bucko.  Youâve passed the first test.
+
+|
+
+.. Hmm...  I want an extra line break here...
+
+If I hadnât been already freaked out by the furious interplay, I certainly would have been freaked out by McRavenâs sudden appearance in the comm. room. I did a double and triple take of my log files when McRaven spoke.  This wasnât just the comm. equivalent of stepping out of the shadows, this was the comm. equivalent of teleportation.  There was no join announcement, and it was obvious Parrot had not renamed âhimselfâ, as my comm. still showed him inside in the channel under that name.  McRaven simply appeared out of nowhere, and it was shocking to see.  I now know exactly how it was done, but revealing the misdirection makes the magic trick less magical.
+
+Of course, if I should have been focusing on anything, I should have taken notice to the unassuming looking âme buckoâ (to a pirate, your buckoes are the people you can trust) and the fact that the Captain didnât even have to ask who I was or what I wanted.  As it turns out that he had been trying to recruit me for some time, and had already taken a liking to me, but I had not been at all aware of this scrutiny.

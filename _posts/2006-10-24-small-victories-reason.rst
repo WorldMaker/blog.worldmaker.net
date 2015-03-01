@@ -1,0 +1,17 @@
+---
+date: 2006-10-24 03:34:02.421757
+db_id: 280
+db_updated: 2008-02-21 15:16:46.787318
+layout: post
+tags: ''
+title: Small Victories of Reason
+---
+I haven't taken the chance to see *An Inconvenient Truth*, but tonight I had the opportunity to see the presentation tonight delivered by Al Gore at the Key Arena in Downtown Seattle.  Of anything, someone reminded me how tonight's presentation removed me so far from where I was mentally and physically two years ago.  Fortunately most of vitriol on my blog was lost to a server crash, but there still remain 3 choice pieces in `my December 2004 archives <http://blog.worldmaker.net/2004/dec/>`_ that pretty well represent that era in my life.  I'll leave those for you to figure out, but I'll answer if asked.  Maybe I'll do a quick post-mortem writeup on them as in quick review they are quite interesting.
+
+So, 2 years ago I worked for a company that I over time lost respect for in terms of corporate culture.  I lived in a city torn usunder by an awful election in a State that tries to remind us every day of "United We Stand, Divided We Fall".  I let that election get to me.  I let it eat at my feelings and control my depressions.  In October I set in mention irrevocable events that lead me to speaking my feelings loudly and publically and laminated my break with that company I was working for.  The break was mutual, and as I far as I know there was no bad blood, I continue to use their services, but I never again wish to work in a corporate environment where I can't stand the corporate culture.
+
+It would take the majority win, but second major election loss, and a few months time for me to recover.  In December and January I cemented the decisions that have gotten me here: 2000 miles away, going to a speech by Al Gore, and working for an entirely different kind of company.  All in all, things worked out, even if it took a year and a half.
+
+I'm somewhat glad that even if I don't have the low spots I've saved the build back up... nearly two years of content since.  Along the way there many small victories of reason against the unreasonable.  I saved the introspection, bathetic or pathetic or unsympathetic.  I saved the truthfulness.  Maybe no one else will read it but me, but even in these few minutes hear it is a unique tale.
+
+I only a few days from possibly starting the book *The Betrayal of the Consumer* (it's one of my top competitors for a potential second NaNoWriMo attempt), and Al Gore's talk certainly added a few artificial subsitute logs on the clean burning fire, but I'm glad to know that there are just as many logs in my stack marked "Small Victories of Reason".

@@ -1,0 +1,35 @@
+---
+date: 2006-02-07 19:10:32
+db_id: 207
+db_updated: 2008-02-21 15:16:48.574401
+layout: post
+redirect_from:
+- /node/209/
+tags: ''
+title: Design Flaws in Modern MMOs
+---
+<p>I visited the Auto Assault beta a couple weekends ago and was disappointed.  I was hoping for something different from the norm, but was surprised at how much it was <i>the same</i>.  It reminded me of a couple of design flaws that continue to irritate me when I test/play current MMOs.</p>
+
+<h3>Patching and Asset Management</h3>
+
+<p>Game Software Design and Architecture has long had a stigma for being backward.  Game Companies, working on Movie-like Budgets in Movie-like Timeframes tend to spend more time on Engine technologies than is strictly necessary.  It would be like Hollywood reinventing the Camera and Sound Equipment for every film.  There's few good practices shared from company to company, and few tool companies fighting for any sort of standards (Lith, Epic).  Furthermore, they often lose sight of the good practices in the rest of the software development world due to a few special needs such as asset obfuscation (why give the game buyer easy access to most of the artwork, sounds, and music that go into it?).</p>
+
+<p>One of the key pieces often left behind is Asset Management.  Few game engines have any reasonable idea of which art assets are truly needed at any given moment.  I figure that this is one of the major reasons for some extremely bloated memory foot-prints.  It's also key to why these game engines don't seem to be able to load assets on the fly at any reasonable clip.</p>
+
+<p>This comes into play in that most of the MMOs out there are using old school Patch Utils against big Mega-Files (large bundles, sometimes hundreds of MBs if not GBs, of asset files sometimes named with a funny/weird extension like .wad or .pig).  This means that there is no per-asset versioning, patches aren't very atomic, and patches need to be applied all at once prior to engine startup.  Its not uncommon to see hundred megabyte patches against a multi-gig install.  This takes way to much time to apply.  Then, if the patch applies incorrectly it takes a full install checksum and entire mega-file redownload to fix.  (This takes a heck of lot more time to fix, and mega-file downloads take quite a bit of bandwidth.)  I was amused that for the initial download Auto Assault appeared to pull individually versioned assets, but then smashed them into mega-files and proceeded to run mega-file patching across them.  This type of patching is so 90s.</p>
+
+<p>The best counter-example out there is Guild Wars.  Their engine tries its best to preserve bandwidth at all costs and to only patch as is truly necessary (and often in the background).  The engine knows precisely which assets are needed in a given area and only loads those.  Sure, Guild Wars still uses the goofy mega-files for DRM reasons, but they work hard to keep it from hitting performance.  A very similar example is the work done by Valve with the Steam technologies.  I'm a bit weirded by the fact that Valve seemed to lose some of their best asset management work in the conversion from the modified HL Quake engine to the from-scratch Source engine.  It may just be appearance, but it does seem that Source took a step or two backwards.</p>
+
+<h3>The Karma Marga</h3>
+
+<p>Current MMOs are so entrenched in the <i>karma marga</i> approach to game design...  the classic RPG leveling structure that itself is an indirect child of eastern philosophy.  If I were to build anything similar to a current MMO I would really get a kick out of basing it more heavily on Hindu mythology.  (I've been reading about Hinduism for "Intro to World Religions", but also happen to be reading Zelazny's <i>Lord of Light</i>, which appears like a great world ripe for an MMO attempt.)  The karma marga is the "Path of Action", that is it is one of the three major Hindu paths of progression, not just in this life but across all of your lives.  For Hindus the karma marga is the "default path", that no matter what the moral laws ("Dharma") are leading you down the path of karma and that you are always progressing through this path, whether or not you focus on the other paths.  The karma marga is the way of the treadmill.</p>
+
+<p>Here's how it works in a current MMO:  for almost every action, or usually every developer-sponsored action, there is "karma" from it (no MMO have I seen actually use the word karma, most use the term "experience points").  You gain this karma until you reach a certain amount at which point you "level" and start all over, eventually reaching some capstone level (Brahman/Nirvana in terms of the metaphor) where karma no longer applies.  (In most games this is 50 or 60.  Everquest has "nirvana inflation" where this level cap continues to grow, with rumors that EQ or EQ2 may eventually have a 200 level cap.)  At which point players will often start over; roll a new character and start the path of karma all over again.</p>
+
+<p>To me, personally, this is "boring as hell".  It is nothing but a treadmill.  Often the only dilineation between one level and the next is the type of bad guys and the type of dungeons/mission maps/areas/zones encountered.  There is the fact that often you can go back and brutally maul the villains you once found tough, but there isn't much to be gained in doing so, particularly in terms of the treadmill.  Power gamers (and I've been on both sides of that coin, myself) spend their time worrying about their points/minute (karma/minute) and optimize it using spreadsheets and helper programs.  Personally, I don't want to play a game like it were an Industrial Engineering problem.  I don't find that fun.</p>
+
+<p>One of the first observations here is, "Why do these games feel the need to abstract out the time investment?"  Instead of worrying about points/minute, why not just deal with minutes?  After all, everybody is paying the same monthly cash investment.  Eve Online uses simple time investment measurement for skills, rather than karma.  But even that, I think, can be overly restrictive.  If I pick up a game for the first time and have the <i>cajones</i> to go and do something crazy and major, shouldn't I have that oppurtunity.</p>
+
+<p>Perhaps the answer is in combination.  To go back to the analogy, the karma marga is only one path.  The Hindu philosophy says that there are indeed faster paths, but they take more effort.  Karma happens automatically and nearly all the time.  The other paths are the Path of Knowledge (jnana marga) and the Path of Devotion (bhakti marga), and as the names suggest involve a lot of learning or worship.</p>
+
+<p>Anyway, it would be great to see more experimentation in play systems that are less reliant on this treadmill approach to game play.  I have more ideas on the subject, but I'll save them for later posts.</p>

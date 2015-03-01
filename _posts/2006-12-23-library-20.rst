@@ -1,0 +1,17 @@
+---
+date: 2006-12-23 23:05:24.047527
+db_id: 292
+db_updated: 2008-02-21 15:16:46.546414
+layout: post
+tags: ''
+title: Library 2.0
+---
+I've been a book addict for a long time.  In middle school and high school the public library was a short walk away.  Around the height of this period I would often have 3-5 books on loan at a time and would generally drop off read books and pick up new ones once or twice a week.  One of the cool things about a library is the connection into larger systems and alliances of libraries.  I got to the point where I generally had at least one book on reserve most of the time.
+
+As I started to have more "disposable income" I slowly start amassing my own mini-collection.  Sometimes I miss that connectedness, but I also love how the shelves make an overview of the majority of the things that I have read in the last few years.  I wish that I had kept better track of all the books that I had read at the library, in hindsight.
+
+`LibraryThing <http://www.librarything.com/>`_ is an attempt at something of a "Library 2.0".  Small collectors like me can compare collections with larger libraries, are given the tools to sort through and keep track of our libraries, and then the fun part is the social aspects: share reviews, contribute tags, talk about books.  The pages for a book list the Amazon suggestions and then link to "Unsuggestions": lists of books that statistically are not owned by people with that book.  I got a good amount of my library plugged in, which you can see `here </book/>`_ or `there <http://www.librarything.com/catalog/WorldMaker>`_.
+
+The LibraryThingtegration I quickly added to my blog is pretty cool.  For a demo, check the sidebar "Referenced Works" for the post, and to keep it on target, here's the quick review I wrote for one of the more eccentric book in my collection (shared with only 1 other person in LibraryThing's large but growing database), *Under a Killing Moon*:
+
+    This is probably the best book ever written about a science fiction post-apocalyptic hard-boiled sarcastic noir detective computer game. UAKM the game was a ground breaking multi-CD game (well before other games had the courage to break the 1 CD barrier) that lead the pack of the "2nd interactive movie craze" (the first was the Laserdisc era that spawned Dragon's Lair et al), both as an early title and as a great title. The book was written by the guy that wrote most of the game's dialogue and it shows in his handle of the character (Tex Murphy) and the setting (a gritty San Francisco). Sometimes a bit cliched or a bit hackney, but it stays true itself and it is fun.

@@ -1,0 +1,27 @@
+---
+date: 2006-08-28 23:08:32.894490
+db_id: 251
+db_updated: 2008-02-21 15:16:47.743418
+layout: post
+tags: games
+title: After PAX
+---
+PAX really was a neat oppurtunity, and I'm debating whether I'll have to get tickets and plane fare for next year's event...  At dinner last night, sitting at the Rock Bottom bar, I was talking with a couple of other guys (who flew out from New Jersey) that attended PAX.  We traded some stories of the things we saw and did.  For instance, they made it to the `panel on comic creation <http://www.kotaku.com/gaming/liveblogging/liveblogging-the-pax-comic-panel-196874.php>`_, where I was visiting some of the panels on game development and the industry.  (I missed out on a long line, but also apparently a good time full of such goodies as the `hot dog fairy <http://www.youtube.com/watch?v=CpEU_Trlol0&eurl=>`_.)
+
+The big thing the three of us decided that with an event like PAX, and the fact that there was no way that one person could see everything that went one, there wasn't so much one key event to look back on and say that it was the best or most awesome thing you saw or did.  So I won't even try.
+
+I visited quite a few panels, picked up a few new blogs for my aggregator, particularly at the `panel on game blogging <http://www.kotaku.com/gaming/pax06/liveblogging-the-panel-im-on-196918.php>`_ that was itself blogged by Crecente of Kotaku.  I can indeed be found in Crecente's photo, but didn't have a chance to ask a question so I didn't end up in `MajorNelson <http://www.majornelson.com/>`_'s podcast.
+
+I met quite a few new and interesting games.  The first, `Elite Beat Agents <http://e3src.nintendo.com/games/ds/elite_beat_agents/>`_ I met during the keynote, where the guy next to me was playing the Japanese import on his DS.  It was weird enough with the Japanese words.  I later saw English demos of the game in the exhibition hall.  The game features a "secret agent gone DDR" gameplay where circles have to be tapped in rhythm.  As you help choreograph the agent's moves, the upper screen tells a mini-story of what it is the agents are helping to do.  The two demo levels: the secret agents help a lost puppy back to the little boy, and the secret agents help a babysitter and her jock boyfriend put the bratty kids to bed so that the babysitter and boyfriend can (most likely) get it on together.
+
+`Pirates of the Burning Sea <http://www.burningsea.com/>`_, the new pirate MMO in development was really neat to try.  I signed up for the beta on the sheets they had around, and I have much higher hopes for it after having demoed it.  The PvP felt very much more like an action game than an RPG.  I'm curious how well that will carry over outside of development sandboxes.
+
+I focused mainly on the small fries.  In doing so I ended up actually meeting several of the cool designers and/or CEOs.  It was such a neat thing seeing such smaller companies being nearly as accessible as the big guys.
+
+I saw the demo for `Castle Crashers <http://www.castlecrashers.com/>`_ (from `The Behemoth <http://www.thebehemoth.com/>`_).  My brother bought Alien Hominid, which was cool, and Castle Crashers looks even cooler with an old school 4-player smash fest in HD (Xbox 360).  I was told that they are planning an HD rerelease of Alien Hominid for the Xbox 360, which they were showing off.  I also learned that The Behemoth really does have 99.9% of the art done by the same guy, by hand, which is amazing.
+
+I bought the `Pink Godzilla Dev Kit <http://www.pgdevkit.com/>`_, a card game based upon the mascot of a Seattle-area retro gaming store.  The card game is about building video games using cute and destructive Pink Godzilla and his friends.
+
+I bought a copy of `Eets <http://www.eetsgame.com/>`_, which is a fun mix of Lemmings and the Incredible Machine that reminds me quite a bit of `The Incredible Toon Machine <http://www.the-underdogs.info/game.php?id=2568>`_.
+
+I played some of Rise of the Shogun from `TableStar Games <http://www.tablestargames.com/>`_, which uses their interesting mechanic ("HeroCard") where board game conflicts are resolved in CCG-style card battles.  The "heroes", card decks with miniature avatars, are tradeable and useful across games (but make for interesting and sometimes weird semantics when you have, for instance, a cyberspace junky vying for emperor in Rise of the Shogun).  The games get a bit complicated, but part of that is due to the duel mechanic which once you learn can be reused in the other board games.  I bought a copy of their CyberSpace (most of their other games actually were sold out, they were selling opened tournament copies at near full price due to demand).

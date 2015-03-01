@@ -1,0 +1,11 @@
+---
+date: 2008-08-26 17:01:37.885118
+db_id: 487
+db_updated: 2008-08-26 17:01:37.885169
+layout: post
+tags: atheism food
+title: 'Books of the Moment: Tidbits of Non-Fiction'
+---
+Picked up a couple of nice trade paperbacks a few weeks back and most of them were non-fiction just to spice up my reading a bit.  I'm about three quarters through *The Omnivore's Dilemma* and it's a wonderful journey through what exactly it is that we eat and why.  At times it can be disturbing or saddening, but full of things that we should think more about and filled with a kind tone and a light wit.
+
+I've mostly refrained from political and religious discussion lately (at least no one's going to be offended or discriminate against me based upon my opinion of JRPGs), but I finished *The God Delusion* and it's something of a textbook that I wish I had in high school.  Just about every corner of it was familiar, and much of that from honing arguments and reasoning in years of debate in high school.  It was a nice refresher course, however, and perhaps something to recommend to the curious.  There's a reason that Richard Dawkins is a best selling science writer, and I think that he has a good touch and a decent balance between readable arguments for lay people and pointers to the scientific arguments and reasoning that back them.

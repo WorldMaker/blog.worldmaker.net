@@ -1,0 +1,9 @@
+---
+date: 2007-04-18 01:02:59.681084
+db_id: 322
+db_updated: 2008-02-21 15:16:45.867040
+layout: post
+tags: game-design games music world-design
+title: 'Nine Inch Nails: Year Zero'
+---
+Rather cool, Nine Inch Nails' latest album is deeply entwined in a currently moving ARG...  (By 42, no less.)

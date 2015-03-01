@@ -1,0 +1,15 @@
+---
+date: 2012-06-05 21:11:01.041244
+db_id: 920
+db_updated: 2012-07-28 18:16:48.494794
+layout: post
+tags: games secretworld
+title: Uru and The Secret World
+---
+It's hard for me not to make comparisons between *Uru* and *The Secret World*. What I've seen thus far of *The Secret World* has been fun and interesting, and I'm looking forward to seeing more of it. However, last night the best tweet-length summary I could think of included "Needs more *Uru*". In my head it started as joke and I pictured it in Walken-esque terms as a entreaty to additional usage of a rare and somewhat archaic musical instrument. Yet as I punched it into a twitter client I realized that I actually was serious too. Some nostalgiac discussion followed from there, as such things go...
+
+*Uru* and *The Secret World* have some obvious similarities: they are both set in contemporary times and both, albeit in different directions, are "urban fantasy" of a sort. In *Uru*'s case a fantasy of "lost archealogy" in an ancient, dead, largely peaceful civilization with magical technology. In *TSW* the tale is one of magic, conspiracy theory, and ancient evils in heightened versions of real world locations. Both fictions acknowledge the real world outside the game and interact with it in some way. Yet, in *Uru*'s case it encouraged players to play as "themself". For *TSW*, it acknowledges and engages real world zeitgeist already, including a button to open a browser to google something. Both try to bring puzzles and investigations into the fold of the online multiplayer realm. *Uru* it was the primary gameplay and *TSW* uses it as a rare-ish spice between more traditional sorts MMO combat.
+
+A big thing for me was that *Uru*, in all of its incarnations, in those brief times when it was not a solitary experience, had the best MMO social culture I've ever been a part of. There were a lot of reasons why it worked, and I don't expect those will be duplicated in quite the same way, but the nostalgia is enough that sometimes I still go back to what's left of "the cavern" in the hopes that someone new may show up that I might try to play "tourist guide".
+
+It is, of course, the differences interspaced between the similarities above and the wistful nostalgia of spoiler-free discussions and lazy cavern conversations and team puzzle solving that define glimmers of what I feel *The Secret World* "needs" in my estimation. In many ways, I doubt any game will ever meet those "needs". To be truly honest, even *Uru* itself only delivered on them in rare, but wonderful moments and backward glimpsing nostalgia. I'm curious to see where *The Secret World* will go, and hopefully that even though it won't be *Uru* it might find good ways to have some "magic" of its own. It is unfair of me to lump *The Secret World* in with *Uru* in my mind, but it also is one of the things that drew me to it in the first place and fuels said hope that *The Secret World* **will** push at least a few of the boundaries of the MMO genre at least a little bit further than they've been.

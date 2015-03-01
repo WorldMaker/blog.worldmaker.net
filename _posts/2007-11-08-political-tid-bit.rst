@@ -1,0 +1,9 @@
+---
+date: 2007-11-08 09:39:33.447238
+db_id: 409
+db_updated: 2008-02-21 15:16:44.757334
+layout: post
+tags: ''
+title: 'Political Tid Bit: I Supported The Libraries, At Least'
+---
+I've been pretty good about avoiding political commentary lately.  I haven't given up yelling about it or writing letters to the editor about it, but I've tried to keep it from poisoning the tone of my blog as much as I did last election cycle.  I just have one thing to say really right now and it's that I'm disappointed that the Library initiative didn't pass.  I figured it wouldn't, but I tried to stay in a bubble where I at least had hope for it.  It's almost a shame that we have one of the brightest growth curves in the nation for library readership and we can't get the city together to pay for the libraries we deserve.

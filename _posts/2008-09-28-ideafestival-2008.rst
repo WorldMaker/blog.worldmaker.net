@@ -1,0 +1,15 @@
+---
+date: 2008-09-28 03:08:22.751424
+db_id: 498
+db_updated: 2008-09-28 03:08:22.751466
+layout: post
+tags: games game-design
+title: IdeaFestival 2008
+---
+I've been meaning to visit past IdeaFestival sessions, but this weekend I found two in particular that I wanted to see: Teller (of Penn &) and Jane McGonigal.  Teller's session was as I expected, amazing.  It was like one of his essays but with sound and life.  In my wanderings through a large swath of gaming blogs and discussions I've followed Jane McGonigal in that way that celebrities in such a small niche wash in and through the blogs.  She didn't deliver anything that was surprising or unknown to me, but it was fun to watch people that don't spend as much time thinking on it as I do taking it in and talking about.  In some ways it was just wild because it was so close to home in what I read and discuss with so many people through the internet and here it was live and in person (and not initiated by me and with a better presentation than my own ramblings)--  in Louisville, at least for an hour.
+
+IdeaFestival is interesting as a project to bring together a diverse survey of big thinkers across the spectrum of human endeavour.  It's neat.  These two lectures were the first I experienced and I came away feeling like it wasn't as good as it could have been.  It particularly seemed that with such a wide spectrum of things on the schedule the event needed more scheduled "burn down" time.  Ideas are great, but often the conversations about the ideas can as important, if not moreso.  
+
+A good portion of the audience, like me, seemed transient, picking and choosing between lectures with nary a reason to communicate or socialize.  There were a few groups that I saw conversing, but most of these were tightly packed associates (ie, people that already knew each other for the most part) that were doing coordinated lecture attendance and attempting to tell a narrative across them and, in my opinion, mostly failing.  Both of these groups I think would benefit from some better management of "burn down" time, encourage the transients to stick around for immediate post-discussion and give the tight clusters more time than whatever breaks they schedule for themselves to build their narrative arc through the event.  Unfortunately, I'm not an event coordinator so I don't have any real useful suggestions on how to do it.  I would think that encouraging a little more Q&A, building more interesting central conversation spots and scheduling larger breaks between lectures might help...
+
+The Kentucky International Convention Center is rather nice.  I don't recall spending much time in it, at least not since the big renovation and expansion.  I'm still of the opinion that PAX or a PAX-like event would do well in Louisville...

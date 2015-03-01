@@ -1,0 +1,36 @@
+---
+date: 2008-03-27 02:10:48.960943
+db_id: 457
+db_updated: 2008-03-27 02:30:33.747938
+layout: post
+tags: darcs
+title: Darcs and the Useful Context File
+---
+I spend some time thinking about useful ways for representing Darcs_ repository states while working on my nascent Darcsforge_ project.  I won't claim to be an expert by any means, but I do have some useful wisdom, I think.  It's often necessary with a VCS to describe a particular state of the repository.  You might have need to go back to that state to reproduce a bug or go forward to that state to gain a new feature or security update.  In some VCSes there are simple numbers that you can use to represent a repository state, either because there is a single authority (in the case of a more traditional client-server VCS) or a "single history" (in the case of a Git or Mercurial repository having relatively more strict parentage for changesets than Darcs).  Darcs is distributed, so there is no one authority to claim dominion over the state of a repository, and Darcs has a constantly twisting history of a repository's state, which gives it some nearly amazing powers of cherry picking at the expense of simple enumerations of a repository state.
+
+There are a number of ways to communicate the state of a repository in Darcs, and often the best one to use at a the moment is sensitive to your particular needs.  I realize that can be it's own challenge in a learning curve, but Darcs tries its best to be helpful all along the way.  In fact, small projects can get away with using nothing but Darcs' best-of-breed interactive command line interface to get repositories into particularly useful shapes.  If patches are named well, moving forward to get that new feature or security update is a just a matter of making the right choices in the interactive ``darcs pull``.  Communicating specific patches to pull/unpull between developers generally requires good naming practices, and Darcs lets you try RegEx searches to find what you are looking for.  Patches also have globally unique hashes, which can be used in copy and paste scenarios, but generally are to be left to darcs itself and third party tools that don't mind inhumane combinations of dates and long hexadecimal strings.  The hash can be retrieved from ``darcs changes --xml-output``.
+
+The next most obvious thing to use is a Darcs tag.  Just create a manual name for some meaningful repository state and Darcs gives you a few more useful tools for getting repositories into that state.  Tags are useful because they should be familiar to a user of just about any other VCS.  Like most VCSes Tags generally are most useful when used as project-unique meaningful names such as milestones that were met, important builds that were distributed, etc...  Thus tags should generally be easy to communicate ("this bug was found in Milestone Beta").
+
+The least well known tool for repository state management in Darcs, and the one most peculiar to Darcs is the Context file.  A Context file is the best way to uniquely define an arbitrary state of a Darcs repository that can be used in reference to other repositories.  Getting the current context of a repository is simply a matter of calling ``darcs changes --context``.  Here's an example context for an arbitrary state in Darcsforge's Main repository's past:
+
+.. sourcecode:: dpatch
+
+  Context:
+
+  [Add Pygments sourcecode directive to deepdish rst.py
+  Max Battcher <me@worldmaker.net>**20070529212414]
+
+  [TAG RTWM: Orkin and Patches
+  Max Battcher <me@worldmaker.net>**20070529063835]
+
+This shares the formatting of Darcs' inventory files and its patch files.  (Hence the simple code highlighting you see above from my Darcs patch lexer for Pygments, to be included in the 1.0 release.)  You can use a context to get a copy of a repository in a previous state: ``darcs get /my/repository --context=/some/context``.  You can use context files to correspond with a developer whose repository you can't access.  If you wish to send a patch to that person by email you can generate an email-able Darcs patch ``darcs send --context=/some/context -o some-patch-you-really-need.dpatch`` and then use Darcs' interactive patch picker to choose the patches to send or use one of the search flags and some combination of the patch date, name, hash or whatever.  (On the other end it's a simple matter of ``darcs apply some-patch-you-really-need.dpatch``.)
+
+If you want to send arbitrary builds to other people, say using some sort of continuous integration environment, you can ``darcs changes --context > dist.context`` and ask people to send that ``dist.context`` file alongside bug reports, or just ask for that file for the bug reports where you actually need that data.  (Darcs bug reports sometimes ask you to submit ``darcs --exact-version`` which includes the context file.)  Eventually I'd like to have simple continuous integration support in Darcsforge, at the very least a rudimentary nightly build, and such a tool would of course support several ways of embedding the context file in with tarballs.  I've also debated several other ways for Darcsforge to build and store context files for more day to day usage.  I've wondered if there might be useful "integration states" that might warrant an archive.  Thus far I haven't come up with any compelling use cases, but I've thought about it.
+
+Context files are no worse than revision numbers, they are just somewhat different and require a small degree of familiarization.  I'm going to copy and paste any revision numbers as I certainly am not very good at remembering them, and in this modern internet era it's generally just as quick to email an attached context file or a URL to a context file as to email a copy and pasted revision number.  For voice conversations I think a URL can be often easier to communicate than a number, but that can be a matter of opinion.  (Yes a number like 10 is simpler than most URLs, but anything above 5 digits can be a pain to communicate, and its very easy to get tied up in simple anagrams of even two digit numbers (32 slipping into 23 between communication and input).  But maybe as someone with too many years of math under my belt I just don't like numbers.)
+
+Darcs context files deserve a little bit more publicity it seems, and maybe this article will be helpful to someone.
+
+.. _Darcs: http://darcs.net/
+.. _Darcsforge: http://darcsforge.code.worldmaker.net/

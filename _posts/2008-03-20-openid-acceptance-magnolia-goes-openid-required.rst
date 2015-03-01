@@ -1,0 +1,9 @@
+---
+date: 2008-03-20 17:26:36.961752
+db_id: 455
+db_updated: 2008-03-20 17:26:36.961796
+layout: post
+tags: openid
+title: 'OpenID Acceptance: Magnolia goes OpenID Required'
+---
+According to the newsletter I just got, Ma.gnolia.com, the flower-themed competitor to Del.icio.us has made the decision that starting soon all new sign-ups will *require* OpenID.  Ma.gnolia, like Del.icio.us, has to worry about link spam like none other (because link spam is key to modern SEO), and this is one more thing they hope will cut down on spammers.  It's quite interesting and an interesting way to promote "Don't create a password with us, we don't want that liability and you don't need that mental overhead", as well.

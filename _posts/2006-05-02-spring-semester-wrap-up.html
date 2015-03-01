@@ -1,0 +1,54 @@
+---
+date: 2006-05-02 18:10:28
+db_id: 224
+db_updated: 2008-02-21 15:16:48.369427
+layout: post
+redirect_from:
+- /node/227/
+tags: ''
+title: Spring Semester Wrap Up
+---
+<p>I finished my last final for this Spring Semester.  As of just now none of my grades have been posted, and frankly right now I could care less.  Not that grades are important its just that I'm tired of stress; I had enough in the last two weeks.  Also, this semester in particular I have a bit more work that I can show off proudly and claim that no matter my final grade I did some good work.</p>
+
+<p>The prime example this semester is the work I put into the new Speed School Student Council webpage.  This work is now accessible at <a href="http://fridge.speedcouncil.org/">fridge.speedcouncil.org</a> and will eventually (hopefully later this month) replace the current <a href="http://www.speedcouncil.org/">speedcouncil.org</a>.  There are still a few loose ends to tie up, and as the Director of Administration for this year I'll continue to hold responsibility for it and hope to continue to improve upon it this year.</p>
+
+<p>For anybody curious the code was written in <a href="http://www.python.org/">Python</a> using the <a href="http://www.djangoproject.com">Django Framework</a> (the magic-removal branch which is, as of Monday, the new 0.95 Trunk).  The backend is <a href="http://www.apache.org/">Apache</a> and <a href="http://www.postgresql.org">PostgreSQL</a>.  It was an entirely from scratch rewrite of nearly a decade's worth of accrued PHP, and very nearly all of the functionality is there, with new added dynamism and functionality.  All of our major design documentation can be seen in the <a href="http://fridge.speedcouncil.org/source/">Colophon/Development section</a>, including the addresses of the Darcs repository (GPL/2.0).</p>
+
+<p>The SLOC metric, as of today: 4,301 lines of Python + 3,622 lines of HTML templates, versus 43,861 lines of .php and .inc files, plus at least 8,292 lines of seperate templates (just those that I knew of that ended with .html or .htm), which were used in rare places (most of the HTML is/was embedded in the PHP files).  Not all of that is in current usage, but probably has been at least briefly used at some point in time.  Probably particularly interesting is that the E-Expo website that I wrote last semester in PHP alone has 3,461 lines of PHP code which is nearly the size of the Python code for the entire new site.  (The E-Expo specific lines in the new site?  235 lines of Python, 449 lines of HTML template.)</p>
+
+<p>So there you have my major project for most of the semester.  Later today I might post a copy of Max's Symbolic Lambda Calculator, which I built in spite of a very poor compilers class (unfortunately yet another class I've gone into knowing more about the course material than the Professor) in a weekend, and I can bet that it does much more than anybody else's work for that project.  It has a very simple Coco/R grammar, partly to do more than than the provided example with less syntactic formality, and partly because Coco/R would drive me mad if I attempted anything truly baroque.  In having used it I'm rather amazed at the reputation it has garnered as a decent compiler compiler!  An LL(1) recursive descent parser?  How lazy.  I can write and debug (and have written and debugged) an LL(k) recursive descent parser by hand in the time it takes to reduce LL(k) to LL(1) and debug with the constant back and forth between re-generating the parser from the ATG with its embedded logic.  (Don't even get me started on how stupid it is to still embed code into the grammar file itself.)  Not to mention how utterly poor the generated C# code is (being littered with ugly Java-isms).  Maybe its about time I went back and finally finished an interpreter from one of my (much more complex) "play grammars" such as VEND.  Anyway, this Symbolic Lambda Calculator is a simple (I gestault wrote it in a weekend) polymorphic recursive-descent late bound interpretor.  Obviously the key problem with it is the stack bottleneck and the performance overhead of so many virtual function lookups.  I was still pretty pleased with the performance I was getting.  I wrote a simple factorial implementation (<code>fac := if (x > 0) (x * fac (x - 1)) 1</code>) and was able to successfully get the result for <code>fac 200</code>.  I didn't try anything really higher than that, though.</p>
+
+<p>Now that classes are done with I get to pack!  I leave for Seattle on Saturday, and start work with the Microsoft Small Business Accounting group Tuesday.</p>
+
+<hr />
+
+<p>Heh, VEND brings me back...</p>
+
+<blockquote cite="http://www.mike-austin.com/home/reference/languages/" title="me via Mike Austin">
+VEND began as something of a thought experiment inside a highly minimalistic language experiment (TORG/XTORG). The idea was to use English word "familiarity" to best effect in an object oriented (prototype-based) language. It seems that what I have come up with is something like a true OO BASIC the roundabout way. The goal of the project has then progressed to become an "easy to read" English-looking OO language.
+</blockquote>
+
+<p>That quote was from the top of a wiki page of an old website of mine.  Unfortunately, I believe most of the contents were lost to time and a bad hosting provider.  I checked the wayback machine and found the <a href="http://web.archive.org/web/20041111050225/www.worldmaker.net/tavi/index.php?page=WorldMaker.Lang.Torg">TORG page</a>, which has 0 interesting things to say, but the VEND page, which had a brief run through of the syntax I had developed is MIA.  (It shows up in search results, but try to check it out and the wayback machine says "archived but not indexed".  Not sure what meaning of indexed they are using there.)  Maybe I should make a new page.  Funny, but Mike Austin's site says that VEND was prototyped, which is true in the sense that it was a prototype OO-based language, but not as true in the "I built code" sense...  I do have a rather complete, largely tested, BNF grammar.  Grammars don't buy you doughnuts, though.</p>
+
+<p>I couldn't come up with too many domains where VEND would be all that useful of an abstraction (other than great readability).  My favorite was using it in Robert's Rules: <code>I move "Motion to allocate $30 to Max's Celebration Dinner 3.";</code>.  <i>I</i> being magic vend name for the "local scope", part of why pretty much any VEND example reads like Parliamentary meeting minutes.  With distributed scoping and a Join-Calculus-based asynchronous method cording syntax (by way of <a href="http://research.microsoft.com/~nick/polyphony/intro.htm">Polyphonic C#</a>, one of the Comega components) it would be extremely easy and readable to build the potentially complex message for that Parliamentary Procedure application I've talked about but never actually implemented.  All of which further goes to show that I spent way too much time building a fairly complex and powerful syntax that ultimately would be a true bear to actually write the interpretor for.   Not that it wouldn't be fun trying.</p>
+
+<pre><code>
+// I haven't check that this code is syntactically valid...
+// This isn't strict Robert's Rules either...
+// This is just play.
+
+// Somewhere in Chairperson.vend...
+When (I do recognizeMotion and Second a Delegate does second and Motioner a Delegate does move some Motion currentMotion):
+  If [Motioner != Second]:
+    If [currentMotion is? debatable]:
+      I openDebate currentMotion;
+    Else:
+      I startVote currentMotion;
+    Done;
+  Done;
+Done;
+
+// Somewhere in Delegate.vend
+Before (I do move some Motion currentMotion),
+  return [I has? floor];  // Can't move a motion if you don't have the floor...
+</code></pre>

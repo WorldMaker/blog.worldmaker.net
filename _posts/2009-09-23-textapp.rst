@@ -1,0 +1,60 @@
+---
+date: 2009-09-23 19:15:38.896397
+db_id: 545
+db_updated: 2009-09-23 19:19:42.617217
+layout: post
+tags: coding facebook appengine
+title: Textapp
+---
+Here's another *Assassins!* derivative, albeit one a tad bit dirtier and
+less "your application ready": the boringly named ``textapp``. This is
+the guts to my all-inclusive text messaging dispatch for App Engine. It
+has handlers to accept both Facebook's SMS requests and App Engine's
+XMPP-based IM requests.
+
+Because I was feeling too lazy to set up something friendlier (to me)
+like "darcsit" or my own django+darcs solution, I've posted the `current
+version of textapp.py on github's gist`__. It depends on my `webappfb.py`_.
+
+__ http://gist.github.com/192277
+.. _webappfb.py: http://blog.worldmaker.net/2009/sep/22/facebook-google-appengine-webapp-framework/
+
+I think that as it stands right now ``textapp`` cross-cuts too many
+concerns to be immediately appropriate to any project I might donate it,
+and it isn't "big enough" to merit its own project right now. However, I
+do think it might be useful for interested people.
+
+First of all, it is a bit dirty: you'll notice that it makes reference
+to my domain model named ``Player``. The only important detail for
+``textapp`` is that this model does my Facebook ``uid`` to XMPP ``jid``
+mapping (with some authorization magic, of course). There is also no
+localization, yet. (I've been wondering for a few weeks now how soon I
+should start on Assassins' l10n plans, partly because I want support for
+Pirate, which is my preferred Facebook language.)
+
+High level there are three important parts: RegEx-based dispatcher,
+Message classes, and request handlers.
+
+The request handlers you simply provide a callback (as ``application``)
+and plug into the appropriate places: your main handler (``/``, most
+likely) for ``FacebookSmsHandler`` and the App Engine XMPP handler
+(``/_ah/xmpp/message/chat/``) ``FacebookXmppHandler``. You'll also want
+to handle the ``canvas()`` function for ``FacebookSmsHandler``, as that
+does double as your application's "front page". These are normal
+``webapp`` request handlers and should be wired accordingly.
+
+The message classes are populated by the above handlers:
+``FacebookSmsMessage`` and ``FacebookXmppMessage``. Both message classes
+provide the same interface and for the most part handlers don't need to
+worry which one is which. (Both are based on App Engine's
+``xmpp.Message`` class.)
+
+The dispatcher ``TextApplication`` is a simple RegEx to handler mapping
+class that should be familiar to most Python web framework users.
+RegExes are tried in listed order, attempting to parse the message body.
+The message and passing RegEx groups as keyword arguments or positional
+arguments (depending on whether or not your RegEx uses named groups).
+Handlers can be be functions or classes in the usual Pythonic "callback"
+fashion.
+
+.. vim: ai spell tw=72

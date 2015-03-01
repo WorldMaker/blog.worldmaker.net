@@ -1,0 +1,21 @@
+---
+date: 2009-12-19 04:15:35.414546
+db_id: 554
+db_updated: 2009-12-19 04:16:41.302741
+layout: post
+tags: games
+title: On Free Realms' December Combat Update
+---
+I'm certainly amused about the hypocrisy I'm about to unleash. I've criticized hardcore players at times for complaining about nerfs that only they seem to care about. As a midcore player of moderate skill, I find it fascinating that *Free Realms* managed to turn the tables on me. Now I get to play the role of the crotchety person that dislikes recent MMO changes.
+
+For *Free Realms*, December's update brought a large number of changes. One big swath of which was a full front-to-back combat reform. I can see what the developers where trying with the update and the casual, very young, ADD audience they've always seemed to be targeting. To some extent I believe they have succeeded, but I've never been in that weird demographic they want so I'm probably a poor judge here. On the other hand, as someone that "beat" almost every aspect to the combat system that was, I don't think the combat update was much of a progression towards anything of interest.
+
+I feel even more hypocritical in defending the previous combat system. It was a a by-the-numbers "lite" version of MMO's D&D and Diku-derived traditional combat systems. I complained about its grind, and wondered aloud if perhaps they couldn't have found a more original formula somewhere... But it did its job service-ably and if they had just reduced the number of classes (another Diku-ism I find odd: quantity of classes over quality) or increased the number of experience-giving quests or even just increased the speed of experience then the grind wouldn't have felt as onerous (to those OCD enough to wish to max level all of the classes, at least).
+
+The new system focuses on zerg rushes of mobs and obvious spawners that need defeating. The skills are all nerfed to be more powerful, faster recharging, and just about entirely AoE across the board and traditional enemy-at-a-time targeting is dropped entirely. The total number of skills that a player may deal with in the heat of combat is reduced from five to two and a half. That half skill is a skill slot devoted to single pickup, random drop-based single use skills. The energy (mana) system is vastly simplified to a constant 100 bar regardless of level and only one of the two and a half skills use it (and use it fully). Thus energy management is mostly gone and the middle, most powerful skill's original recharge timer has basically been replaced with the energy bar. (Energy (mana) drops still exist, but they might as well be recharge timer boosts instead.) Between larger health bars, more allowed player respawns in combat zones, and seemingly faster recharge rates, there's very little mandatory downtime. Overall combat instances feel a lot less like traditional, somewhat thoughtful dungeon crawls and feel like very fast paced, short sessions in some arcade beat 'em up. (Which I guess was the goal.)
+
+As far as I can tell they've removed what little strategy the "Diku lite" combat had and replaced it with a bad button masher. I particularly hate it because I've been playing so much *Guild Wars* lately that I don't understand why they just didn't auto-spam the first, fastest recharging skill and save players from button mashing finger cramps. 
+
+They've further disincentivized grouping (which already had poor incentives to begin with). Players feel like unstoppable forces. I guess players trying to play higher level than their own instances might still see some need to group, but the developers even threw in new minimum level caps. Worse, for what should be a social game I think they've really blown it in they've really lost all social-critical downtime ("socialization requires downtime"). Combined with chat window updates that make it all but unusable, the non-stop combat seems to have once again drained the game of any interesting chat and socialization.
+
+Anyway, that's my crotchety report. I think *Free Realms* has just about proven that I'm too talented for it and its time to move on to other games. I've enjoyed my few minutes to be that guy that whines about nerfs and who knows when it will happen again.
