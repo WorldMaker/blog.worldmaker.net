@@ -1,0 +1,96 @@
+---
+date: 2009-08-16 22:39:40.268502
+db_id: 540
+db_updated: 2009-08-16 22:39:40.268547
+layout: post
+tags: coding darcs pygments
+title: Token Stream Diffs Using Pygments
+---
+<p>I was writing again today about the possibility of interestingly useful
+diffs produced using a lexer (tokenizer) from a syntax highlighting
+library. I wrote a simple proof-of-concept prototype and thought it
+might be interesting to someone. Interestingly it ended up being shorter
+than I expected thanks in large part to Python's standard library
+<tt class="docutils literal">difflib</tt>.</p>
+<p>From time to time on the darcs mailing list the idea comes up to use
+something (or several somethings) for smarter, more meaningful diffs
+(than the defacto line-based diffs that every SCS, and many similar
+tools, have used since just about the dawn of time). The idea to go
+smarter is to help better separate out &quot;meaningful&quot; changes to the code
+and less meaningful changes such as whitespace reformatting. A strong
+example is an XML diff tool that picks up changes in the DOM tree rather
+than at the text/formatting level. The problem with such a strong
+example is that it is very domain specific (each format has its own AST
+and few formats use the same tools to get that AST), and fragile (both
+documents have to be well-formed, complete, or otherwise parsable).</p>
+<p>I think that I've come up with the idea that there is a good, pragmatic
+compromise position between the &quot;stupid&quot; line-based diff and the &quot;smart&quot;
+domain-specific parser diff: diffs based upon the token streams of
+syntax highlighter lexers. Most syntax highlighter libraries are
+designed to be general purpose and reusable, and often have strong
+libraries of lexers for major languages. These lexers are also built to
+be rough and tumble and to do their best with all sorts of unfinished,
+malformed, or otherwise &quot;junk&quot; input. These lexers are not going to be a
+&quot;perfect&quot; match for what the language's tools expect of the language,
+but my contention is that if they are good enough for reasonable syntax
+highlighting in an editor or other environment they are good enough for
+usefully informative diffs.</p>
+<p>I wanted a test bed for this hypothesis and so to start with I wanted a
+simple &quot;proof-of-concept&quot; tool that could produce a simple token-based
+diff of two files, using Pygments, which is the very useful syntax
+highlighter library for Python. Once I discovered Python's standard
+library's <tt class="docutils literal">difflib</tt> module it turned out to be a reasonably
+straightforward tool to build. Behold:</p>
+<div class="highlight"><pre><span class="c">#!/usr/bin/env python</span>
+<span class="c"># Copyright 2009 Max Battcher &lt;me@worldmaker.net&gt;. Licensed under the MS-PL.</span>
+<span class="kn">from</span> <span class="nn">difflib</span> <span class="kn">import</span> <span class="n">SequenceMatcher</span>
+<span class="kn">import</span> <span class="nn">pygments</span>
+<span class="kn">import</span> <span class="nn">pygments.lexers</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">This is a simple diff utility based upon pygments&#39; lexer token streams.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">4</span><span class="p">:</span>
+    <span class="k">print</span> <span class="s">&quot;Usage: tokdiff.py lexername file1 file2&quot;</span>
+    <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="n">tool</span><span class="p">,</span> <span class="n">lexname</span><span class="p">,</span> <span class="n">f1</span><span class="p">,</span> <span class="n">f2</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span>
+
+<span class="n">lexer</span> <span class="o">=</span> <span class="n">pygments</span><span class="o">.</span><span class="n">lexers</span><span class="o">.</span><span class="n">get_lexer_by_name</span><span class="p">(</span><span class="n">lexname</span><span class="p">)</span>
+
+<span class="n">a</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">pygments</span><span class="o">.</span><span class="n">lex</span><span class="p">(</span><span class="nb">file</span><span class="p">(</span><span class="n">f1</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">(),</span> <span class="n">lexer</span><span class="p">))</span>
+<span class="n">b</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">pygments</span><span class="o">.</span><span class="n">lex</span><span class="p">(</span><span class="nb">file</span><span class="p">(</span><span class="n">f2</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">(),</span> <span class="n">lexer</span><span class="p">))</span>
+
+<span class="n">sm</span> <span class="o">=</span> <span class="n">SequenceMatcher</span><span class="p">(</span><span class="bp">None</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">op</span><span class="p">,</span> <span class="n">a1</span><span class="p">,</span> <span class="n">a2</span><span class="p">,</span> <span class="n">b1</span><span class="p">,</span> <span class="n">b2</span> <span class="ow">in</span> <span class="n">sm</span><span class="o">.</span><span class="n">get_opcodes</span><span class="p">():</span>
+    <span class="k">if</span> <span class="n">op</span> <span class="o">==</span> <span class="s">&#39;equal&#39;</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">a</span><span class="p">[</span><span class="n">a1</span><span class="p">:</span><span class="n">a2</span><span class="p">]:</span>
+            <span class="k">print</span> <span class="s">&quot;  </span><span class="si">%s</span><span class="s">: </span><span class="si">%s</span><span class="s">&quot;</span> <span class="o">%</span> <span class="n">item</span>
+    <span class="k">elif</span> <span class="n">op</span> <span class="o">==</span> <span class="s">&#39;replace&#39;</span><span class="p">:</span>
+        <span class="k">print</span> <span class="s">&quot;~~~&quot;</span>
+        <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">a</span><span class="p">[</span><span class="n">a1</span><span class="p">:</span><span class="n">a2</span><span class="p">]:</span>
+            <span class="k">print</span> <span class="s">&quot;- </span><span class="si">%s</span><span class="s">: </span><span class="si">%s</span><span class="s">&quot;</span> <span class="o">%</span> <span class="n">item</span>
+        <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">b</span><span class="p">[</span><span class="n">b1</span><span class="p">:</span><span class="n">b2</span><span class="p">]:</span>
+            <span class="k">print</span> <span class="s">&quot;+ </span><span class="si">%s</span><span class="s">: </span><span class="si">%s</span><span class="s">&quot;</span> <span class="o">%</span> <span class="n">item</span>
+        <span class="k">print</span> <span class="s">&quot;~~~&quot;</span>
+    <span class="k">elif</span> <span class="n">op</span> <span class="o">==</span> <span class="s">&#39;insert&#39;</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">b</span><span class="p">[</span><span class="n">b1</span><span class="p">:</span><span class="n">b2</span><span class="p">]:</span>
+            <span class="k">print</span> <span class="s">&quot;+ </span><span class="si">%s</span><span class="s">: </span><span class="si">%s</span><span class="s">&quot;</span> <span class="o">%</span> <span class="n">item</span>
+    <span class="k">elif</span> <span class="n">op</span> <span class="o">==</span> <span class="s">&#39;delete&#39;</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">a</span><span class="p">[</span><span class="n">a1</span><span class="p">:</span><span class="n">a2</span><span class="p">]:</span>
+            <span class="k">print</span> <span class="s">&quot;- </span><span class="si">%s</span><span class="s">: </span><span class="si">%s</span><span class="s">&quot;</span> <span class="o">%</span> <span class="n">item</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">print</span> <span class="s">&quot;&lt;&lt;</span><span class="si">%s</span><span class="s">&gt;&gt;&quot;</span> <span class="o">%</span> <span class="n">op</span>
+
+<span class="c"># vim: ai et ts=4 sts=4 sw=4</span>
+</pre></div>
+<p>Next steps would be to come up with a useful &quot;compact&quot; diff output and
+putting it to the test with a tokenized <tt class="docutils literal">patch</tt> tool. There are
+probably still a lot of questions that would need to be answered and
+tests to perform before such a tool might usefully be used as the basis
+of a source control system or source control system add-on, but my few
+tests with this tool already are showing some of the results that I had
+hoped for.</p>

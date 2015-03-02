@@ -1,0 +1,11 @@
+---
+date: 2007-08-06 01:32:43.423487
+db_id: 390
+db_updated: 2008-02-21 15:16:45.099176
+layout: post
+tags: ''
+title: 'Amazon Flexible Payment Service: The Most Powerful Payment Engine on the Web'
+---
+<p>Admittedly, Amazon is late to the game: Paypal, most of the classic Credit Card processing companies, and even Google all have released usable payment processing engines.  Google's appears fabulous for out the box functionality, one-upping Paypal's work.  I wasn't expecting Amazon to blow my mind, but they have.  Amazon's new <a class="reference external" href="http://www.amazon.com/gp/browse.html?node=342430011">Flexible Payments Service</a> isn't an out-of-the-box affair, but instead is something of the equivalent of a low level payment API.  When Amazon says &quot;flexible&quot;, they seem to mean it.  The system allows some extremely complex payment negotiations with Amazon's systems playing the happily neutral mediator, which provides some very interesting development possibilities.  For instance a simple &quot;eBay competitor&quot; I was joking about creating looks like most of the actual auction logic could be handled just about solely in Amazon FPS' GateKeeper logic.  I'm even more tempted to build such a monstrosity just to prove that it could be done.</p>
+<p>At the very least, the other really exciting thing about FPS, Amazon, in the many years of discussion and &quot;wouldn't it be cool if&quot;s, has created the first general purpose Micropayments framework.  I've thought of ideas for Micropayments but rarely were they feasible.  Now Amazon has finally opened the flood gates and FPS supports just about all one needs to build any sort of kick-ass micropayment service including pre-aggregation and post-aggregation (pre-aggregation is the major model to date where people prepay for points/credits, post-aggregation reverses this by only charging people when micropayments add up to levels where converting them makes sense), not to mention the ability to control service agreements from both sides with GateKeeper so that broker applications can be built to watch the payee's back as well.</p>
+<p>I'm definitely considering Amazon FPS for several of my current projects...  and some ideas for future ones.</p>

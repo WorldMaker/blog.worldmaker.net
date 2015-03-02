@@ -1,0 +1,100 @@
+---
+date: 2012-03-19 23:38:55.037343
+db_id: 821
+db_updated: 2012-03-19 23:41:19.025431
+layout: post
+tags: c# silverlight xaml
+title: Dynamically Data-binding Columns in XAML
+---
+<p>There are times when you find that you need to dynamically set the columns in a Silverlight <tt class="docutils literal">DataGrid</tt>: perhaps you've got a need to let users configure the columns or your columns are based on some part of your data model. I've seen several anti-patterns that are in various states of broken and/or over-complicated, such as the one I removed from a code base that managed to build a column for every cell in the <tt class="docutils literal">DataGrid</tt>. <a class="footnote-reference" href="#id3" id="id1">[1]</a> While Silverlight and WPF now both support stronger (but different implementations) ways to auto-generate columns for more complicated dynamic data structures, there are still times where it is preferable to use a combination of hand-edited columns and columns built against things very specific to your data model. To save me from having to rewrite the class myself ever again (having done so twice), and to possibly help save other people from the broken versions I've seen posted to various webpages, here's my solution to dynamically bind columns from XAML:</p>
+<div class="highlight"><pre><span class="k">public</span> <span class="k">class</span> <span class="nc">ColumnBindingDataGrid</span> <span class="p">:</span> <span class="n">DataGrid</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="n">ObservableCollection</span><span class="p">&lt;</span><span class="n">DataGridColumn</span><span class="p">&gt;</span> <span class="n">StaticColumns</span>
+    <span class="p">{</span>
+        <span class="k">get</span> <span class="p">{</span> <span class="k">return</span> <span class="p">(</span><span class="n">ObservableCollection</span><span class="p">&lt;</span><span class="n">DataGridColumn</span><span class="p">&gt;)</span><span class="n">GetValue</span><span class="p">(</span><span class="n">StaticColumnsProperty</span><span class="p">);</span> <span class="p">}</span>
+        <span class="k">set</span> <span class="p">{</span> <span class="n">SetValue</span><span class="p">(</span><span class="n">StaticColumnsProperty</span><span class="p">,</span> <span class="k">value</span><span class="p">);</span> <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="k">public</span> <span class="k">static</span> <span class="k">readonly</span> <span class="n">DependencyProperty</span> <span class="n">StaticColumnsProperty</span> <span class="p">=</span>
+        <span class="n">DependencyProperty</span><span class="p">.</span><span class="n">Register</span><span class="p">(</span><span class="s">&quot;StaticColumns&quot;</span><span class="p">,</span> <span class="k">typeof</span><span class="p">(</span><span class="n">ObservableCollection</span><span class="p">&lt;</span><span class="n">DataGridColumn</span><span class="p">&gt;),</span> <span class="k">typeof</span><span class="p">(</span><span class="n">ColumnBindingDataGrid</span><span class="p">),</span> <span class="k">null</span><span class="p">);</span>
+
+    <span class="k">public</span> <span class="n">ObservableCollection</span><span class="p">&lt;</span><span class="n">DataGridColumn</span><span class="p">&gt;</span> <span class="n">BindingColumns</span>
+    <span class="p">{</span>
+        <span class="k">get</span> <span class="p">{</span> <span class="k">return</span> <span class="p">(</span><span class="n">ObservableCollection</span><span class="p">&lt;</span><span class="n">DataGridColumn</span><span class="p">&gt;)</span><span class="n">GetValue</span><span class="p">(</span><span class="n">BindingColumnsProperty</span><span class="p">);</span> <span class="p">}</span>
+        <span class="k">set</span> <span class="p">{</span> <span class="n">SetValue</span><span class="p">(</span><span class="n">BindingColumnsProperty</span><span class="p">,</span> <span class="k">value</span><span class="p">);</span> <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="k">public</span> <span class="k">static</span> <span class="k">readonly</span> <span class="n">DependencyProperty</span> <span class="n">BindingColumnsProperty</span> <span class="p">=</span>
+        <span class="n">DependencyProperty</span><span class="p">.</span><span class="n">Register</span><span class="p">(</span><span class="s">&quot;BindingColumns&quot;</span><span class="p">,</span> <span class="k">typeof</span><span class="p">(</span><span class="n">ObservableCollection</span><span class="p">&lt;</span><span class="n">DataGridColumn</span><span class="p">&gt;),</span> <span class="k">typeof</span><span class="p">(</span><span class="n">ColumnBindingDataGrid</span><span class="p">),</span> <span class="k">new</span> <span class="n">PropertyMetadata</span><span class="p">(</span><span class="k">null</span><span class="p">,</span> <span class="n">ColumnsChanged</span><span class="p">));</span>
+
+    <span class="k">public</span> <span class="nf">ColumnBindingDataGrid</span><span class="p">()</span>
+        <span class="p">:</span> <span class="k">base</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="n">Style</span> <span class="p">==</span> <span class="k">null</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="c1">// Manually attempt to inherit any implicit style</span>
+            <span class="k">this</span><span class="p">.</span><span class="n">Style</span> <span class="p">=</span> <span class="n">Application</span><span class="p">.</span><span class="n">Current</span><span class="p">.</span><span class="n">Resources</span><span class="p">[</span><span class="k">typeof</span><span class="p">(</span><span class="n">DataGrid</span><span class="p">)]</span> <span class="k">as</span> <span class="n">Style</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="k">this</span><span class="p">.</span><span class="n">StaticColumns</span> <span class="p">=</span> <span class="k">new</span> <span class="n">ObservableCollection</span><span class="p">&lt;</span><span class="n">DataGridColumn</span><span class="p">&gt;();</span>
+    <span class="p">}</span>
+
+    <span class="k">private</span> <span class="k">static</span> <span class="k">void</span> <span class="nf">ColumnsChanged</span><span class="p">(</span><span class="kt">object</span> <span class="n">sender</span><span class="p">,</span> <span class="n">DependencyPropertyChangedEventArgs</span> <span class="n">e</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="kt">var</span> <span class="n">self</span> <span class="p">=</span> <span class="n">sender</span> <span class="k">as</span> <span class="n">ColumnBindingDataGrid</span><span class="p">;</span>
+        <span class="kt">var</span> <span class="n">old</span> <span class="p">=</span> <span class="n">e</span><span class="p">.</span><span class="n">OldValue</span> <span class="k">as</span> <span class="n">ObservableCollection</span><span class="p">&lt;</span><span class="n">DataGridColumn</span><span class="p">&gt;;</span>
+        <span class="kt">var</span> <span class="n">n</span> <span class="p">=</span> <span class="n">e</span><span class="p">.</span><span class="n">NewValue</span> <span class="k">as</span> <span class="n">ObservableCollection</span><span class="p">&lt;</span><span class="n">DataGridColumn</span><span class="p">&gt;;</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="n">old</span> <span class="p">!=</span> <span class="k">null</span><span class="p">)</span> <span class="n">old</span><span class="p">.</span><span class="n">CollectionChanged</span> <span class="p">-=</span> <span class="n">self</span><span class="p">.</span><span class="n">ColumnsCollectionChanged</span><span class="p">;</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">n</span> <span class="p">!=</span> <span class="k">null</span><span class="p">)</span> <span class="n">n</span><span class="p">.</span><span class="n">CollectionChanged</span> <span class="p">+=</span> <span class="n">self</span><span class="p">.</span><span class="n">ColumnsCollectionChanged</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="k">private</span> <span class="k">void</span> <span class="nf">ColumnsCollectionChanged</span><span class="p">(</span><span class="kt">object</span> <span class="n">sender</span><span class="p">,</span> <span class="n">NotifyCollectionChangedEventArgs</span> <span class="n">e</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">switch</span> <span class="p">(</span><span class="n">e</span><span class="p">.</span><span class="n">Action</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="k">case</span> <span class="n">NotifyCollectionChangedAction</span><span class="p">.</span><span class="n">Reset</span><span class="p">:</span>
+                <span class="k">this</span><span class="p">.</span><span class="n">Columns</span><span class="p">.</span><span class="n">Clear</span><span class="p">();</span>
+
+                <span class="k">foreach</span> <span class="p">(</span><span class="kt">var</span> <span class="n">column</span> <span class="k">in</span> <span class="k">this</span><span class="p">.</span><span class="n">StaticColumns</span><span class="p">)</span>
+                <span class="p">{</span>
+                    <span class="k">this</span><span class="p">.</span><span class="n">Columns</span><span class="p">.</span><span class="n">Add</span><span class="p">(</span><span class="n">column</span><span class="p">);</span>
+                <span class="p">}</span>
+                <span class="k">break</span><span class="p">;</span>
+            <span class="k">case</span> <span class="n">NotifyCollectionChangedAction</span><span class="p">.</span><span class="n">Add</span><span class="p">:</span>
+                <span class="k">foreach</span> <span class="p">(</span><span class="n">DataGridColumn</span> <span class="n">col</span> <span class="k">in</span> <span class="n">e</span><span class="p">.</span><span class="n">NewItems</span><span class="p">)</span>
+                <span class="p">{</span>
+                    <span class="k">if</span> <span class="p">(!</span><span class="k">this</span><span class="p">.</span><span class="n">Columns</span><span class="p">.</span><span class="n">Any</span><span class="p">(</span><span class="n">c</span> <span class="p">=&gt;</span> <span class="n">col</span><span class="p">.</span><span class="n">Header</span><span class="p">.</span><span class="n">ToString</span><span class="p">().</span><span class="n">Equals</span><span class="p">(</span><span class="n">c</span><span class="p">.</span><span class="n">Header</span> <span class="k">as</span> <span class="kt">string</span><span class="p">,</span> <span class="n">StringComparison</span><span class="p">.</span><span class="n">OrdinalIgnoreCase</span><span class="p">)))</span>
+                    <span class="p">{</span>
+                        <span class="k">this</span><span class="p">.</span><span class="n">Columns</span><span class="p">.</span><span class="n">Add</span><span class="p">(</span><span class="n">col</span><span class="p">);</span>
+                    <span class="p">}</span>
+                <span class="p">}</span>
+                <span class="k">break</span><span class="p">;</span>
+            <span class="k">case</span> <span class="n">NotifyCollectionChangedAction</span><span class="p">.</span><span class="n">Remove</span><span class="p">:</span>
+                <span class="k">foreach</span> <span class="p">(</span><span class="n">DataGridColumn</span> <span class="n">col</span> <span class="k">in</span> <span class="n">e</span><span class="p">.</span><span class="n">OldItems</span><span class="p">)</span>
+                <span class="p">{</span>
+                    <span class="kt">var</span> <span class="n">oldcol</span> <span class="p">=</span> <span class="k">this</span><span class="p">.</span><span class="n">Columns</span><span class="p">.</span><span class="n">FirstOrDefault</span><span class="p">(</span><span class="n">c</span> <span class="p">=&gt;</span> <span class="n">col</span><span class="p">.</span><span class="n">Equals</span><span class="p">(</span><span class="n">c</span><span class="p">));</span>
+
+                    <span class="k">if</span> <span class="p">(</span><span class="n">oldcol</span> <span class="p">!=</span> <span class="k">null</span><span class="p">)</span>
+                    <span class="p">{</span>
+                        <span class="k">this</span><span class="p">.</span><span class="n">Columns</span><span class="p">.</span><span class="n">Remove</span><span class="p">(</span><span class="n">oldcol</span><span class="p">);</span>
+                    <span class="p">}</span>
+                <span class="p">}</span>
+                <span class="k">break</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+</pre></div>
+<p><tt class="docutils literal">BindingColumns</tt> can be bound to a &quot;ViewModel&quot; <a class="footnote-reference" href="#id4" id="id2">[2]</a> and will refresh the columns on the <tt class="docutils literal">DataGrid</tt> accordingly. <tt class="docutils literal">StaticColumns</tt> is prepended when the <tt class="docutils literal">BindingColumns</tt> changes and is useful for placing in some columns in the XAML that won't be as data-driven such as selection columns or status columns. I leave it as an exercise to the reader how to build the actual &quot;ViewModel&quot; code, but it should be fairly straightforward to build up the necessary structure of columns and their bindings (don't forget that all recent versions of Silverlight and WPF support dictionary/hash keys surrounded by square brackets in a binding path).</p>
+<hr class="docutils" />
+<table class="docutils footnote" frame="void" id="id3" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td>Every cell was created in its own <tt class="docutils literal">DataGridTemplateColumn</tt> with its own slightly different <tt class="docutils literal">StringBuilder</tt>-built <tt class="docutils literal">DataTemplate</tt>. The amazing thing was that it worked as well as it did. Up until the point where performance degraded slightly and painting/refresh began to leave noticeable artifacts, it would look like the grid was populated more normally than it was (the columns all appeared under only a single copy of the header, templates were bound as expected). Realizing that it was build using so many columns behind the scenes was a mind-bending series of debugging sessions.</td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id4" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id2">[2]</a></td><td>I dislike the term &quot;ViewModel&quot;, personally. It's not a word and its not a good combination of words (given the easy confusion with both &quot;View&quot; and &quot;Model&quot; in the poorly-named &quot;MVVM pattern&quot;). In my own projects I tend to prefer the term <em>projection</em> for what so many call a &quot;ViewModel&quot;. That's an actual genuine English word, and it is suitable for the task. (It is used in functional programming and Linq and physics for similar purposes. The &quot;ViewModel&quot; in most applications of the MVVM pattern <em>projects</em> the Model onto the View.)</td></tr>
+</tbody>
+</table>

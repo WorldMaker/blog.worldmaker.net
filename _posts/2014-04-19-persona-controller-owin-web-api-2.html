@@ -1,0 +1,78 @@
+---
+date: 2014-04-19 00:03:26.378871
+db_id: 1163
+db_updated: 2014-04-19 00:06:45.779832
+layout: post
+tags: asp.net persona
+title: Persona Controller for OWIN (Web API 2)
+---
+<p>For a website I'm building in ASP.NET MVC 5/Web API 2 I wanted to simply support <a class="reference external" href="http://persona.org">Mozilla Persona</a> as the one and only login system for the site. After finding the right blog posts (which was harder than I expected), particularly <a class="reference external" href="http://brockallen.com/2013/10/24/a-primer-on-owin-cookie-authentication-middleware-for-the-asp-net-developer/">Brock Allen's primer</a>, I found OWIN and ASP.NET Identity made it easier than I expected. I'm posting this in the hopes that it might help the next person attempting this.</p>
+<div class="highlight"><pre><span class="k">using</span> <span class="nn">Microsoft.AspNet.Identity</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">Newtonsoft.Json</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">Newtonsoft.Json.Linq</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">System</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">System.Collections.Generic</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">System.Linq</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">System.Net</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">System.Net.Http</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">System.Security.Claims</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">System.Threading.Tasks</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">System.Web.Http</span><span class="p">;</span>
+
+<span class="k">namespace</span> <span class="nn">MyApp.Controllers</span>
+<span class="p">{</span>
+<span class="na">    [RoutePrefix(&quot;api/Persona&quot;)]</span>
+    <span class="k">public</span> <span class="k">class</span> <span class="nc">PersonaController</span> <span class="p">:</span> <span class="n">ApiController</span>
+    <span class="p">{</span>
+        <span class="c1">// From: http://brockallen.com/2013/10/24/a-primer-on-owin-cookie-authentication-middleware-for-the-asp-net-developer/</span>
+        <span class="k">public</span> <span class="k">const</span> <span class="kt">string</span> <span class="n">PersonaAuthenticationType</span> <span class="p">=</span> <span class="n">DefaultAuthenticationTypes</span><span class="p">.</span><span class="n">ApplicationCookie</span><span class="p">;</span>
+
+<span class="na">        [HttpPost]</span>
+<span class="na">        [Route(&quot;login&quot;)]</span>
+        <span class="k">public</span> <span class="k">async</span> <span class="n">Task</span><span class="p">&lt;</span><span class="n">IHttpActionResult</span><span class="p">&gt;</span> <span class="n">Login</span><span class="p">([</span><span class="n">FromBody</span><span class="p">]</span><span class="n">JObject</span> <span class="n">assertion</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="kt">var</span> <span class="n">http</span> <span class="p">=</span> <span class="k">new</span> <span class="n">HttpClient</span><span class="p">()</span> <span class="p">{</span> <span class="n">BaseAddress</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Uri</span><span class="p">(</span><span class="n">Properties</span><span class="p">.</span><span class="n">Settings</span><span class="p">.</span><span class="n">Default</span><span class="p">.</span><span class="n">PersonaVerificationBaseUrl</span><span class="p">),</span> <span class="p">};</span>
+            <span class="kt">var</span> <span class="n">body</span> <span class="p">=</span> <span class="k">await</span> <span class="n">JsonConvert</span><span class="p">.</span><span class="n">SerializeObjectAsync</span><span class="p">(</span><span class="k">new</span>
+            <span class="p">{</span>
+                <span class="n">assertion</span> <span class="p">=</span> <span class="p">(</span><span class="kt">string</span><span class="p">)</span><span class="n">assertion</span><span class="p">[</span><span class="s">&quot;assertion&quot;</span><span class="p">],</span>
+                <span class="n">audience</span> <span class="p">=</span> <span class="n">Properties</span><span class="p">.</span><span class="n">Settings</span><span class="p">.</span><span class="n">Default</span><span class="p">.</span><span class="n">PersonaAudienceUrl</span><span class="p">,</span>
+            <span class="p">});</span>
+            <span class="kt">var</span> <span class="n">result</span> <span class="p">=</span> <span class="k">await</span> <span class="n">http</span><span class="p">.</span><span class="n">PostAsync</span><span class="p">(</span><span class="s">&quot;verify&quot;</span><span class="p">,</span> <span class="k">new</span> <span class="n">StringContent</span><span class="p">(</span><span class="n">body</span><span class="p">,</span> <span class="n">System</span><span class="p">.</span><span class="n">Text</span><span class="p">.</span><span class="n">Encoding</span><span class="p">.</span><span class="n">UTF8</span><span class="p">,</span> <span class="s">&quot;application/json&quot;</span><span class="p">));</span>
+
+            <span class="kt">dynamic</span> <span class="n">response</span> <span class="p">=</span> <span class="n">JObject</span><span class="p">.</span><span class="n">Parse</span><span class="p">(</span><span class="k">await</span> <span class="n">result</span><span class="p">.</span><span class="n">Content</span><span class="p">.</span><span class="n">ReadAsStringAsync</span><span class="p">());</span>
+
+            <span class="kt">var</span> <span class="n">status</span> <span class="p">=</span> <span class="p">(</span><span class="kt">string</span><span class="p">)</span><span class="n">response</span><span class="p">.</span><span class="n">status</span><span class="p">;</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">result</span><span class="p">.</span><span class="n">IsSuccessStatusCode</span> <span class="p">&amp;&amp;</span> <span class="kt">string</span><span class="p">.</span><span class="n">Equals</span><span class="p">(</span><span class="n">status</span><span class="p">,</span> <span class="s">&quot;okay&quot;</span><span class="p">,</span> <span class="n">StringComparison</span><span class="p">.</span><span class="n">OrdinalIgnoreCase</span><span class="p">))</span>
+            <span class="p">{</span>
+                <span class="kt">var</span> <span class="n">claims</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Claim</span><span class="p">[]</span>
+                <span class="p">{</span>
+                    <span class="k">new</span> <span class="nf">Claim</span><span class="p">(</span><span class="n">ClaimTypes</span><span class="p">.</span><span class="n">Name</span><span class="p">,</span> <span class="p">(</span><span class="kt">string</span><span class="p">)</span><span class="n">response</span><span class="p">.</span><span class="n">email</span><span class="p">),</span>
+                    <span class="k">new</span> <span class="nf">Claim</span><span class="p">(</span><span class="n">ClaimTypes</span><span class="p">.</span><span class="n">Email</span><span class="p">,</span> <span class="p">(</span><span class="kt">string</span><span class="p">)</span><span class="n">response</span><span class="p">.</span><span class="n">email</span><span class="p">),</span>
+                    <span class="k">new</span> <span class="nf">Claim</span><span class="p">(</span><span class="s">&quot;persona-expires&quot;</span><span class="p">,</span> <span class="p">(</span><span class="kt">string</span><span class="p">)</span><span class="n">response</span><span class="p">.</span><span class="n">expires</span><span class="p">),</span>
+                    <span class="k">new</span> <span class="nf">Claim</span><span class="p">(</span><span class="s">&quot;persona-audience&quot;</span><span class="p">,</span> <span class="p">(</span><span class="kt">string</span><span class="p">)</span><span class="n">response</span><span class="p">.</span><span class="n">audience</span><span class="p">),</span>
+                    <span class="k">new</span> <span class="nf">Claim</span><span class="p">(</span><span class="s">&quot;persona-issuer&quot;</span><span class="p">,</span> <span class="p">(</span><span class="kt">string</span><span class="p">)</span><span class="n">response</span><span class="p">.</span><span class="n">issuer</span><span class="p">),</span>
+                    <span class="k">new</span> <span class="nf">Claim</span><span class="p">(</span><span class="n">ClaimTypes</span><span class="p">.</span><span class="n">AuthenticationMethod</span><span class="p">,</span> <span class="s">&quot;Persona&quot;</span><span class="p">),</span>
+                <span class="p">};</span>
+                <span class="kt">var</span> <span class="n">identity</span> <span class="p">=</span> <span class="k">new</span> <span class="n">ClaimsIdentity</span><span class="p">(</span><span class="n">claims</span><span class="p">,</span> <span class="n">PersonaAuthenticationType</span><span class="p">);</span>
+                <span class="kt">var</span> <span class="n">ctx</span> <span class="p">=</span> <span class="n">Request</span><span class="p">.</span><span class="n">GetOwinContext</span><span class="p">();</span>
+                <span class="n">ctx</span><span class="p">.</span><span class="n">Authentication</span><span class="p">.</span><span class="n">SignIn</span><span class="p">(</span><span class="n">identity</span><span class="p">);</span>
+            <span class="p">}</span>
+            <span class="k">else</span>
+            <span class="p">{</span>
+                <span class="n">result</span><span class="p">.</span><span class="n">StatusCode</span> <span class="p">=</span> <span class="n">HttpStatusCode</span><span class="p">.</span><span class="n">BadRequest</span><span class="p">;</span>
+            <span class="p">}</span>
+
+            <span class="k">return</span> <span class="nf">ResponseMessage</span><span class="p">(</span><span class="n">result</span><span class="p">);</span>
+        <span class="p">}</span>
+
+<span class="na">        [HttpPost]</span>
+<span class="na">        [Route(&quot;logout&quot;)]</span>
+        <span class="k">public</span> <span class="n">IHttpActionResult</span> <span class="nf">Logout</span><span class="p">()</span>
+        <span class="p">{</span>
+            <span class="kt">var</span> <span class="n">ctx</span> <span class="p">=</span> <span class="n">Request</span><span class="p">.</span><span class="n">GetOwinContext</span><span class="p">();</span>
+            <span class="n">ctx</span><span class="p">.</span><span class="n">Authentication</span><span class="p">.</span><span class="n">SignOut</span><span class="p">(</span><span class="n">PersonaAuthenticationType</span><span class="p">);</span>
+            <span class="k">return</span> <span class="nf">Ok</span><span class="p">();</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>

@@ -1,0 +1,54 @@
+---
+date: 2008-03-07 01:39:43.023537
+db_id: 452
+db_updated: 2008-03-07 01:48:02.059706
+layout: post
+tags: game-design
+title: 'Design Decision: To XNA Network or Not To XNA Network...'
+---
+<p>I was really excited to learn that XNA 2.0 was going to include networking support.  I was looking forward to use something more powerful than my techniques at the time, particularly if it it were to be a nearly drop-in replacement for existing network code.  Then I learned the potential publishing penance that must be paid and pouted for perhaps better possibilities.  The <a class="reference external" href="http://blogs.msdn.com/xna/archive/2007/11/16/xna-framework-networking-and-live-requirements.aspx">LIVE Requirements</a> for XNA Networking are somewhat demanding: for online multiplayer on either platform you need LIVE Gold, at least $50 per annum, and Creator's Club Membership, $100 per annum.  It's particularly worrisome from a testing/debugging side: how do I get testers involved without forcing them to buy a CC membership?  It's not like my company has the money to reimburse people.</p>
+<p>A few months ago that was a pretty big dealbreaker, or at least I thought so.  I pretty much gave up the idea, but some comments today started me re-evaluating things.  I'm still re-evaluating (over and over), but things are starting to look a bit different.  First there is better light in the tunnel for &quot;the end game&quot;: the peer review process has been beta-tested and affirmed for a &quot;Holiday release&quot;, and the games that already have XBLA contracts appear to be nearing the finish gate, eventually to be released it seems.</p>
+<p>Second, I'm debating the importance of &quot;System Link&quot; (aka LAN) testing.  With XNA 2.0 Networking I can at least make use of &quot;free&quot; system link testing, but it does restrict what and how I can test.  For instance, it makes it tougher for my friends in Seattle to play directly with me to show that everything is working and to &quot;face-to-face&quot; point out bugs.  On the other hand, I'm curious if I can use VPNs or similar techniques to good effect for testing purposes.  For more exhaustive testing I just might have to get creative with local LAN events, and maybe in treating it as something of an old school LAN event get some interest and enthusiasm...  The cost of a couple of pizzas could be much more effective than the cost of a couple of CC memberships.  It might not be great testing or anywhere near as exhaustive as true &quot;all hours internet play&quot;, but I could see it as being an interesting way to go about business.</p>
+<p>All in all, I'm currently torn.  Does it make sense to use the resources I have to invest in XNA Networking?  Here's my attempt at a summary chart:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="46%" />
+<col width="54%" />
+</colgroup>
+<thead valign="bottom">
+<tr><th class="head">Pros</th>
+<th class="head">Cons</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr><td><ul class="first last simple">
+<li>Remove 2 (!) current
+dependencies</li>
+<li>Simplify some network code</li>
+<li>&quot;Drop-In&quot;</li>
+<li>LIVE Integration; voice chat,
+basic profile integration
+(gamerpic, no acheivements)</li>
+<li>Xbox Testing (for me, CC
+testers)</li>
+<li>Loss of some responsibilities
+(managed security concerns,
+etc..)</li>
+<li>Encouraged by MSFT</li>
+</ul>
+</td>
+<td><ul class="first last simple">
+<li>No true self-publishing (!!!); must use
+contract with MSFT or eventual &quot;peer&quot;
+system</li>
+<li>Peer-review system not available until
+&quot;Holidays&quot;</li>
+<li>No free internet ride</li>
+<li>Loss of control</li>
+<li>Code may not be that re-useful should
+another option present itself</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>

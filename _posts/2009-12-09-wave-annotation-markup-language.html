@@ -1,0 +1,84 @@
+---
+date: 2009-12-09 16:07:43.825674
+db_id: 551
+db_updated: 2009-12-09 16:07:43.825718
+layout: post
+tags: coding wave appengine
+title: Wave Annotation Markup "Language"
+---
+<p>This is another itch I needed scratched while working on the HCE bot (which is in alpha testing on Wave). In this case I was butting heads with the API provided by Google Wave for Python, which has provided no end of complaints from me. The poor documentation and brutal &quot;let's just do a rough conversion of the Java API&quot; nature of it haven't helped.</p>
+<p>Anyway, I wanted the ability to write rich markup in a friendly neighborhood Django Template (just as I use for the bot's HTML output). The Wave API has a method to append a very anemic subset of HTML, which doesn't come anywhere close to a 1-to-1 correlation with the markup model used on the wire by Wave.</p>
+<p>What I'm about to post is a technological turducken: my Wave Annotation Markup &quot;Language&quot; here uses Django templates to render YAML documents (the data structure of which is then used to make API calls that in turn get boiled down into &quot;ops&quot; in Wave's ugly Java-infused &quot;JSON RPC&quot; dialect). But it seems to work, mostly, and that was the point.</p>
+<p>I refused to get much closer to the API metal and work inside its innards because I was afraid I'd be too tempted to gut the whole thing and start from scratch to make it all more Pythonic. I'd prefer to get a paycheck from someone to do that sort of thing, before resorting to that. (Hire me!)</p>
+<p>Here's the latest version, as of this post, of my &quot;waml&quot; tool, while I continue to procrastinate uploading the entire HCE bot repository:</p>
+<div class="highlight"><pre><span class="c"># Simple, stupid Wave Annotation Markup</span>
+<span class="c"># Copyright 2009 Max Battcher. Licensed for use under the Ms-PL.</span>
+<span class="kn">from</span> <span class="nn">google.appengine.ext.webapp</span> <span class="kn">import</span> <span class="n">template</span>
+<span class="kn">from</span> <span class="nn">waveapi.document</span> <span class="kn">import</span> <span class="n">FormElement</span><span class="p">,</span> <span class="n">Gadget</span><span class="p">,</span> <span class="n">Image</span><span class="p">,</span> <span class="n">Range</span>
+<span class="kn">import</span> <span class="nn">yaml</span>
+
+<span class="k">def</span> <span class="nf">append_waml</span><span class="p">(</span><span class="n">doc</span><span class="p">,</span> <span class="n">filename</span><span class="p">,</span> <span class="n">context</span><span class="o">=</span><span class="p">{}):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Applies to the doc, which is expected to be a Wave API Document, the</span>
+<span class="sd">    transforms specified in an appropriate data structure loaded from a</span>
+<span class="sd">    YAML document that is rendered by a Django Template of the given</span>
+<span class="sd">    filename and with the given context.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">tmpl</span> <span class="o">=</span> <span class="n">yaml</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">template</span><span class="o">.</span><span class="n">render</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">context</span><span class="p">))</span>
+
+    <span class="n">pos</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">doc</span><span class="o">.</span><span class="n">GetText</span><span class="p">())</span> <span class="o">+</span> <span class="mi">1</span> <span class="c"># Why are ranges 1-based?</span>
+    <span class="n">annots</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">for</span> <span class="n">tok</span> <span class="ow">in</span> <span class="n">tmpl</span><span class="p">:</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">tok</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
+            <span class="n">doc</span><span class="o">.</span><span class="n">AppendText</span><span class="p">(</span><span class="n">tok</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+            <span class="n">end</span> <span class="o">=</span> <span class="n">pos</span> <span class="o">+</span> <span class="nb">len</span><span class="p">(</span><span class="n">tok</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">tok</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="nb">dict</span><span class="p">):</span>
+                <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">tok</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                    <span class="n">annots</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">Range</span><span class="p">(</span><span class="n">pos</span><span class="p">,</span> <span class="n">end</span><span class="p">),</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">))</span>
+            <span class="n">pos</span> <span class="o">=</span> <span class="n">end</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">tok</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
+            <span class="nb">type</span> <span class="o">=</span> <span class="n">tok</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s">&#39;type&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+            <span class="k">if</span> <span class="nb">type</span> <span class="o">==</span> <span class="s">&#39;image&#39;</span><span class="p">:</span>
+                <span class="n">doc</span><span class="o">.</span><span class="n">AppendElement</span><span class="p">(</span><span class="n">Image</span><span class="p">(</span><span class="o">**</span><span class="n">tok</span><span class="p">))</span>
+            <span class="k">elif</span> <span class="nb">type</span> <span class="o">==</span> <span class="s">&#39;gadget&#39;</span><span class="p">:</span>
+                <span class="n">doc</span><span class="o">.</span><span class="n">AppendElement</span><span class="p">(</span><span class="n">Gadget</span><span class="p">(</span><span class="o">**</span><span class="n">tok</span><span class="p">))</span>
+            <span class="k">elif</span> <span class="nb">type</span> <span class="o">==</span> <span class="s">&#39;formelement&#39;</span><span class="p">:</span>
+                <span class="n">etype</span> <span class="o">=</span> <span class="n">tok</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s">&#39;element_type&#39;</span><span class="p">)</span>
+                <span class="n">name</span> <span class="o">=</span> <span class="n">tok</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s">&#39;name&#39;</span><span class="p">)</span>
+                <span class="n">doc</span><span class="o">.</span><span class="n">AppendElement</span><span class="p">(</span><span class="n">FormElement</span><span class="p">(</span><span class="n">etype</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="o">**</span><span class="n">tok</span><span class="p">))</span>
+            <span class="n">pos</span> <span class="o">+=</span> <span class="mi">1</span> <span class="c"># These elements take up a position?</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">tok</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">tok</span><span class="p">)</span>
+            <span class="n">doc</span><span class="o">.</span><span class="n">AppendText</span><span class="p">(</span><span class="n">tok</span><span class="p">)</span>
+            <span class="n">pos</span> <span class="o">+=</span> <span class="nb">len</span><span class="p">(</span><span class="n">tok</span><span class="p">)</span>
+        <span class="n">space</span> <span class="o">=</span> <span class="bp">True</span>
+    <span class="c"># We collect, then apply all of the annotations at the end here</span>
+    <span class="c"># because AppendText apparently automagically adjusts the end of</span>
+    <span class="c"># ranges that coincide with the end of the current document, thus</span>
+    <span class="c"># producing &quot;leaky&quot; annotations</span>
+    <span class="k">for</span> <span class="n">annot</span> <span class="ow">in</span> <span class="n">annots</span><span class="p">:</span>
+        <span class="n">doc</span><span class="o">.</span><span class="n">SetAnnotation</span><span class="p">(</span><span class="o">*</span><span class="n">annot</span><span class="p">)</span>
+
+<span class="c"># vim: ai et ts=4 sts=4 sw=4</span>
+</pre></div>
+<p>An <tt class="docutils literal">example.yaml</tt> file:</p>
+{% raw %}
+<div class="highlight"><pre><span class="x">- &quot;Hello World!\n\n&quot;</span>
+<span class="cp">{%</span> <span class="k">for</span> <span class="nv">word</span><span class="o">,</span> <span class="nv">color</span> <span class="k">in</span> <span class="nv">words</span> <span class="cp">%}</span><span class="x"></span>
+<span class="x">- [</span><span class="cp">{{</span> <span class="nv">word</span> <span class="cp">}}</span><span class="x">, {style/fontWeight: bold, style/color: </span><span class="cp">{{</span> <span class="nv">color</span> <span class="cp">}}</span><span class="x">}]</span>
+<span class="cp">{%</span> <span class="k">endfor</span> <span class="cp">%}</span><span class="x"></span>
+<span class="x">- &quot;\n\n&quot;</span>
+<span class="x">-</span>
+<span class="x">  type: image</span>
+<span class="x">  url: http://example.com/test.png</span>
+</pre></div>
+{% endraw %}
+<p>Example usage:</p>
+<div class="highlight"><pre><span class="kn">import</span> <span class="nn">waml</span>
+
+<span class="k">def</span> <span class="nf">test</span><span class="p">(</span><span class="n">blip</span><span class="p">):</span> <span class="c"># Grab a blip, any blip</span>
+    <span class="n">waml</span><span class="o">.</span><span class="n">append_waml</span><span class="p">(</span><span class="n">blip</span><span class="o">.</span><span class="n">GetDocument</span><span class="p">(),</span> <span class="s">&#39;example.yaml&#39;</span><span class="p">,</span> <span class="p">{</span>
+        <span class="s">&#39;words&#39;</span><span class="p">:</span> <span class="p">[(</span><span class="s">&#39;testing &#39;</span><span class="p">,</span> <span class="s">&#39;red&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s">&#39;context&#39;</span><span class="p">,</span> <span class="s">&#39;blue&#39;</span><span class="p">)],</span>
+    <span class="p">})</span>
+</pre></div>

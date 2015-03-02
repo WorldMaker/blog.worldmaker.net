@@ -1,0 +1,76 @@
+---
+date: 2014-05-20 00:05:19.186631
+db_id: 1164
+db_updated: 2014-05-20 00:06:06.073897
+layout: post
+tags: coding f# wpf
+title: Debtstack 2.0
+---
+<p>I'm calling the latest release of Debstack version 2.0 as it is a fairly
+big rewrite compared to the original version. (<a class="reference external" href="http://dl.dropbox.com/u/3936701/Debtstack.zip">Debtstack binaries</a>;
+<a class="reference external" href="http://blog.worldmaker.net/2012/apr/29/introducing-debtstack/">Introductory blog post on Debtstack</a>; <a class="reference external" href="http://debtstack.code.worldmaker.net">Current Debtstack code site</a>)
+The big deal with this rewrite is it now uses a mostly <strong>immutable</strong>
+data model, plus a couple of basic new features.</p>
+<div class="section" id="immutable-model">
+<h1>Immutable Model</h1>
+<p>I realized that from the beginning I should have built Debtstack on top
+of a strongly immutable model, and its part of why I chose F# as the
+language to begin with. (I of course didn't quite follow through on that
+initially.) It really seems like the <em>right way</em> to go for this project,
+not least because provides better insight into how the algorithms work
+and easier debugging and asynchronicity, but more importantly because
+when dealing with financial data (even just for a read only viewer like
+Debtstack) it makes sense to try as much as possible never, ever, lose
+information or even to change things without a log of the change. It hit
+me early on in this particular rewrite process that essentially the
+immutable model that I'm using is an interesting (and logical) extreme
+form of <a class="reference external" href="http://en.wikipedia.org/wiki/Double-entry_bookkeeping_system">double-entry accounting</a>. I'm pleased at the idea that the
+code now largely resembles a long-standing accounting best practice.</p>
+</div>
+<div class="section" id="new-features">
+<h1>New Features</h1>
+<p>Most of the new features exist largely because the new data model
+facilitates them.</p>
+<dl class="docutils">
+<dt>Transaction details</dt>
+<dd>Transactions now have an inspection window showing the complete
+breakdown of how the chosen algorithm affected them, by
+double-clicking them in the &quot;Open&quot; list up top or clicking the
+&quot;Details&quot; button in the grid of Closed items.</dd>
+<dt>&quot;Naive&quot; algorithm</dt>
+<dd>I refer to this as the &quot;But You Don't Have to Take My Word For It&quot;
+button. This presents the view everyone tends to calculate in their
+head when looking at a recent statement. This is the simple <em>first in,
+first out</em> queue view that the other two algorithms are designed to be
+more interesting in comparison to. I didn't see a use for it in the
+old version, but with the new immutable model it is a bit more
+interesting and a bit more useful to directly compare the results.</dd>
+<dt>Date filtering</dt>
+<dd>After choosing one of the algorithms to look at, you can now filter it
+back in time to see historical views (&quot;What did my balance look like
+last month?&quot;, for instance).</dd>
+</dl>
+</div>
+<div class="section" id="evolutionary-tangents">
+<h1>Evolutionary Tangents</h1>
+<p>This version swaps <tt class="docutils literal">ImpromptuInterface.MVVM</tt> for <a class="reference external" href="http://www.reactiveui.net/">ReactiveUI</a> and (my)
+<a class="reference external" href="https://github.com/WorldMaker/ReflexUX">ReflexUX</a>, but neither is all that strongly used (because they don't
+really need to be, largely in part due to the new immutable data model)
+and for the moment the difference between the two dynamic MVVM backends
+is a wash for this project.</p>
+</div>
+<div class="section" id="full-disclosure">
+<h1>Full Disclosure</h1>
+<p>Since writing version 1.0 of Debtstack, I'm now employed by a credit
+card processing company. Debtstack is a hobby project for my own
+personal use and amusement. So far as I know the company I work for has
+no interest in Debtstack and certainly does not endorse it (and probably
+knows nothing about it). This project and any opinions espoused about it
+are entirely my own.</p>
+<p>I don't think it matters to actually disclose it, and Debtstack has zero
+to do with the area of the company that I work in (Sales software), but
+it seemed somewhat relevant, and also I feel special now because I've
+never really felt I needed a full disclosure for some bit of Open Source
+work before.</p>
+<!-- vim: ai spell tw=72 -->
+</div>

@@ -1,0 +1,126 @@
+---
+date: 2014-05-26 21:12:08.174705
+db_id: 1165
+db_updated: 2014-05-26 21:12:08.174730
+layout: post
+tags: coding asp.net persona
+title: 'Mozilla Persona and OWIN Part 2: Supporting Bearer Tokens'
+---
+<p>In part one I created a <a class="reference external" href="http://blog.worldmaker.net/2014/apr/19/persona-controller-owin-web-api-2/">Persona Controller</a>, which provided OWIN Cookie Authentication (as a Web API controller), for supporting MVC logins. Going further down OWIN authentication rabbit hole, I needed to figure out how to get the OWIN bearer token support working, as the new templates default to using that to secure Web API 2 controllers themselves. Turns out this was easier than I expected (most of the previous code copy and pasted over), but felt a lot more complicated in terms of finding useful example documentation. (Not that part one was a cake walk in that department either...)</p>
+<p>Here is the <tt class="docutils literal">ApplicationOAuthProvider</tt> class that replaces the bulk of the <tt class="docutils literal">PersonaController</tt>:</p>
+<div class="highlight"><pre><span class="k">using</span> <span class="nn">System</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">System.Threading.Tasks</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">Microsoft.Owin.Security.OAuth</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">System.Net.Http</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">System.Configuration</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">Newtonsoft.Json</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">Newtonsoft.Json.Linq</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">System.Security.Claims</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">Microsoft.Owin.Security.Cookies</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">Microsoft.Owin.Security</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">System.Collections.Generic</span><span class="p">;</span>
+
+<span class="k">namespace</span> <span class="nn">StingerCheck.Providers</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="k">class</span> <span class="nc">ApplicationOAuthProvider</span> <span class="p">:</span> <span class="n">OAuthAuthorizationServerProvider</span>
+    <span class="p">{</span>
+        <span class="k">private</span> <span class="k">readonly</span> <span class="kt">string</span> <span class="n">_publicClientId</span><span class="p">;</span>
+
+        <span class="k">public</span> <span class="nf">ApplicationOAuthProvider</span><span class="p">(</span><span class="kt">string</span> <span class="n">publicClientId</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">publicClientId</span> <span class="p">==</span> <span class="k">null</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="k">throw</span> <span class="k">new</span> <span class="nf">ArgumentNullException</span><span class="p">(</span><span class="s">&quot;publicClientId&quot;</span><span class="p">);</span>
+            <span class="p">}</span>
+
+            <span class="n">_publicClientId</span> <span class="p">=</span> <span class="n">publicClientId</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="k">public</span> <span class="k">async</span> <span class="k">override</span> <span class="n">Task</span> <span class="nf">GrantCustomExtension</span><span class="p">(</span><span class="n">OAuthGrantCustomExtensionContext</span> <span class="n">context</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">context</span><span class="p">.</span><span class="n">GrantType</span><span class="p">.</span><span class="n">Equals</span><span class="p">(</span><span class="s">&quot;persona&quot;</span><span class="p">,</span> <span class="n">StringComparison</span><span class="p">.</span><span class="n">OrdinalIgnoreCase</span><span class="p">))</span>
+            <span class="p">{</span>
+                <span class="kt">var</span> <span class="n">http</span> <span class="p">=</span> <span class="k">new</span> <span class="n">HttpClient</span><span class="p">()</span> <span class="p">{</span> <span class="n">BaseAddress</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Uri</span><span class="p">(</span><span class="n">ConfigurationManager</span><span class="p">.</span><span class="n">AppSettings</span><span class="p">[</span><span class="s">&quot;PersonaVerificationBaseUrl&quot;</span><span class="p">]),</span> <span class="p">};</span>
+                <span class="kt">var</span> <span class="n">body</span> <span class="p">=</span> <span class="k">await</span> <span class="n">JsonConvert</span><span class="p">.</span><span class="n">SerializeObjectAsync</span><span class="p">(</span><span class="k">new</span>
+                <span class="p">{</span>
+                    <span class="n">assertion</span> <span class="p">=</span> <span class="p">(</span><span class="kt">string</span><span class="p">)</span><span class="n">context</span><span class="p">.</span><span class="n">Parameters</span><span class="p">[</span><span class="s">&quot;assertion&quot;</span><span class="p">],</span>
+                    <span class="n">audience</span> <span class="p">=</span> <span class="n">ConfigurationManager</span><span class="p">.</span><span class="n">AppSettings</span><span class="p">[</span><span class="s">&quot;PersonaAudienceUrl&quot;</span><span class="p">],</span>
+                <span class="p">});</span>
+                <span class="kt">var</span> <span class="n">result</span> <span class="p">=</span> <span class="k">await</span> <span class="n">http</span><span class="p">.</span><span class="n">PostAsync</span><span class="p">(</span><span class="s">&quot;verify&quot;</span><span class="p">,</span> <span class="k">new</span> <span class="n">StringContent</span><span class="p">(</span><span class="n">body</span><span class="p">,</span> <span class="n">System</span><span class="p">.</span><span class="n">Text</span><span class="p">.</span><span class="n">Encoding</span><span class="p">.</span><span class="n">UTF8</span><span class="p">,</span> <span class="s">&quot;application/json&quot;</span><span class="p">));</span>
+
+                <span class="kt">var</span> <span class="n">response</span> <span class="p">=</span> <span class="n">JObject</span><span class="p">.</span><span class="n">Parse</span><span class="p">(</span><span class="k">await</span> <span class="n">result</span><span class="p">.</span><span class="n">Content</span><span class="p">.</span><span class="n">ReadAsStringAsync</span><span class="p">());</span>
+
+                <span class="kt">var</span> <span class="n">status</span> <span class="p">=</span> <span class="p">(</span><span class="kt">string</span><span class="p">)</span><span class="n">response</span><span class="p">[</span><span class="s">&quot;status&quot;</span><span class="p">];</span>
+                <span class="k">if</span> <span class="p">(</span><span class="n">result</span><span class="p">.</span><span class="n">IsSuccessStatusCode</span> <span class="p">&amp;&amp;</span> <span class="kt">string</span><span class="p">.</span><span class="n">Equals</span><span class="p">(</span><span class="n">status</span><span class="p">,</span> <span class="s">&quot;okay&quot;</span><span class="p">,</span> <span class="n">StringComparison</span><span class="p">.</span><span class="n">OrdinalIgnoreCase</span><span class="p">))</span>
+                <span class="p">{</span>
+                    <span class="kt">var</span> <span class="n">email</span> <span class="p">=</span> <span class="p">(</span><span class="kt">string</span><span class="p">)</span><span class="n">response</span><span class="p">[</span><span class="s">&quot;email&quot;</span><span class="p">];</span>
+                    <span class="kt">var</span> <span class="n">claims</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Claim</span><span class="p">[]</span>
+                    <span class="p">{</span>
+                        <span class="k">new</span> <span class="nf">Claim</span><span class="p">(</span><span class="n">ClaimTypes</span><span class="p">.</span><span class="n">Name</span><span class="p">,</span> <span class="n">email</span><span class="p">),</span>
+                        <span class="k">new</span> <span class="nf">Claim</span><span class="p">(</span><span class="n">ClaimTypes</span><span class="p">.</span><span class="n">Email</span><span class="p">,</span> <span class="n">email</span><span class="p">),</span>
+                        <span class="k">new</span> <span class="nf">Claim</span><span class="p">(</span><span class="s">&quot;persona-expires&quot;</span><span class="p">,</span> <span class="p">(</span><span class="kt">string</span><span class="p">)</span><span class="n">response</span><span class="p">[</span><span class="s">&quot;expires&quot;</span><span class="p">]),</span>
+                        <span class="k">new</span> <span class="nf">Claim</span><span class="p">(</span><span class="s">&quot;persona-audience&quot;</span><span class="p">,</span> <span class="p">(</span><span class="kt">string</span><span class="p">)</span><span class="n">response</span><span class="p">[</span><span class="s">&quot;audience&quot;</span><span class="p">]),</span>
+                        <span class="k">new</span> <span class="nf">Claim</span><span class="p">(</span><span class="s">&quot;persona-issuer&quot;</span><span class="p">,</span> <span class="p">(</span><span class="kt">string</span><span class="p">)</span><span class="n">response</span><span class="p">[</span><span class="s">&quot;issuer&quot;</span><span class="p">]),</span>
+                        <span class="k">new</span> <span class="nf">Claim</span><span class="p">(</span><span class="n">ClaimTypes</span><span class="p">.</span><span class="n">AuthenticationMethod</span><span class="p">,</span> <span class="s">&quot;Persona&quot;</span><span class="p">),</span>
+                    <span class="p">};</span>
+                    <span class="kt">var</span> <span class="n">oauthIdentity</span> <span class="p">=</span> <span class="k">new</span> <span class="n">ClaimsIdentity</span><span class="p">(</span><span class="n">claims</span><span class="p">,</span> <span class="n">context</span><span class="p">.</span><span class="n">Options</span><span class="p">.</span><span class="n">AuthenticationType</span><span class="p">);</span>
+                    <span class="kt">var</span> <span class="n">ticket</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AuthenticationTicket</span><span class="p">(</span><span class="n">oauthIdentity</span><span class="p">,</span> <span class="k">new</span> <span class="n">AuthenticationProperties</span><span class="p">(</span><span class="k">new</span> <span class="n">Dictionary</span><span class="p">&lt;</span><span class="kt">string</span><span class="p">,</span> <span class="kt">string</span><span class="p">&gt;</span> <span class="p">{</span>
+                        <span class="p">{</span><span class="s">&quot;email&quot;</span><span class="p">,</span> <span class="n">email</span><span class="p">},</span>
+                    <span class="p">}));</span>
+                    <span class="n">context</span><span class="p">.</span><span class="n">Validated</span><span class="p">(</span><span class="n">ticket</span><span class="p">);</span>
+                    <span class="kt">var</span> <span class="n">identity</span> <span class="p">=</span> <span class="k">new</span> <span class="n">ClaimsIdentity</span><span class="p">(</span><span class="n">claims</span><span class="p">,</span> <span class="n">CookieAuthenticationDefaults</span><span class="p">.</span><span class="n">AuthenticationType</span><span class="p">);</span>
+                    <span class="n">context</span><span class="p">.</span><span class="n">OwinContext</span><span class="p">.</span><span class="n">Authentication</span><span class="p">.</span><span class="n">SignIn</span><span class="p">(</span><span class="n">identity</span><span class="p">);</span>
+                    <span class="k">return</span><span class="p">;</span>
+                <span class="p">}</span>
+
+                <span class="n">context</span><span class="p">.</span><span class="n">SetError</span><span class="p">(</span><span class="s">&quot;invalid_grant&quot;</span><span class="p">,</span> <span class="p">(</span><span class="kt">string</span><span class="p">)</span><span class="n">response</span><span class="p">.</span><span class="n">SelectToken</span><span class="p">(</span><span class="s">&quot;reason&quot;</span><span class="p">));</span>
+                <span class="k">return</span><span class="p">;</span>
+            <span class="p">}</span>
+
+            <span class="k">await</span> <span class="k">base</span><span class="p">.</span><span class="n">GrantCustomExtension</span><span class="p">(</span><span class="n">context</span><span class="p">);</span>
+        <span class="p">}</span>
+
+
+        <span class="k">public</span> <span class="k">override</span> <span class="n">Task</span> <span class="nf">ValidateClientAuthentication</span><span class="p">(</span><span class="n">OAuthValidateClientAuthenticationContext</span> <span class="n">context</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="c1">// Resource owner password credentials does not provide a client ID.</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">context</span><span class="p">.</span><span class="n">ClientId</span> <span class="p">==</span> <span class="k">null</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="n">context</span><span class="p">.</span><span class="n">Validated</span><span class="p">();</span>
+            <span class="p">}</span>
+
+            <span class="k">return</span> <span class="n">Task</span><span class="p">.</span><span class="n">FromResult</span><span class="p">&lt;</span><span class="kt">object</span><span class="p">&gt;(</span><span class="k">null</span><span class="p">);</span>
+        <span class="p">}</span>
+
+        <span class="k">public</span> <span class="k">override</span> <span class="n">Task</span> <span class="nf">TokenEndpoint</span><span class="p">(</span><span class="n">OAuthTokenEndpointContext</span> <span class="n">context</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="k">foreach</span> <span class="p">(</span><span class="n">KeyValuePair</span><span class="p">&lt;</span><span class="kt">string</span><span class="p">,</span> <span class="kt">string</span><span class="p">&gt;</span> <span class="n">property</span> <span class="k">in</span> <span class="n">context</span><span class="p">.</span><span class="n">Properties</span><span class="p">.</span><span class="n">Dictionary</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="n">context</span><span class="p">.</span><span class="n">AdditionalResponseParameters</span><span class="p">.</span><span class="n">Add</span><span class="p">(</span><span class="n">property</span><span class="p">.</span><span class="n">Key</span><span class="p">,</span> <span class="n">property</span><span class="p">.</span><span class="n">Value</span><span class="p">);</span>
+            <span class="p">}</span>
+
+            <span class="k">return</span> <span class="n">Task</span><span class="p">.</span><span class="n">FromResult</span><span class="p">&lt;</span><span class="kt">object</span><span class="p">&gt;(</span><span class="k">null</span><span class="p">);</span>
+        <span class="p">}</span>
+
+        <span class="k">public</span> <span class="k">override</span> <span class="n">Task</span> <span class="nf">ValidateClientRedirectUri</span><span class="p">(</span><span class="n">OAuthValidateClientRedirectUriContext</span> <span class="n">context</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">context</span><span class="p">.</span><span class="n">ClientId</span> <span class="p">==</span> <span class="n">_publicClientId</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="n">Uri</span> <span class="n">expectedRootUri</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Uri</span><span class="p">(</span><span class="n">context</span><span class="p">.</span><span class="n">Request</span><span class="p">.</span><span class="n">Uri</span><span class="p">,</span> <span class="s">&quot;/&quot;</span><span class="p">);</span>
+
+                <span class="k">if</span> <span class="p">(</span><span class="n">expectedRootUri</span><span class="p">.</span><span class="n">AbsoluteUri</span> <span class="p">==</span> <span class="n">context</span><span class="p">.</span><span class="n">RedirectUri</span><span class="p">)</span>
+                <span class="p">{</span>
+                    <span class="n">context</span><span class="p">.</span><span class="n">Validated</span><span class="p">();</span>
+                <span class="p">}</span>
+                <span class="k">else</span> <span class="nf">if</span> <span class="p">(</span><span class="n">context</span><span class="p">.</span><span class="n">ClientId</span> <span class="p">==</span> <span class="s">&quot;web&quot;</span><span class="p">)</span>
+                <span class="p">{</span>
+                    <span class="kt">var</span> <span class="n">expectedUri</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Uri</span><span class="p">(</span><span class="n">context</span><span class="p">.</span><span class="n">Request</span><span class="p">.</span><span class="n">Uri</span><span class="p">,</span> <span class="s">&quot;/&quot;</span><span class="p">);</span>
+                    <span class="n">context</span><span class="p">.</span><span class="n">Validated</span><span class="p">(</span><span class="n">expectedUri</span><span class="p">.</span><span class="n">AbsoluteUri</span><span class="p">);</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+
+            <span class="k">return</span> <span class="n">Task</span><span class="p">.</span><span class="n">FromResult</span><span class="p">&lt;</span><span class="kt">object</span><span class="p">&gt;(</span><span class="k">null</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>

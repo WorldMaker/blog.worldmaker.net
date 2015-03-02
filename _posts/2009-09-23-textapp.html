@@ -1,0 +1,49 @@
+---
+date: 2009-09-23 19:15:38.896397
+db_id: 545
+db_updated: 2009-09-23 19:19:42.617217
+layout: post
+tags: coding facebook appengine
+title: Textapp
+---
+<p>Here's another <em>Assassins!</em> derivative, albeit one a tad bit dirtier and
+less &quot;your application ready&quot;: the boringly named <tt class="docutils literal">textapp</tt>. This is
+the guts to my all-inclusive text messaging dispatch for App Engine. It
+has handlers to accept both Facebook's SMS requests and App Engine's
+XMPP-based IM requests.</p>
+<p>Because I was feeling too lazy to set up something friendlier (to me)
+like &quot;darcsit&quot; or my own django+darcs solution, I've posted the <a class="reference external" href="http://gist.github.com/192277">current
+version of textapp.py on github's gist</a>. It depends on my <a class="reference external" href="http://blog.worldmaker.net/2009/sep/22/facebook-google-appengine-webapp-framework/">webappfb.py</a>.</p>
+<p>I think that as it stands right now <tt class="docutils literal">textapp</tt> cross-cuts too many
+concerns to be immediately appropriate to any project I might donate it,
+and it isn't &quot;big enough&quot; to merit its own project right now. However, I
+do think it might be useful for interested people.</p>
+<p>First of all, it is a bit dirty: you'll notice that it makes reference
+to my domain model named <tt class="docutils literal">Player</tt>. The only important detail for
+<tt class="docutils literal">textapp</tt> is that this model does my Facebook <tt class="docutils literal">uid</tt> to XMPP <tt class="docutils literal">jid</tt>
+mapping (with some authorization magic, of course). There is also no
+localization, yet. (I've been wondering for a few weeks now how soon I
+should start on Assassins' l10n plans, partly because I want support for
+Pirate, which is my preferred Facebook language.)</p>
+<p>High level there are three important parts: RegEx-based dispatcher,
+Message classes, and request handlers.</p>
+<p>The request handlers you simply provide a callback (as <tt class="docutils literal">application</tt>)
+and plug into the appropriate places: your main handler (<tt class="docutils literal">/</tt>, most
+likely) for <tt class="docutils literal">FacebookSmsHandler</tt> and the App Engine XMPP handler
+(<tt class="docutils literal">/_ah/xmpp/message/chat/</tt>) <tt class="docutils literal">FacebookXmppHandler</tt>. You'll also want
+to handle the <tt class="docutils literal">canvas()</tt> function for <tt class="docutils literal">FacebookSmsHandler</tt>, as that
+does double as your application's &quot;front page&quot;. These are normal
+<tt class="docutils literal">webapp</tt> request handlers and should be wired accordingly.</p>
+<p>The message classes are populated by the above handlers:
+<tt class="docutils literal">FacebookSmsMessage</tt> and <tt class="docutils literal">FacebookXmppMessage</tt>. Both message classes
+provide the same interface and for the most part handlers don't need to
+worry which one is which. (Both are based on App Engine's
+<tt class="docutils literal">xmpp.Message</tt> class.)</p>
+<p>The dispatcher <tt class="docutils literal">TextApplication</tt> is a simple RegEx to handler mapping
+class that should be familiar to most Python web framework users.
+RegExes are tried in listed order, attempting to parse the message body.
+The message and passing RegEx groups as keyword arguments or positional
+arguments (depending on whether or not your RegEx uses named groups).
+Handlers can be be functions or classes in the usual Pythonic &quot;callback&quot;
+fashion.</p>
+<!-- vim: ai spell tw=72 -->

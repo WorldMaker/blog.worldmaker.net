@@ -1,0 +1,98 @@
+---
+date: 2008-05-17 01:18:09.531477
+db_id: 464
+db_updated: 2008-05-17 01:21:41.960978
+layout: post
+tags: coding wikipedia insanity
+title: 'Doing Crazy Things for the Science of it: The Great Wikipedia Project of Ought
+  Eight'
+---
+<p>So I'm working with a partner on an already belated project for our Web Mining class and we decide, why not mine the textual data of Wikipedia?  I mean, a dump of current revisions of Wikipedia pages as of March this year is <em>just</em> 3.5 GBs in one massive <em>compressed</em> XML file.  It's supposed to be a learning project, right?  Why not go whole hog and do some massively distributed programming and see if we can pull of something that seems like a real project, huh?</p>
+<p>Yes, I certainly do think that I'm insane, but I have indeed been learning things.  For instance, I've been learning how I might deal with huge compressed bundles of XML 'joy'.  Right now I'm streaming that file in RAM and splitting it into individual articles that I'm storing in a bucket under my S3 account.  First of all, I'm a little bit surprised that no one has bothered to keep a public Wikipedia bucket.  I would think that it would be quite useful for academic projects running on EC2.  (Considering that S3 bandwidth is free between EC2 and S3 and that with Wikipedia's strict robots policy S3 is the best place to host a distributed computing-accessible mirror.)  Like what we're crazy enough to be trying...  If anyone wants to take over ownership of this bucket that I'm building I'd be happy to chown it to some other group interested in using it for research or for making it publicly available.  I'll probably just delete it if no one seems interested, but considering that I seem to have already spent $5 or $6 on PUT requests alone, I wouldn't mind seeing someone make good use of it.</p>
+<p>Below I'm including revision 2 (the currently running one) of my uploader script, and maybe even if I do end up deleting my bucket before someone can take over maintenance this script will come in handy to the next crazy group attempting this...</p>
+<p>This script does some rudimentary XML stuff and I needed something that was fast and performed well while streaming the XML out of a file that was GBs huge and so I was glad to find that <tt class="docutils literal">xml.etree.cElementTree</tt> added to Python's core in 2.5 was similar enough to <tt class="docutils literal">xmltramp</tt> that I felt at home with the interface and fast enough to get the job done.  In fact, the obvious bottle neck during most operations are the HTTP requests to S3.  That issue led to this revision 2 of the script that switched to using multiple threads (after a quick refresher on Python <tt class="docutils literal">threading</tt>) and the addition of robustness checks and retries.  So here's how I'm running this script:</p>
+<pre class="literal-block">
+bzcat enwiki-20080312-pages-articles.xml.bz2 | ./splick2.py
+</pre>
+<p><tt class="docutils literal">bzcat</tt> (shortcut to <tt class="docutils literal">bzip <span class="pre">-dc</span></tt>, which decompresses directly to standard out so that you can pipe it) seems to take only an average 5 MBs of RAM to stream through the 3.5 GB file, which is great.  (Particularly because I don't have the hard drive space to completely decompress the XML file.)  The non-threaded version of splick that was prone to burn outs on S3 PUT failure (a well known occurrence to be expected when working with S3) and a bit slower than sending multiple requests as fast as my connection seems to allow.  It used only an average of 9 MBs of Memory in streaming through the file and most of that was spikes as data structures were built to send the HTTP request and then scrubbed before loading the next item from the XML.  Running the combined pipe operation (along with my normal operations firefox, thunderbird, banshee, OO.o Word Processor) left the processor using about a steady 17% CPU according to the widget on my Gnome panel.</p>
+<p>The threaded version with a data queue of 16 items seems to stay consistently around 50 MBs and I did not notice a change in CPU utilization on average, but it is obviously a bit &quot;spikier&quot; as it reads from the stream less consistently.</p>
+<p>I'm dedicating this script to the public domain because it was relatively quickly pieced together from other public domain sources:</p>
+<div class="highlight"><pre><span class="c">#!/usr/bin/python</span>
+<span class="kn">from</span> <span class="nn">xml.etree.cElementTree</span> <span class="kn">import</span> <span class="n">iterparse</span><span class="p">,</span> <span class="n">tostring</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">S3</span> <span class="c"># Get this from Amazon</span>
+<span class="kn">import</span> <span class="nn">threading</span>
+<span class="kn">import</span> <span class="nn">Queue</span>
+
+<span class="n">pagePool</span> <span class="o">=</span> <span class="n">Queue</span><span class="o">.</span><span class="n">Queue</span><span class="p">(</span><span class="mi">16</span><span class="p">)</span> <span class="c"># Store at most 16 pages</span>
+
+<span class="n">AWS_ACCESS_KEY_ID</span> <span class="o">=</span> <span class="s">&#39;{{ Your Access Key Here! }}&#39;</span>
+<span class="n">AWS_SECRET_ACCESS_KEY</span> <span class="o">=</span> <span class="s">&#39;{{ Your Secret Access Key Here! }}&#39;</span>
+<span class="n">BUCKET_NAME</span> <span class="o">=</span> <span class="s">&#39;enwiki&#39;</span>
+
+<span class="n">WIKI_ID_TAG</span> <span class="o">=</span> <span class="s">&quot;{http://www.mediawiki.org/xml/export-0.3/}id&quot;</span>
+<span class="n">WIKI_TITLE_TAG</span> <span class="o">=</span> <span class="s">&quot;{http://www.mediawiki.org/xml/export-0.3/}title&quot;</span>
+<span class="n">WIKI_PAGE_TAG</span> <span class="o">=</span> <span class="s">&quot;{http://www.mediawiki.org/xml/export-0.3/}page&quot;</span>
+
+<span class="n">SKIP</span> <span class="o">=</span> <span class="mi">0</span>  <span class="c"># Use this to start after a given article ID</span>
+
+<span class="k">class</span> <span class="nc">PageUploader</span><span class="p">(</span><span class="n">threading</span><span class="o">.</span><span class="n">Thread</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">conn</span> <span class="o">=</span> <span class="n">S3</span><span class="o">.</span><span class="n">AWSAuthConnection</span><span class="p">(</span><span class="n">AWS_ACCESS_KEY_ID</span><span class="p">,</span>
+            <span class="n">AWS_SECRET_ACCESS_KEY</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">error</span> <span class="o">=</span> <span class="bp">False</span>
+        <span class="n">threading</span><span class="o">.</span><span class="n">Thread</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">error</span><span class="p">:</span> <span class="k">break</span>
+
+            <span class="n">page</span> <span class="o">=</span> <span class="n">pagePool</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
+            <span class="n">idno</span> <span class="o">=</span> <span class="n">page</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">WIKI_ID_TAG</span><span class="p">)</span><span class="o">.</span><span class="n">text</span>
+            <span class="n">title</span> <span class="o">=</span> <span class="n">page</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">WIKI_TITLE_TAG</span><span class="p">)</span><span class="o">.</span><span class="n">text</span> <span class="c"># for interesting output</span>
+
+            <span class="n">attempt</span> <span class="o">=</span> <span class="mi">1</span>
+            <span class="k">while</span> <span class="n">attempt</span> <span class="o">&lt;</span> <span class="mi">4</span><span class="p">:</span>
+                <span class="k">print</span> <span class="s">u&quot;[</span><span class="si">%s</span><span class="s">] Uploading Page: </span><span class="si">%s</span><span class="s"> (</span><span class="si">%s</span><span class="s">, </span><span class="si">%s</span><span class="s">)&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">getName</span><span class="p">(),</span>
+                    <span class="n">title</span><span class="p">,</span> <span class="n">idno</span><span class="p">,</span> <span class="n">attempt</span><span class="p">)</span>
+                <span class="k">try</span><span class="p">:</span>
+                    <span class="n">resp</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">conn</span><span class="o">.</span><span class="n">put</span><span class="p">(</span><span class="n">BUCKET_NAME</span><span class="p">,</span> <span class="s">&quot;</span><span class="si">%s</span><span class="s">.xml&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">idno</span><span class="p">),</span>
+                        <span class="n">S3</span><span class="o">.</span><span class="n">S3Object</span><span class="p">(</span><span class="n">tostring</span><span class="p">(</span><span class="n">page</span><span class="p">,</span> <span class="s">&#39;utf8&#39;</span><span class="p">)),</span>
+                        <span class="p">{</span><span class="s">&#39;Content-Type&#39;</span><span class="p">:</span> <span class="s">&#39;text/xml&#39;</span><span class="p">})</span>
+                <span class="k">except</span><span class="p">:</span>
+                    <span class="n">attempt</span> <span class="o">+=</span> <span class="mi">1</span>
+                <span class="k">if</span> <span class="n">resp</span><span class="o">.</span><span class="n">http_response</span><span class="o">.</span><span class="n">status</span> <span class="o">!=</span> <span class="mi">200</span><span class="p">:</span>
+                    <span class="n">attempt</span> <span class="o">+=</span> <span class="mi">1</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="k">break</span>
+            <span class="k">if</span> <span class="n">attempt</span> <span class="o">==</span> <span class="mi">4</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">error</span> <span class="o">=</span> <span class="bp">True</span>
+                <span class="k">print</span> <span class="s">u&quot;[</span><span class="si">%s</span><span class="s">] Error on Page Upload! (</span><span class="si">%s</span><span class="s">)&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">getName</span><span class="p">(),</span>
+                    <span class="n">idno</span><span class="p">)</span>
+                <span class="n">pagePool</span><span class="o">.</span><span class="n">put</span><span class="p">(</span><span class="n">page</span><span class="p">)</span> <span class="c"># replace page</span>
+            <span class="n">pagePool</span><span class="o">.</span><span class="n">task_done</span><span class="p">()</span>
+
+
+<span class="n">context</span> <span class="o">=</span> <span class="n">iterparse</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">stdin</span><span class="p">,</span> <span class="n">events</span><span class="o">=</span><span class="p">(</span><span class="s">&quot;start&quot;</span><span class="p">,</span> <span class="s">&quot;end&quot;</span><span class="p">))</span>
+<span class="n">root</span> <span class="o">=</span> <span class="bp">None</span>
+
+<span class="k">for</span> <span class="n">thr</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">8</span><span class="p">):</span>
+    <span class="n">upl</span> <span class="o">=</span> <span class="n">PageUploader</span><span class="p">()</span>
+    <span class="n">upl</span><span class="o">.</span><span class="n">setName</span><span class="p">(</span><span class="s">&quot;Uploader</span><span class="si">%s</span><span class="s">&quot;</span> <span class="o">%</span> <span class="n">thr</span><span class="p">)</span>
+    <span class="n">upl</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+
+<span class="k">for</span> <span class="n">event</span><span class="p">,</span> <span class="n">elem</span> <span class="ow">in</span> <span class="n">context</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">event</span> <span class="o">==</span> <span class="s">&quot;start&quot;</span> <span class="ow">and</span> <span class="n">root</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+        <span class="k">print</span> <span class="s">&quot;Found root element...&quot;</span>
+        <span class="n">root</span> <span class="o">=</span> <span class="n">elem</span>     <span class="c"># the first element is root</span>
+    <span class="k">if</span> <span class="n">event</span> <span class="o">==</span> <span class="s">&quot;end&quot;</span> <span class="ow">and</span> <span class="n">elem</span><span class="o">.</span><span class="n">tag</span> <span class="o">==</span> <span class="n">WIKI_PAGE_TAG</span><span class="p">:</span>
+        <span class="n">idno</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">elem</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">WIKI_ID_TAG</span><span class="p">)</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">idno</span> <span class="o">&lt;</span> <span class="n">SKIP</span><span class="p">:</span>
+          <span class="k">if</span> <span class="n">idno</span> <span class="o">%</span> <span class="mi">10000</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+              <span class="k">print</span> <span class="s">&quot;Skipped Pages: </span><span class="si">%s</span><span class="s">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">idno</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c"># print &quot;Feeding Page (%s)&quot; % (idno)</span>
+            <span class="n">pagePool</span><span class="o">.</span><span class="n">put</span><span class="p">(</span><span class="n">elem</span><span class="p">)</span>
+        <span class="n">root</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span> <span class="c"># clear already read pages</span>
+
+<span class="n">pagePool</span><span class="o">.</span><span class="n">join</span><span class="p">()</span> <span class="c"># wait for the queue to empty</span>
+</pre></div>

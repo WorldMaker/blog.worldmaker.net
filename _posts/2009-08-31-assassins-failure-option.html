@@ -1,0 +1,86 @@
+---
+date: 2009-08-31 05:48:19.654202
+db_id: 542
+db_updated: 2009-08-31 05:48:19.654278
+layout: post
+tags: games game-design assassins enlark
+title: 'Assassins: Failure is an Option'
+---
+<p><em>Assassins!</em> is an interesting game because a goal of it is to keep the
+game generic enough that it can run a good number of variants, and there
+are lots of lots of variants in the wild to try to appease. Today I did
+some important debugging and then added a few new options based upon
+early feedback.</p>
+<p>In any game there is a fun tension between the mechanics and the
+dynamics <a class="footnote-reference" href="#id2" id="id1">[1]</a> and I want to make sure that in Assassins the dynamics are
+open enough for interpretation under a number of variations. The tools
+at hand are the mechanics and intelligent flexibility isn't exactly in
+the realm of contemporary programming. The obvious answer is: give a
+person options. That solution brings in its own problems: complexity
+management. More options means more headaches for potential players.
+Emergent complexity <em>is</em> dynamics, but you want controlled doses and you
+want to keep the learning curve manageable.</p>
+<p>So today's new feature set is all about opening parts of the game back
+up to cheaters. That's not exactly the intent of it, but that will be
+the outcome in some scenarios (but that is what moderators are for). The
+actual intent is about opening up a tiny bit more of the game for
+moderator control, and as much as possible making the moderator aware of
+the (exploitable) trade-offs. All the while keeping the complexity from
+making a moderator's job harder.</p>
+<p>The initial sketch I did late in the afternoon involved four new check
+box options. If you look at the actual updated page you will see only
+two of those four planned check boxes. I realized that in making one
+previously implicit, existing rule explicitly defined and documented
+that I saved myself two check boxes and additional combinatorial
+complexity (quadruple the total choices). Hooray! This is just the sort
+of solution that a programmer enjoys finding.</p>
+<p>In some Assassins games you can't guarantee the synchronization of
+contract completion reports: players may be disconnected from web (or
+SMS) opportunities to register completed contracts. In a slow game this
+can be mitigated by telling players to kindly take their proper turns
+(with a little bit of moderator intervention when necessary). In a
+faster game players don't have time for every contract to be inputted in
+order and need to be as flexible as possible.</p>
+<p>My original thought was to add options to control the ability for
+eliminated players to finish completing contracts (and while I was at
+it, the transverse: contracts to be completed on eliminated players).
+That leads directly to the need to stop contracts from auto-failing.</p>
+<p>It turns out that I already made a design decision that simplified
+matters. I probably even briefly considered this scenario when I made
+it. Re-reading the code it turns out that there weren't any checks for
+eliminated players: active contracts are active. This is a simple
+solution, but it works: contract completion should be an atomic event
+and when contract failure works correctly there shouldn't be any
+contracts remaining for or upon eliminated players. Or, in the updated
+version of the code: if contract failure happens there won't be any
+contracts remaining for or upon eliminated players. Four options for the
+price of two. Also, free zombies (under moderator control, of course).</p>
+<p>So now game moderators have control of &quot;failure&quot;. Failure now, is
+literally an option (well, two in fact). I think some people will rest
+assured that failure is an option and that contracts fail all the time,
+but they don't have to. (Also, there is totally double-meaning dripping
+all over this paragraph, and I know it, but you may have to ask me to
+explain, preferably over a beer.)</p>
+<p>Was that the &quot;lazy&quot; solution? On the contrary, there was good thought
+put into this. I have to trust my data store to have good transaction
+semantics enough that I can leave my denormalization in its hands. This
+just happens to look like a &quot;lazy&quot; solution. I'm fine with that. Lazy
+can be a good friend to have, and Python is a language that encourages
+the good aspects of lazy. (Albeit, not as much as my Haskell friends, but
+I'm learning.)</p>
+<p>I think something that tends to happen for a programmer is to focus too
+hard on a problem and come up with some Rube Goldberg device that meets
+the goals, but fails to address the complexity issues. Sometimes
+simplicity is a hard to find quantity that provides a surprising amount
+of potential dynamics for a cheap cost. I think there might be a lesson
+there. Assassins has entirely been a project for me about controlled
+simplicity, and it continues to be a nice change of pace.</p>
+<p>...and there you have tonight's moment of programmer <em>fiero</em> brought to
+you by too much caffeine and one really (really) long day.</p>
+<hr class="docutils" />
+<table class="docutils footnote" frame="void" id="id2" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td><a class="reference external" href="http://www.cs.northwestern.edu/~hunicke/MDA.pdf">Hello MDA Framework!</a></td></tr>
+</tbody>
+</table>

@@ -1,0 +1,41 @@
+---
+date: 2010-03-06 00:31:46.678584
+db_id: 563
+db_updated: 2010-03-06 01:11:28.925092
+layout: post
+tags: games game-design keylimepie
+title: 'A First Slice of KeyLimePie: Shepard Meets Blastos'
+---
+<p>It's one thing to talk about a project and another to show a crude work in progress as an example of what I'm doing with it and where I expect it to go. <a class="reference external" href="http://blog.worldmaker.net/2010/feb/09/keylimepie-visual-novel-engine-and-deceptive-power/">When I introduced KeyLimePie</a> I mentioned that I was excited about how simple the basic data model is, and yet how powerful (or more precisely: expressive) it can be. Now I'd like to start by showing off some of the simplicity with an actual example. For this first slice <a class="footnote-reference" href="#id3" id="id1">[1]</a>, I'm going to use a very simple, somewhat silly <em>Mass Effect</em> fan fiction conversation I wrote, in which Commander Shepard bumps into a well known hanar SPECTRE and needs to recruit &quot;him&quot;.</p>
+<p>This example I first scripted directly in YAML. Then it served as my test script for writing a tool to convert from Celtx to my YAML-based data model, so then it was rewritten in Celtx, had some light spell checking/editing, and was converted back to YAML to compare against the original. Then it was converted to JSON because I decided that I didn't want to use either of the two YAML libraries for .NET in Silverlight, whereas <em>System.Json</em> is quite accessible and handy. (YAML and JSON are good friends, and while I'd rather write by hand in YAML, converting from YAML to JSON is very straightforward.)</p>
+<p>Nevermind the technical stuff, let me present what this script looks like visually:</p>
+<img alt="http://if.unlore.com/shepbla.png" src="http://if.unlore.com/shepbla.png" />
+<p>That is directly from my visualization tool (&quot;whip&quot;), with no doctoring of any sort. It shows the entire branching layout of the conversation from start to finish, including pre-conditions. I figure that you shouldn't have much trouble following it if you have any experience with state machine diagrams and/or <em>Mass Effect</em>. You'll notice the requisite paragon/renegade checks, of course. It's a bit harder to tell from just the compass direction names, but you should also notice that I also try to stick to the directional conventions of <em>Mass Effect</em>: northern (up) choices are predominantly more paragon, while southern (down) choices are predominantly more renegade; eastern (left) choices generally lead towards the conclusion of the conversation, while western (right) choices generally lead towards additional information, but with the exception of &quot;strong&quot; renegade/paragon actions which are also westerly.</p>
+<p>Anyway, now that I've rambled enough, why don't you try actually playing through this quick/simple conversation? What follows is the first prerelease of KeyLimePie. It has some rough edges and the current UI is a bit on the crude side, I think, but I've not yet had a Graphic Designer offer to lend their skills to make KeyLimePie awesome. However, this full test conversation is playable and should give some idea of where I'm going with KeyLimePie. I'd love to hear any feedback you have on this project. You'll need Silverlight 2 to view this (presumably Moonlight 2 should also work, but I won't officially test it until after I post this):</p>
+<div class="system-message">
+<p class="system-message-title">System Message: WARNING/2 (<tt class="docutils">&lt;string&gt;</tt>, line 15)</p>
+<p>&quot;raw&quot; directive disabled.</p>
+<pre class="literal-block">
+.. raw:: html
+
+    &lt;div id=&quot;silverlightControlHost&quot;&gt;
+                &lt;object data=&quot;data:application/x-silverlight-2,&quot; type=&quot;application/x-silverlight-2&quot; width=&quot;480&quot; height=&quot;320&quot;&gt;
+                        &lt;param name=&quot;source&quot; value=&quot;http://if.unlore.com/KeyLimePie.meff.xap&quot;/&gt;
+                        &lt;param name=&quot;background&quot; value=&quot;white&quot; /&gt;
+                        &lt;param name=&quot;autoUpgrade&quot; value=&quot;true&quot; /&gt;
+                        &lt;param name=&quot;enableHtmlAccess&quot; value=&quot;true&quot; /&gt; &lt;!-- Because I use it for Blend checking? --&gt;
+                        &lt;a href=&quot;http://go.microsoft.com/fwlink/?LinkID=124807&quot; style=&quot;text-decoration: none;&quot;&gt;
+                        &lt;img src=&quot;http://go.microsoft.com/fwlink/?LinkId=108181&quot; alt=&quot;Get Microsoft Silverlight&quot; style=&quot;border-style: none&quot;/&gt;
+                        &lt;/a&gt;
+                &lt;/object&gt;
+                &lt;iframe style='visibility:hidden;height:0;width:0;border:0px'&gt;&lt;/iframe&gt;
+    &lt;/div&gt;
+
+</pre>
+</div>
+<table class="docutils footnote" frame="void" id="id3" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td>The whole point of choosing a classy name like KeyLimePie is bad puns and silly broken metaphors, if you haven't already guessed.</td></tr>
+</tbody>
+</table>

@@ -1,0 +1,20 @@
+---
+date: 2008-02-21 21:12:15.510266
+db_id: 444
+db_updated: 2008-02-28 14:08:16.399554
+layout: post
+tags: django worldmaker
+title: Tagging happy...
+---
+<p>I finally consolidated all of my tagging functionality here on my personal site to the more comprehensive, more &quot;out of the box&quot; experience of <a class="reference external" href="http://code.google.com/p/django-tagging/">django-tagging</a>.  This means for me that tags now actually work on blog posts, so maybe I'll start using them more consistently...  It also means that I now have <a class="reference external" href="http://tags.worldmaker.net/">my own tag cloud</a> to stare at in wonder as opposed to a boring flat list.  There's some other cleanup there on my tag pages, but the cloud is the most visible.  Now I'm debating putting a blog-specific cloud on the blog main page.</p>
+<p>The only real interesting bit of the code I had to figure out and write is my general &quot;every model&quot; cloud view, because while <a class="reference external" href="http://code.google.com/p/django-tagging/">django-tagging</a> provides clouds for individual models it is missing this particular ability:</p>
+<div class="highlight"><pre><span class="k">def</span> <span class="nf">cloud</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Grand tag cloud for the whole ball o&#39; wax.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">tags</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">Tag</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">extra</span><span class="p">(</span><span class="n">select</span><span class="o">=</span><span class="p">{</span><span class="s">&#39;count&#39;</span><span class="p">:</span>
+        <span class="sd">&#39;&#39;&#39;SELECT COUNT(*) FROM tagging_taggeditem</span>
+<span class="sd">        WHERE tagging_taggeditem.tag_id = tagging_tag.id&#39;&#39;&#39;</span><span class="p">}))</span>
+    <span class="k">return</span> <span class="n">render_to_response</span><span class="p">(</span><span class="s">&#39;tagging/tag_list.html&#39;</span><span class="p">,</span> <span class="p">{</span><span class="s">&#39;object_list&#39;</span><span class="p">:</span> <span class="n">calculate_cloud</span><span class="p">(</span><span class="n">tags</span><span class="p">)})</span>
+</pre></div>
+<p>The only thing that should be noted is that extra select clause works for PostgreSQL, but won't work for MySQL, due to using a full sub-select.</p>

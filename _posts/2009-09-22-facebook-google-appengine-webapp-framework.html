@@ -1,0 +1,85 @@
+---
+date: 2009-09-22 02:19:58.798090
+db_id: 544
+db_updated: 2009-10-04 19:14:00.372927
+layout: post
+tags: coding facebook appengine
+title: Facebook on Google AppEngine "webapp" Framework
+---
+<p>I've got a small backlog of code that I've been meaning to open source
+and &quot;announce&quot; so this week may very well be &quot;coding&quot; week here on my
+blog. I promise to try to mix things up and get my Round Table post
+written this week (not that I have many days after this week to do so)
+as well.</p>
+<p>The first couple, at least, will be remotely <em>Assassins!</em>-related.
+Because right now the codebase is the most valuable asset in my poor,
+poor company I don't plan to open source the majority of the code
+itself. I do plan to re-release the last version of Assassins, which now
+is merely a distant relative to the &quot;modern&quot; codebase. This week my plan
+is to release some of the sub-projects that Assassins has yielded.</p>
+<p>Today's choice bit is <tt class="docutils literal">webappfb.py</tt>, which is a relative to
+the <tt class="docutils literal">djangofb</tt> toolset that <a class="reference external" href="http://pyfacebook.googlecode.com">Pyfacebook</a> provides for Facebook
+applications targeting Django. In this case it is many similar tools for
+Google App Engine's bare bones object-oriented <tt class="docutils literal">webapp</tt> framework. I
+know that <tt class="docutils literal">webapp</tt> isn't the greatest framework, nor is it one with a
+great amount of support. However, it is a great minimal framework that
+seems perfect for the super-fast response times that are needed for a
+Facebook application. <tt class="docutils literal">webappfb.py</tt> is a similarly &quot;minimal&quot; toolkit
+to remove some of the repetition needed in developing Facebook apps
+against <tt class="docutils literal">webapp</tt>.</p>
+<p>I'm not a huge fan of git, but it's what &quot;upstream&quot;, <a class="reference external" href="http://pyfacebook.googlecode.com">Pyfacebook</a>, has
+swapped to, so it's what I've used in this case. I've posted
+<tt class="docutils literal">webappfb.py</tt> to my fork at github: <a class="reference external" href="http://github.com/WorldMaker/pyfacebook/blob/master/facebook/webappfb.py">webappfb.py</a>. I also did the
+kind thing and sent a pull request upstream to see if it sticks.</p>
+<p>I'll have to write &quot;real&quot; documentation, probably, but it should be
+mostly self-explanatory to anyone that has seen <tt class="docutils literal">webapp</tt>
+documentation. Primarily, <tt class="docutils literal">webappfb.FacebookRequestHandler</tt> can be
+used just about anywhere you would use <tt class="docutils literal">webapp.RequestHandler</tt>.
+<tt class="docutils literal">FacebookRequestHandler</tt> provides a <tt class="docutils literal">self.facebook</tt> instance (using
+the API key and secret key that you can store in a simple
+<tt class="docutils literal">facebook.yaml</tt> file).</p>
+<p><tt class="docutils literal">FacebookRequestHandler</tt> also provides the functionality offered by
+<tt class="docutils literal">djangofb.requires_login</tt> decorator. To use it, just set a
+<tt class="docutils literal">requires_login</tt> attribute on your request handler.  You'll also want
+to check against <tt class="docutils literal">self.redirecting</tt> to keep from performing
+application logic when not-logged in.  <tt class="docutils literal">FacebookRequestHandler</tt>
+provides a Facebook-friendly <tt class="docutils literal">self.redirect()</tt> that takes case of the
+proper FBML response.</p>
+<p><tt class="docutils literal">FacebookRequestHandler</tt> also provides <tt class="docutils literal">memcache</tt>-backed &quot;user&quot;
+messages tagged to a Facebook <tt class="docutils literal">uid</tt> and stored for a limited time.
+This is a simple relative to Django's user messaging that makes use of
+the always-available nature of App Engine's <tt class="docutils literal">memcache</tt>.</p>
+<p>Finally, <tt class="docutils literal">FacebookCanvasHandler</tt> is a simple
+<tt class="docutils literal">FacebookRequestHandler</tt> subclass that realizes that canvas requests
+(for Facebook applications choosing to use the FBML route) are always
+<tt class="docutils literal">HTTP POST</tt> and takes care of <tt class="docutils literal">self.redirecting</tt> among other things,
+providing a <tt class="docutils literal">canvas()</tt> handler to use rather than <tt class="docutils literal">post()</tt>.</p>
+<p>A simple example:</p>
+<div class="highlight"><pre><span class="kn">from</span> <span class="nn">webappfb</span> <span class="kn">import</span> <span class="n">FacebookCanvasHandler</span><span class="p">,</span> <span class="n">FacebookRequestHandler</span>
+
+<span class="k">class</span> <span class="nc">SampleHandler</span><span class="p">(</span><span class="n">FacebookRequestHandler</span><span class="p">):</span>
+   <span class="n">requires_login</span> <span class="o">=</span> <span class="bp">True</span>
+
+   <span class="k">def</span> <span class="nf">post</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+       <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">redirecting</span><span class="p">:</span> <span class="k">return</span>
+
+       <span class="c"># TODO: Your application logic</span>
+
+       <span class="c"># Can use self.facebook here to make API calls</span>
+
+       <span class="c"># Save a temporary &quot;flash&quot; message for the current</span>
+       <span class="c"># Facebook user</span>
+       <span class="bp">self</span><span class="o">.</span><span class="n">add_user_message</span><span class="p">(</span><span class="s">&#39;success&#39;</span><span class="p">,</span> <span class="s">&#39;This is a test.&#39;</span><span class="p">)</span>
+
+       <span class="bp">self</span><span class="o">.</span><span class="n">redirect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">facebook</span><span class="o">.</span><span class="n">get_app_url</span><span class="p">(</span><span class="s">&#39;other/page&#39;</span><span class="p">))</span>
+
+<span class="k">class</span> <span class="nc">OtherPageHandler</span><span class="p">(</span><span class="n">FacebookCanvasHandler</span><span class="p">):</span>
+    <span class="n">requires_login</span> <span class="o">=</span> <span class="bp">True</span>
+
+    <span class="k">def</span> <span class="nf">canvas</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">msg</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_and_delete_messages</span><span class="p">():</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">response</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s">&quot;&quot;&quot;&lt;fb:</span><span class="si">%(kind)s</span><span class="s">&gt;</span>
+<span class="s">                 &lt;fb:message&gt;</span><span class="si">%(message)s</span><span class="s">&lt;/fb:message&gt;</span>
+<span class="s">                 </span><span class="si">%(detail)s</span><span class="s"></span>
+<span class="s">                 &lt;/fb:</span><span class="si">%(kind)s</span><span class="s">&gt;&quot;&quot;&quot;</span> <span class="o">%</span> <span class="n">msg</span><span class="p">)</span>
+</pre></div>

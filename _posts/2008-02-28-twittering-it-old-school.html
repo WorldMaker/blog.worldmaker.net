@@ -1,0 +1,41 @@
+---
+date: 2008-02-28 17:23:58.921949
+db_id: 450
+db_updated: 2008-02-29 03:49:35.381909
+layout: post
+tags: programming hack retro
+title: Twittering it Old School
+---
+<p>So, I'm still not entirely convinced about Twitter, but I'm tired of people talking about it as some sort of newly sliced bread so I've ventured into the world of Twitter.  Now, you can read and follow <a class="reference external" href="http://twitter.com/WorldMaker">my twitters</a> from the website, but I figured that wasn't cool enough for retro street cred.  I wrote a simple script that will now allow you to follow my twitter from the old school UNIX <tt class="docutils literal">finger</tt> command: <tt class="docutils literal">finger me&#64;worldmaker.net</tt>.</p>
+<p>For those curious, here's the simple and stupid Python script to generate a twitterified plan file:  (I used Django utils because they were handy; you'll also need python-twitter and simplejson.  Django utils need a settings module for translation apparently.)</p>
+<div class="highlight"><pre><span class="c">#!/usr/bin/python</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s">&#39;DJANGO_SETTINGS_MODULE&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s">&#39;some.django.settings&#39;</span>
+<span class="kn">from</span> <span class="nn">django.utils.dateformat</span> <span class="kn">import</span> <span class="n">format</span>
+<span class="kn">from</span> <span class="nn">django.utils.text</span> <span class="kn">import</span> <span class="n">wrap</span>
+<span class="kn">import</span> <span class="nn">twitter</span>
+<span class="kn">import</span> <span class="nn">datetime</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Simple script to populate a .plan from twitter updates.</span>
+
+<span class="sd">Public Domain from Max Battcher.  No rights reserved.</span>
+<span class="sd">http://www.worldmaker.net/</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="n">PLAN_FILE</span> <span class="o">=</span> <span class="s">&quot;.plan&quot;</span>
+<span class="n">TWITTER_USER</span> <span class="o">=</span> <span class="s">&quot;YourUsername&quot;</span>
+
+<span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">PLAN_FILE</span><span class="p">,</span> <span class="s">&quot;w&quot;</span><span class="p">)</span>
+<span class="n">api</span> <span class="o">=</span> <span class="n">twitter</span><span class="o">.</span><span class="n">Api</span><span class="p">()</span>
+<span class="n">sts</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">GetUserTimeline</span><span class="p">(</span><span class="n">TWITTER_USER</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">st</span> <span class="ow">in</span> <span class="n">sts</span><span class="p">:</span>
+    <span class="n">txt</span> <span class="o">=</span> <span class="s">&quot;&quot;&quot;</span>
+<span class="si">%s</span><span class="s">: </span><span class="si">%s</span><span class="s"></span>
+<span class="s">-- &quot;&quot;&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">format</span><span class="p">(</span><span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">fromtimestamp</span><span class="p">(</span><span class="n">st</span><span class="o">.</span><span class="n">GetCreatedAtInSeconds</span><span class="p">()),</span>
+        <span class="s">&quot;F j, Y @H:i&quot;</span><span class="p">),</span>
+        <span class="n">st</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+    <span class="n">txt</span> <span class="o">=</span> <span class="n">wrap</span><span class="p">(</span><span class="n">txt</span><span class="p">,</span> <span class="mi">75</span><span class="p">)</span>
+    <span class="k">print</span> <span class="o">&gt;&gt;</span><span class="n">f</span><span class="p">,</span> <span class="n">txt</span>
+<span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</pre></div>

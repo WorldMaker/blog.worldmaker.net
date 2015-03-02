@@ -1,0 +1,338 @@
+---
+date: 2010-10-05 21:06:14.227802
+db_id: 576
+db_updated: 2010-10-05 21:06:14.227831
+layout: post
+tags: coding c# linq
+title: On LINQ and the Looping Constructs of C#
+---
+<p>The obvious preface is that I love LINQ, and I love seeing it in action,
+and I mostly enjoy using it. It is fascinating to see a slow creeping of
+functional constructs into C#, a &quot;respectable&quot; mainstream language. It
+is fascinating to see a semi-powerful DSL take something of a center
+stage in a modern ALGOL descendant, as a subtle and slow unshackling of
+overly ubiquitous required brackets and parentheses.</p>
+<p>That said, as a sometimes student and observer of languages and language
+design, I think it is fair to say that my largest criticism of LINQ is
+in fact that I feel that it doesn't quite go far enough. It is still far
+too conservative a design, and not quite comprehensive enough. I realize
+that this is, of course, the <em>design goals</em>, but I wouldn't have a blog
+post to write here if I were entirely satisfied by the status quo.</p>
+<p>Anyway, what follows is just a simple comparison and contrasting of some
+similar lingual constructs in C#, Python, and Common Lisp, and some
+noodling of my own on the subject.</p>
+<div class="section" id="a-brief-review-of-looping-in-c">
+<h1>A Brief Review of Looping in C#</h1>
+<p>With LINQ around in C#, there are now almost too many disparate means of
+doing traditional loop iteration over a data structure, all with subtle
+differences. The differences can make it tough to write pithy one liners
+where pithy one <em>should</em> suffice. There's also a certain amount of
+boiler-plate needed to convert from one sort to the other, and there are
+too many &quot;decision points&quot; on the looping construct choice flow chart:
+Am I working with a range of numbers, an array, an <tt class="docutils literal">IEnumerable&lt;T&gt;</tt>,
+or an <tt class="docutils literal">IList&lt;T&gt;</tt>?  Is the current index (or count) important to my
+iteration?</p>
+<div class="section" id="the-traditional-for-loop">
+<h2>The Traditional <tt class="docutils literal">for</tt> Loop</h2>
+<div class="highlight"><pre><span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="p">=</span><span class="m">0</span><span class="p">;</span> <span class="n">i</span> <span class="p">&lt;</span> <span class="n">items</span><span class="p">.</span><span class="n">Count</span><span class="p">;</span> <span class="n">i</span><span class="p">++)</span>
+<span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">i</span> <span class="p">%</span> <span class="m">2</span> <span class="p">==</span> <span class="m">0</span> <span class="p">&amp;&amp;</span> <span class="n">item</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">IsAwesome</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">items</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">DoThatThing</span><span class="p">();</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+<p>C# inherits <tt class="docutils literal">for</tt> from its predecessors, and to be honest it feels
+vestigial at best (and otherwise obnoxious). Keep in mind that <tt class="docutils literal">for</tt>
+has always been a weird-looking, but usefully pithy, shortcut for a
+<tt class="docutils literal">while</tt> loop, such as:</p>
+<div class="highlight"><pre><span class="kt">int</span> <span class="n">i</span><span class="p">=</span><span class="m">0</span><span class="p">;</span>
+<span class="k">while</span> <span class="p">(</span><span class="n">i</span> <span class="p">&lt;</span> <span class="n">items</span><span class="p">.</span><span class="n">Count</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">i</span> <span class="p">%</span> <span class="m">2</span> <span class="p">==</span> <span class="m">0</span> <span class="p">&amp;&amp;</span> <span class="n">item</span><span class="p">.</span><span class="n">IsAwesome</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">items</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">DoThatThing</span><span class="p">();</span>
+    <span class="p">}</span>
+
+    <span class="n">i</span><span class="p">++;</span>
+<span class="p">}</span>
+</pre></div>
+<p>I think that more of the usecases of <tt class="docutils literal">for</tt> should be available in the
+other looping constructs, but more on that in a bit when I talk about
+Python.</p>
+<p>Note the additional complications that you are doing your own bounds
+checking here, and that even that varies from type to type. For
+instance: <tt class="docutils literal">IList&lt;T&gt;</tt> uses the <tt class="docutils literal">Count</tt> property, arrays use
+<tt class="docutils literal">Length</tt>, and gets more complicated in additional dimensions.</p>
+</div>
+<div class="section" id="the-more-moderne-foreach">
+<h2>The More Moderne <tt class="docutils literal">foreach</tt></h2>
+<div class="highlight"><pre><span class="k">foreach</span> <span class="p">(</span><span class="n">Item</span> <span class="n">item</span> <span class="k">in</span> <span class="n">items</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">item</span><span class="p">.</span><span class="n">IsAwesome</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">item</span><span class="p">.</span><span class="n">DoThatThing</span><span class="p">();</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+<p>This is the C# workhorse for use with anything that supports
+<tt class="docutils literal">IEnumerable</tt> and/or <tt class="docutils literal">IEnumerable&lt;T&gt;</tt>. Note that there is no strong,
+pithy way to get the current index/count during iteration other than:</p>
+<div class="highlight"><pre><span class="kt">int</span> <span class="n">i</span> <span class="p">=</span> <span class="m">0</span><span class="p">;</span>
+<span class="k">foreach</span> <span class="p">(</span><span class="n">Item</span> <span class="n">item</span> <span class="k">in</span> <span class="n">items</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">i</span> <span class="p">%</span> <span class="m">2</span> <span class="p">==</span> <span class="m">0</span> <span class="p">&amp;&amp;</span> <span class="n">item</span><span class="p">.</span><span class="n">IsAwesome</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">item</span><span class="p">.</span><span class="n">DoThatThing</span><span class="p">();</span>
+    <span class="p">}</span>
+
+    <span class="n">i</span><span class="p">++;</span>
+<span class="p">}</span>
+</pre></div>
+<p>More often than not, using the equivalent <tt class="docutils literal">for</tt> loop is pithier, and
+often preferred stylistically, if for no other reason.</p>
+</div>
+<div class="section" id="the-lonely-list-t-foreach">
+<h2>The Lonely <tt class="docutils literal"><span class="pre">List&lt;T&gt;.ForEach</span></tt></h2>
+<div class="highlight"><pre><span class="n">items</span><span class="p">.</span><span class="n">ForEach</span><span class="p">(</span><span class="n">item</span> <span class="p">=&gt;</span> <span class="k">if</span> <span class="p">(</span><span class="n">item</span><span class="p">.</span><span class="n">IsAwesome</span><span class="p">)</span> <span class="n">item</span><span class="p">.</span><span class="n">DoThatThing</span><span class="p">());</span>
+</pre></div>
+<p>Very useful for short, pithy one-liners when using the most recent
+anonymous functions syntax, but only available in specific situations
+(<tt class="docutils literal">List&lt;T&gt;</tt> as the big example). It predates LINQ, and is definitely
+oddly vestigial, or at least under-exploited.</p>
+<p>I am curious why LINQ didn't bother adding a more general version as an
+<tt class="docutils literal">IEnumerable&lt;T&gt;</tt> extension method. I'm also curious why <tt class="docutils literal">ForEach</tt>
+doesn't have an overload that also provides the integer list position as
+well as the item...</p>
+</div>
+<div class="section" id="linq-fluent-syntax">
+<h2>LINQ &quot;Fluent&quot; Syntax</h2>
+<div class="highlight"><pre><span class="kt">var</span> <span class="n">query</span> <span class="p">=</span> <span class="n">items</span><span class="p">.</span><span class="n">Where</span><span class="p">(</span><span class="n">item</span> <span class="p">=&gt;</span> <span class="n">item</span><span class="p">.</span><span class="n">IsAwesome</span><span class="p">);</span>
+
+<span class="k">foreach</span> <span class="p">(</span><span class="kt">var</span> <span class="n">item</span> <span class="k">in</span> <span class="n">query</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">item</span><span class="p">.</span><span class="n">DoThatThing</span><span class="p">();</span>
+<span class="p">}</span>
+</pre></div>
+<p>LINQ queries are lazy, which is great, but they rely on the existing
+<tt class="docutils literal">foreach</tt>, or a conversion extension method like <tt class="docutils literal"><span class="pre">.ToList&lt;T&gt;()</span></tt> and
+<tt class="docutils literal"><span class="pre">.ToArray&lt;T&gt;()</span></tt>, which I've already noticed are easy to abuse/mis-use.</p>
+<p>A generic <tt class="docutils literal">ForEach</tt> equivalent could help with that. Fluent syntax
+embedded into the <tt class="docutils literal">foreach</tt> loop is fairly common, and makes things
+slightly pithier, but can easily degenerate into a parenthetical jungle.
+<a class="footnote-reference" href="#id4" id="id1">[1]</a></p>
+</div>
+<div class="section" id="linq-query-syntax">
+<h2>LINQ Query Syntax</h2>
+<div class="highlight"><pre><span class="kt">var</span> <span class="n">query</span> <span class="p">=</span> <span class="k">from</span> <span class="n">item</span> <span class="k">in</span> <span class="n">items</span>
+            <span class="k">where</span> <span class="n">item</span><span class="p">.</span><span class="n">IsAwesome</span>
+            <span class="k">select</span> <span class="n">item</span><span class="p">;</span>
+
+<span class="k">foreach</span> <span class="p">(</span><span class="kt">var</span> <span class="n">item</span> <span class="k">in</span> <span class="n">query</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">item</span><span class="p">.</span><span class="n">DoThatThing</span><span class="p">();</span>
+<span class="p">}</span>
+</pre></div>
+<p>LINQ Query Syntax is one of the best parts of LINQ in C#, IMNSHO. Again,
+however, <tt class="docutils literal">foreach</tt> or a conversion operator is needed.</p>
+<div class="section" id="the-in-from-approach">
+<h3>The &quot;In From&quot; Approach</h3>
+<div class="highlight"><pre><span class="k">foreach</span> <span class="p">(</span><span class="kt">var</span> <span class="n">item</span> <span class="k">in</span> <span class="k">from</span> <span class="n">item</span> <span class="k">in</span> <span class="n">items</span>
+                     <span class="k">where</span> <span class="n">item</span><span class="p">.</span><span class="n">IsAwesome</span>
+                     <span class="k">select</span> <span class="n">item</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">item</span><span class="p">.</span><span class="n">DoThatThing</span><span class="p">();</span>
+<span class="p">}</span>
+</pre></div>
+<p>C# is perfectly fine with an &quot;in from&quot;, but I've already seen some style
+guides frowning upon it, unlike fluent syntax directly in the
+<tt class="docutils literal">foreach</tt>. Even if I disagree with most of the reasoning behind why
+the articles I've seen frown upon the &quot;in from&quot;, it seems reasonable to
+point out how grammatically ugly the construction is (to an English
+reader), and how weirdly redundant the whole thing seems both in terms
+of keyword usage and naming, even when using type inferencing as much as
+possible. (It only gets more redundant should you need to use a type
+name for <tt class="docutils literal">var</tt> and a <tt class="docutils literal">from TypeName item</tt>.)</p>
+<p>It seems to me that there should be a cleaner form for this. For
+instance, it seems to me that the <tt class="docutils literal">from</tt> clause should be entirely
+elidable, if not the <tt class="docutils literal">select</tt> as well. For instance, I think something
+like this should be possible with query syntax:</p>
+<div class="highlight"><pre><span class="k">foreach</span> <span class="p">(</span><span class="kt">var</span> <span class="n">item</span> <span class="k">in</span> <span class="n">items</span> <span class="k">where</span> <span class="n">item</span><span class="p">.</span><span class="n">IsAwesome</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">item</span><span class="p">.</span><span class="n">DoThatThing</span><span class="p">();</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="versus-python">
+<h1>Versus Python</h1>
+<p>Python is my go to language at this point for prototyping, so its often
+Python that I'm &quot;translating from&quot; when writing C# code at this point,
+and its often Python that I'm most commonly comparing to C# when I'm
+coding, nowadays at least.</p>
+<div class="section" id="python-for">
+<h2>Python <tt class="docutils literal">for</tt></h2>
+<p>Python basically sticks to an iterators-only approach (iterators being
+the rough Python equivalent to C# <tt class="docutils literal">IEnumerator&lt;T&gt;</tt>). While you can
+still unroll the shortcut of a classic ALGOL-family <tt class="docutils literal">for</tt> loop with a
+<tt class="docutils literal">do</tt> or <tt class="docutils literal">while</tt> loop, the Python <tt class="docutils literal">for</tt> loop is actually the
+equivalent of C#'s <tt class="docutils literal">foreach</tt>:</p>
+<div class="highlight"><pre><span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">items</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">item</span><span class="o">.</span><span class="n">is_awesome</span><span class="p">:</span>
+        <span class="n">item</span><span class="o">.</span><span class="n">do_that_thing</span><span class="p">()</span>
+</pre></div>
+<div class="section" id="python-range">
+<h3>Python <tt class="docutils literal">range</tt></h3>
+<p>To deal with ranges, python provides built-in iterator functions for
+that <a class="footnote-reference" href="#id5" id="id2">[2]</a>:</p>
+<div class="highlight"><pre><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">items</span><span class="p">)):</span>
+    <span class="k">if</span> <span class="n">i</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">items</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">is_awesome</span><span class="p">:</span>
+        <span class="n">item</span><span class="o">.</span><span class="n">do_that_thing</span><span class="p">()</span>
+</pre></div>
+<p>You will also notice that Python has one core way to get the length of
+all of its data-types, rather than dealing with property names that can
+vary as C# does.</p>
+<p>The .NET base class library could easily provide standard range
+enumerators, so that something like the following would be valid:</p>
+<div class="highlight"><pre><span class="k">foreach</span> <span class="p">(</span><span class="kt">var</span> <span class="n">i</span> <span class="k">in</span> <span class="kt">int</span><span class="p">.</span><span class="n">Range</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="n">items</span><span class="p">.</span><span class="n">Count</span><span class="p">))</span>
+<span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">i</span> <span class="p">%</span> <span class="m">2</span> <span class="p">==</span> <span class="m">0</span> <span class="p">&amp;&amp;</span> <span class="n">items</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">IsAwesome</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">items</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">DoThatThing</span><span class="p">();</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+<p>If enumerators were optimized well enough, C# could also benefit from a
+strong <tt class="docutils literal">foreach</tt> as the primary loop construct.</p>
+</div>
+<div class="section" id="python-enumerate">
+<h3>Python <tt class="docutils literal">enumerate</tt></h3>
+<p>Python also provides an even pithier way to deal with indexing an
+iterator in its <tt class="docutils literal">enumerate</tt> function, which is perhaps easiest to show
+with its example:</p>
+<div class="highlight"><pre><span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">item</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">items</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">i</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">item</span><span class="o">.</span><span class="n">is_awesome</span><span class="p">:</span>
+        <span class="n">item</span><span class="o">.</span><span class="n">do_that_thing</span><span class="p">()</span>
+</pre></div>
+<p>C# doesn't offer destructuring like Python does, and you could probably
+do an entire series of posts entirely on how and where C# might offer
+destructuring to better work with object hierarchies. LINQ offers a few
+destructuring tools, but it certainly isn't as comprehensive in C# as it
+is in Python and many other languages.</p>
+<p>Something like <tt class="docutils literal">enumerate</tt>, however, is something that I think LINQ,
+at least when working with in-memory objects, is lacking as a built-in
+tool.</p>
+</div>
+</div>
+<div class="section" id="python-generators">
+<h2>Python Generators</h2>
+<p>Python generators have a rough equivalence to LINQ statements, in some
+cases:</p>
+<div class="highlight"><pre><span class="n">query</span> <span class="o">=</span> <span class="p">(</span><span class="n">item</span><span class="o">.</span><span class="n">do_that_thing</span><span class="p">()</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">items</span> <span class="k">if</span> <span class="n">item</span><span class="o">.</span><span class="n">is_awesome</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">query</span><span class="p">:</span> <span class="k">pass</span>
+</pre></div>
+<p>Certainly Python doesn't yet have the diversity of operators that LINQ
+supports, nor the ability to as easily use generators to lazily build
+things like database queries.</p>
+<p>Due to Python's dynamic nature, generators can be (but rarely are) used
+solely for side-effects/procedural operations and &quot;void&quot; functions used
+in the equivalent of Python's <tt class="docutils literal">select</tt>. (C# will give a compiler error
+for a <tt class="docutils literal">from item in items select item.DoThatThing()</tt> if
+<tt class="docutils literal">item.DoThatThing()</tt> is a void function.)</p>
+<div class="section" id="list-comprehensions">
+<h3>List Comprehensions</h3>
+<p>List comprehensions are a specialization of generators <a class="footnote-reference" href="#id6" id="id3">[3]</a> that
+greedily build a list in memory, thus an equivalent for <tt class="docutils literal"><span class="pre">ToList&lt;T&gt;()</span></tt>
+in LINQ terms. Python's list syntax makes them wonderfully pithy,
+however:</p>
+<div class="highlight"><pre><span class="p">[</span><span class="n">item</span><span class="o">.</span><span class="n">do_that_thing</span><span class="p">()</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">items</span> <span class="k">if</span> <span class="n">item</span><span class="o">.</span><span class="n">is_awesome</span><span class="p">]</span>
+</pre></div>
+<p>Square brackets are Python's standard list constructor (or more
+accurately a syntactic shortcut for the actual <tt class="docutils literal">list()</tt> constructor).
+Given how often <tt class="docutils literal"><span class="pre">ToList&lt;T&gt;()</span></tt> seems to be (ab)used in C# already, I'm
+curious if square brackets around a LINQ expression in C# might be
+useful syntactic sugar for <tt class="docutils literal"><span class="pre">ToList&lt;T&gt;()</span></tt> as well.</p>
+</div>
+</div>
+</div>
+<div class="section" id="versus-common-lisp-s-loop-macro">
+<h1>Versus Common Lisp's LOOP Macro</h1>
+<p>The <a class="reference external" href="http://www.gigamonkeys.com/book/loop-for-black-belts.html">Lisp LOOP Macro</a> was one of the first things that I thought of
+when I was first introduced to LINQ. LOOP is an amazing DSL for Common
+Lisp looping. It is interesting to compare and contrast LINQ's operators
+with LOOP's language. Certainly LINQ ultimately provides more tools, but
+there are still some interesting things that LINQ might pick up.</p>
+<p>For completion's sake, here's one version of the running example from
+above:</p>
+<div class="highlight"><pre><span class="p">(</span><span class="nb">loop</span> <span class="nv">for</span> <span class="nv">item</span> <span class="nv">in</span> <span class="nv">items</span> <span class="nb">when</span> <span class="p">(</span><span class="nv">is-awesome?</span> <span class="nv">item</span><span class="p">)</span> <span class="nb">do</span> <span class="p">(</span><span class="nv">do-that-thing</span> <span class="nv">item</span><span class="p">))</span>
+</pre></div>
+<p>Note that Lisp's LOOP provides a DO clause that can be used as a loop
+body, and thus needs no other loop construct. I keep thinking it might
+be nice to allow for standalone LINQ queries with a <tt class="docutils literal">do</tt> body:</p>
+<div class="highlight"><pre><span class="k">from</span> <span class="n">item</span> <span class="k">in</span> <span class="n">items</span> <span class="k">where</span> <span class="n">item</span><span class="p">.</span><span class="n">IsAwesome</span> <span class="k">do</span> <span class="n">item</span><span class="p">.</span><span class="n">DoThatThing</span><span class="p">();</span>
+
+<span class="c1">// Or backwards, as a very odd keyword-compatible sibling of do-while:</span>
+<span class="k">do</span> <span class="n">item</span><span class="p">.</span><span class="n">DoThatThing</span><span class="p">();</span> <span class="k">from</span> <span class="n">item</span> <span class="k">in</span> <span class="n">items</span> <span class="k">where</span> <span class="n">item</span><span class="p">.</span><span class="n">IsAwesome</span><span class="p">();</span>
+</pre></div>
+<div class="section" id="aggregation-clauses">
+<h2>Aggregation Clauses</h2>
+<p>LOOP has explicit aggregation clauses:</p>
+<div class="highlight"><pre><span class="p">(</span><span class="nb">loop</span> <span class="nv">for</span> <span class="nv">item</span> <span class="nv">in</span> <span class="nv">items</span> <span class="nv">maximize</span> <span class="p">(</span><span class="nv">price</span> <span class="nv">item</span><span class="p">))</span>
+</pre></div>
+<p>While LINQ of course provides aggregation tools, C# does not expose
+operators for them. Equivalent C# currently would either of the following:</p>
+<div class="highlight"><pre><span class="kt">var</span> <span class="n">maxprice</span> <span class="p">=</span> <span class="p">(</span><span class="k">from</span> <span class="n">item</span> <span class="k">in</span> <span class="n">items</span> <span class="k">select</span> <span class="n">item</span><span class="p">.</span><span class="n">Price</span><span class="p">).</span><span class="n">Max</span><span class="p">();</span>
+<span class="kt">var</span> <span class="n">maxprice</span> <span class="p">=</span> <span class="n">items</span><span class="p">.</span><span class="n">Max</span><span class="p">(</span><span class="n">item</span> <span class="p">=&gt;</span> <span class="n">item</span><span class="p">.</span><span class="n">Price</span><span class="p">);</span>
+</pre></div>
+<p>One useful possibility for C#'s query syntax might be something along
+the lines of:</p>
+<div class="highlight"><pre><span class="kt">var</span> <span class="n">maxprice</span> <span class="p">=</span> <span class="k">from</span> <span class="n">item</span> <span class="k">in</span> <span class="n">items</span> <span class="k">select</span> <span class="n">maximum</span> <span class="n">item</span><span class="p">.</span><span class="n">Price</span><span class="p">;</span>
+</pre></div>
+</div>
+<div class="section" id="present-participles">
+<h2>Present Participles</h2>
+<p>One interesting feature of Lisp's LOOP macro is that all of its keywords
+can be written using the present participle (<em>-ing</em>), which can often
+result in slightly more readable (from an English perspective, at least)
+statements. For example, rewriting the above:</p>
+<div class="highlight"><pre><span class="p">(</span><span class="nb">loop</span> <span class="nv">for</span> <span class="nv">item</span> <span class="nv">in</span> <span class="nv">items</span> <span class="nb">when</span> <span class="p">(</span><span class="nv">is-awesome?</span> <span class="nv">item</span><span class="p">)</span> <span class="nv">doing</span> <span class="p">(</span><span class="nv">do-that-thing</span> <span class="nv">item</span><span class="p">))</span>
+<span class="p">(</span><span class="nb">loop</span> <span class="nv">for</span> <span class="nv">item</span> <span class="nv">in</span> <span class="nv">items</span> <span class="nv">maximizing</span> <span class="p">(</span><span class="nv">price</span> <span class="nv">item</span><span class="p">))</span>
+</pre></div>
+<p>It may seem like a subtle change in these examples, but definitely in
+larger, more complicated LOOP examples with many clauses, the change can
+make things surprisingly clearer.</p>
+<p>It's probably a lot to ask for LINQ in C# to support multiple verb
+forms, but there has been a few times already where I've seen long LINQ
+queries and thought that they would be easier to read with the present
+participle, particularly given how lazy LINQ queries are.</p>
+<hr class="docutils" />
+<table class="docutils footnote" frame="void" id="id4" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td>I have been debating adopting the style that I see mostly from
+Novell and Mono bloggers of placing an extra space between a function
+name and its arguments, which often does make things like long runs
+of LINQ extension methods somewhat easier on the eyes. But my old
+habit is hard to break, and still the most common C# style.</td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id5" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id2">[2]</a></td><td>Nit-picking: Python 2's built-in <tt class="docutils literal">range</tt> builds a list in
+memory, rather than an iterator, which is the job of <tt class="docutils literal">xrange</tt>, of
+course.</td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id6" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id3">[3]</a></td><td>Well, actually historically generators are a generalization of
+list comprehensions, which Python added first.</td></tr>
+</tbody>
+</table>
+<!-- vim: ai spell tw=72 -->
+</div>
+</div>

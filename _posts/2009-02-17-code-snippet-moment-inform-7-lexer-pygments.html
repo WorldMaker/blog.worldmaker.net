@@ -1,0 +1,53 @@
+---
+date: 2009-02-17 01:05:45.146324
+db_id: 516
+db_updated: 2009-02-17 01:08:14.916946
+layout: post
+tags: coding
+title: 'Code Snippet of the Moment: Inform 7 Lexer for Pygments'
+---
+<p>This is a silly hack that turns out isn't entirely useful, but I'm going to post it to preserve it &quot;just in case&quot; and because I probably spent an hour too much on it.  Basically, I've been playing around with writing interactive fiction in Inform 7.  Inform 7 is a unique natural language-based approach to interactive fiction. Because of that is has a deceptively simple subset of highlight-able syntax, with comparison to most other programming or even interactive fiction description languages.  I use <a class="reference external" href="http://pygments.org">Pygments</a> as a common syntax highlighter in a number of situations, including and particularly for syntax highlighting of fragments I post to my blog. Thinking ahead to wanting to post snippets of my works to my blog I set about creating a simple lexer for Pygments.</p>
+<p>Unfortunately, it isn't all that useful. Due to the unique nature of the language it is best expressed in a non-fixed-width font with &quot;word wrapping&quot;, both of which are entirely unusual for syntax highlighting and don't have existing support in Pygments.  I think my best bet will be to attempt to use Inform's existing HTML output or to hand optimize some reST-based solution.</p>
+<p>Here's the lexer in case it might find some use further down the road:</p>
+<div class="highlight"><pre><span class="kn">from</span> <span class="nn">pygments.lexer</span> <span class="kn">import</span> <span class="n">RegexLexer</span>
+<span class="kn">from</span> <span class="nn">pygments.token</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">import</span> <span class="nn">re</span>
+
+<span class="n">I7_HEADINGS</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;Volume&#39;</span><span class="p">,</span> <span class="s">&#39;Book&#39;</span><span class="p">,</span> <span class="s">&#39;Part&#39;</span><span class="p">,</span> <span class="s">&#39;Chapter&#39;</span><span class="p">,</span> <span class="s">&#39;Section&#39;</span><span class="p">,</span> <span class="s">&#39;Table&#39;</span><span class="p">]</span>
+
+<span class="k">class</span> <span class="nc">Inform7Lexer</span><span class="p">(</span><span class="n">RegexLexer</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Inform 7 is a natural language-based approach to buiding interactive</span>
+<span class="sd">    fiction. Because of the English-based nature of the language there</span>
+<span class="sd">    is little overt syntax in the classic sense that might be highlighted.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">name</span><span class="o">=</span><span class="s">&#39;Inform 7&#39;</span>
+    <span class="n">aliases</span><span class="o">=</span><span class="p">[</span><span class="s">&#39;I7&#39;</span><span class="p">]</span>
+    <span class="n">filenames</span><span class="o">=</span><span class="p">[</span><span class="s">&#39;*.inform&#39;</span><span class="p">,</span> <span class="s">&#39;*.i7x&#39;</span><span class="p">,</span> <span class="s">&#39;*.ni&#39;</span><span class="p">]</span>
+    <span class="n">flags</span><span class="o">=</span><span class="n">re</span><span class="o">.</span><span class="n">IGNORECASE</span> <span class="o">|</span> <span class="n">re</span><span class="o">.</span><span class="n">MULTILINE</span>
+
+    <span class="n">tokens</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s">&#39;root&#39;</span><span class="p">:</span> <span class="p">[</span>
+            <span class="p">(</span><span class="s">r&#39;^&quot;[^&quot;]*&quot; by (&quot;[^&quot;]*&quot;|[\w ]+)$&#39;</span><span class="p">,</span> <span class="n">Generic</span><span class="o">.</span><span class="n">Heading</span><span class="p">),</span>
+            <span class="p">(</span><span class="s">r&#39;^(</span><span class="si">%s</span><span class="s">)[^\n]*$&#39;</span> <span class="o">%</span> <span class="s">&quot;|&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">I7_HEADINGS</span><span class="p">),</span> <span class="n">Generic</span><span class="o">.</span><span class="n">Heading</span><span class="p">),</span>
+            <span class="p">(</span><span class="s">r&#39;\[&#39;</span><span class="p">,</span> <span class="n">Comment</span><span class="p">,</span> <span class="s">&quot;comment&quot;</span><span class="p">),</span>
+            <span class="p">(</span><span class="s">r&#39;&quot;&#39;</span><span class="p">,</span> <span class="n">String</span><span class="p">,</span> <span class="s">&quot;string&quot;</span><span class="p">),</span>
+            <span class="p">(</span><span class="s">r&#39;[^&quot;\n\[]+&#39;</span><span class="p">,</span> <span class="n">Text</span><span class="p">),</span>
+            <span class="p">(</span><span class="s">r&#39;.&#39;</span><span class="p">,</span> <span class="n">Text</span><span class="p">),</span>
+        <span class="p">],</span>
+        <span class="s">&#39;comment&#39;</span><span class="p">:</span> <span class="p">[</span>
+            <span class="p">(</span><span class="s">r&#39;\]&#39;</span><span class="p">,</span> <span class="n">Comment</span><span class="p">,</span> <span class="s">&quot;#pop&quot;</span><span class="p">),</span>
+            <span class="p">(</span><span class="s">r&#39;\[&#39;</span><span class="p">,</span> <span class="n">Comment</span><span class="p">,</span> <span class="s">&quot;#push&quot;</span><span class="p">),</span>
+            <span class="p">(</span><span class="s">r&#39;[^\]\[]+&#39;</span><span class="p">,</span> <span class="n">Comment</span><span class="p">),</span>
+        <span class="p">],</span>
+        <span class="s">&#39;string&#39;</span><span class="p">:</span> <span class="p">[</span>
+            <span class="p">(</span><span class="s">r&#39;&quot;&#39;</span><span class="p">,</span> <span class="n">String</span><span class="p">,</span> <span class="s">&quot;#pop&quot;</span><span class="p">),</span>
+            <span class="p">(</span><span class="s">r&#39;\[[^\]]*\]&#39;</span><span class="p">,</span> <span class="n">Name</span><span class="p">),</span>
+            <span class="p">(</span><span class="s">r&#39;[^&quot;\[]*&#39;</span><span class="p">,</span> <span class="n">String</span><span class="p">),</span>
+        <span class="p">],</span>
+    <span class="p">}</span>
+
+
+<span class="c"># vim: ai et ts=4 sts=4 sw=4</span>
+</pre></div>
+<p><a class="reference external" href="http://media.worldmaker.net/blog/i7lexer.png">A quick screenshot with obviously lots of scrolling and a Firefox rendering glitch</a> from lexing Graham Nelson's <a class="reference external" href="http://www.inform-fiction.org/I7Downloads/Examples/rota/index.html">The Reliques of Tolti-Aph</a>.</p>

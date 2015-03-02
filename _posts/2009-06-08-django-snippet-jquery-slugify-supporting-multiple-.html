@@ -1,0 +1,37 @@
+---
+date: 2009-06-08 05:14:33.716378
+db_id: 534
+db_updated: 2009-06-08 05:14:33.716423
+layout: post
+tags: django jquery coding
+title: 'Django Snippet: jQuery Slugify Supporting Multiple Select'
+---
+<p>I wanted a slugify <a class="footnote-reference" href="#id3" id="id1">[1]</a> tool for a form that I was working on and was using jQuery elsewhere, so I quickly found <a class="reference external" href="http://www.djangosnippets.org/snippets/1488/">a jQuery slugify</a> on Django Snippets. The problem that I ran into was that I wanted to support slugifying multiple inputs (concatenated with spaces), which is something that Django's Admin's provided pre-populated fields-based slugify JavaScript handles. I was also surprised to find that the snippet I found didn't lowercase the input. Below is my simple modifications to handle multiple inputs in a jQuery selection:</p>
+<div class="highlight"><pre><span class="c1">// Based Upon DjangoSnippets: http://www.djangosnippets.org/snippets/1488/</span>
+<span class="nx">jQuery</span><span class="p">.</span><span class="nx">fn</span><span class="p">.</span><span class="nx">slugify</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">obj</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">jQuery</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">data</span><span class="p">(</span><span class="s1">&#39;origquery&#39;</span><span class="p">,</span> <span class="k">this</span><span class="p">);</span>
+    <span class="nx">jQuery</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">data</span><span class="p">(</span><span class="s1">&#39;obj&#39;</span><span class="p">,</span> <span class="nx">jQuery</span><span class="p">(</span><span class="nx">obj</span><span class="p">));</span>
+    <span class="nx">jQuery</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">keyup</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">obj</span> <span class="o">=</span> <span class="nx">jQuery</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">data</span><span class="p">(</span><span class="s1">&#39;obj&#39;</span><span class="p">);</span>
+        <span class="kd">var</span> <span class="nx">oquery</span> <span class="o">=</span> <span class="nx">jQuery</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">data</span><span class="p">(</span><span class="s1">&#39;origquery&#39;</span><span class="p">);</span>
+        <span class="kd">var</span> <span class="nx">vals</span> <span class="o">=</span> <span class="p">[];</span>
+        <span class="nx">jQuery</span><span class="p">(</span><span class="nx">oquery</span><span class="p">).</span><span class="nx">each</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">i</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">vals</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="nx">jQuery</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">val</span><span class="p">());</span>
+        <span class="p">});</span>
+        <span class="kd">var</span> <span class="nx">slug</span> <span class="o">=</span> <span class="nx">vals</span><span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">).</span><span class="nx">toLowerCase</span><span class="p">().</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/\s+/g</span><span class="p">,</span><span class="s1">&#39;-&#39;</span><span class="p">).</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/[^a-z0-9\-]/g</span><span class="p">,</span><span class="s1">&#39;&#39;</span><span class="p">);</span>
+        <span class="nx">obj</span><span class="p">.</span><span class="nx">val</span><span class="p">(</span><span class="nx">slug</span><span class="p">);</span>
+    <span class="p">});</span>
+<span class="p">}</span>
+</pre></div>
+<p>Usage is just like the other snippet, but supports selections like:</p>
+<div class="highlight"><pre><span class="nx">$</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">$</span><span class="p">(</span><span class="s2">&quot;#id_brand, #id_name&quot;</span><span class="p">).</span><span class="nx">slugify</span><span class="p">(</span><span class="s2">&quot;#id_slug&quot;</span><span class="p">);</span>
+    <span class="nx">$</span><span class="p">(</span><span class="s2">&quot;.prepopulate_slug&quot;</span><span class="p">).</span><span class="nx">slugify</span><span class="p">(</span><span class="s2">&quot;#id_slug2&quot;</span><span class="p">);</span>
+<span class="p">});</span>
+</pre></div>
+<table class="docutils footnote" frame="void" id="id3" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td>For the uninitiated, Django brought the term &quot;slug&quot; to web design from the newspaper world. In a newspaper a slug is one of those short one or two word summaries used to help someone find the continuation of a story. In web design this refers to a URL segment that often replaces a ID number with something more memorable and/or descriptive. (For instance, the slug for this very blog entry, as you can see in your address bar, is <tt class="docutils literal"><span class="pre">django-snippet-jquery-slugify-supporting-multiple-</span></tt>) Because slugs are best when related to some other text in an object, such as my blog slugs come from my blog titles, there are several useful ways in Django to auto-convert (or slugify) some input.</td></tr>
+</tbody>
+</table>

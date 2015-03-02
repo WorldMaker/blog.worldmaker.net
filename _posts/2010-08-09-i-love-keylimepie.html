@@ -1,0 +1,93 @@
+---
+date: 2010-08-09 18:08:07.069867
+db_id: 573
+db_updated: 2010-08-09 18:08:07.069893
+layout: post
+tags: games game-design keylimepie lua ransom
+title: "I L\xF6ve KeyLimePie"
+---
+<p>I just recently got a working client on the fifth platform <a class="footnote-reference" href="#id4" id="id1">[1]</a> for
+KeyLimePie, which is written in <a class="reference external" href="http://www.lua.org">Lua</a> for <a class="reference external" href="http://www.love2d.org">Löve 2D</a>. Löve 2D feels like
+something in between what I've done with pygame and XNA. I wanted to
+prove that I grok Lua and Löve 2D was a good way to do that. The Löve 2D
+client is the richest offline client for KeyLimePie thus far. (The
+Silverlight client is still my preferred online client.)</p>
+<p>I think the simplicity of KeyLimePie's base model once again shines in
+the Lua client. The Lua code is certainly smaller than I expected,
+including the fact that the code does all of its own update/draw logic.</p>
+<p>The Lua client also happens to be the first implementation of a couple
+of features I've been meaning to implement in other clients, but the Lua
+client benefits from the project that explicitly is targeting it, my
+&quot;cover letter project&quot; <a class="footnote-reference" href="#id5" id="id2">[2]</a>.</p>
+<div class="section" id="source-code-for-ransom">
+<h1>Source Code for Ransom</h1>
+<p>I've built most of the KeyLimePie clients and tools with Open
+Sourcing them in mind. However, I'm not sure if there is any actual
+interest in this toolkit of mine, so I'm going to hold it for ransom:</p>
+<div class="system-message">
+<p class="system-message-title">System Message: WARNING/2 (<tt class="docutils">&lt;string&gt;</tt>, line 31)</p>
+<p>&quot;raw&quot; directive disabled.</p>
+<pre class="literal-block">
+.. raw:: html
+
+   &lt;object width=&quot;250&quot; height=&quot;250&quot;&gt;&lt;param name=&quot;movie&quot; value=&quot;http://widget.chipin.com/widget/id/04a1b41bf9f3bc3d&quot;&gt;&lt;/param&gt;&lt;param name=&quot;allowScriptAccess&quot; value=&quot;always&quot;&gt;&lt;/param&gt;&lt;param name=&quot;wmode&quot; value=&quot;transparent&quot;&gt;&lt;/param&gt;&lt;param name=&quot;color_scheme&quot; value=&quot;red&quot;&gt;&lt;/param&gt;&lt;embed src=&quot;http://widget.chipin.com/widget/id/04a1b41bf9f3bc3d&quot; flashVars=&quot;color_scheme=red&quot; type=&quot;application/x-shockwave-flash&quot; allowScriptAccess=&quot;always&quot; wmode=&quot;transparent&quot; width=&quot;250&quot; height=&quot;250&quot;&gt;&lt;/embed&gt;&lt;/object&gt;
+
+</pre>
+</div>
+<p>I'll use contributions to gauge how much documentation I should write,
+and how many of the tools, clients, and servers I initially release to
+the web as Open Source. I think the ransom amount is a good start (and a
+great deal on the work done to date! <a class="footnote-reference" href="#id6" id="id3">[3]</a>), but some things, like a lot of
+the work I've put more specifically into <em>A Robot Fugue</em> may require
+contributions to exceed the ransom amount before I consider open
+sourcing them. (For instance, I do have a number in mind to CC license
+the entirety of the <em>A Robot Fugue</em> script to date, plus wherever it
+goes from here, for instance.)</p>
+<p>I think it is a pleasure to write scripts for KeyLimePie, and I'd love
+to know if there is any outside interest in trying it. Feel free to post
+questions or comments in the boxes below or <a class="reference external" href="mailto:me&#64;worldmaker.net">email me&#64;worldmaker.net</a>.</p>
+<hr class="docutils" />
+<table class="docutils footnote" frame="void" id="id4" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td>For those keeping score at home, the following
+languages/platforms have seen the ability to play KeyLimePie scripts:
+Python (CLI), ChoiceScript, Ren'Py, C# (Silverlight), and now Lua
+(Löve 2D).</td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id5" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id2">[2]</a></td><td>A project attempting to tightrope walk between silly and boring.
+It has been an interesting creative exercise, but possibly a doomed
+one. The basic concept is that I'm being interviewed by space aliens
+for a space reality show that is controlled by audience
+participation. It's basically an interactive resume that I'm
+attempting to make much more interesting than just an interactive
+resume. It has provided an excuse to fill it with my really bad
+character art and not feel too self-conscious about that. (They're
+just ugly space aliens.)</td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id6" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id3">[3]</a></td><td>Basic COCOMO analysis with David A. Wheeler's <tt class="docutils literal">sloccount</tt> tool
+reveals an estimate of around $33,000 of software estimate on just
+the Python tools and Silverlight client alone. $300 is a discount of
+nearly 99%! As bonus, I've already released the related <a class="reference external" href="http://musdex.code.worldmaker.net">musdex</a> tool
+to Open Source, prior to the ransom: a nearly $10,000 value! <a class="footnote-reference" href="#id8" id="id7">[4]</a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id8" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id7">[4]</a></td><td>Yes, I realize that COCOMO analysis is skewed, but its one of the
+best estimates I have right now of the value of my time, given some
+better economy where I might have been employed and salaried to
+produce tools like these.</td></tr>
+</tbody>
+</table>
+<!-- vim: ai spell tw=72 -->
+</div>

@@ -1,0 +1,91 @@
+---
+date: 2010-03-24 21:42:33.379399
+db_id: 564
+db_updated: 2010-03-24 21:46:26.523690
+layout: post
+tags: games game-design keylimepie
+title: 'A First Slice of KeyLimePie Part 2: Script Breakdown and Comparing Alternatives'
+---
+<p>Recently in <a class="reference external" href="http://blog.worldmaker.net/2010/mar/06/first-slice-keylimepie-shepard-meets-blastos/">A First Slice of KeyLimePie</a> I introduced a bit of <em>Mass
+Effect</em> fan fiction as a simple example of a KeyLimePie conversation. In
+this post I'm going to breakdown the actual script of the conversation,
+and then compare it to largely equivalent scripts in <a class="reference external" href="http://www.choiceofgames.com/blog/choicescript-intro/">ChoiceScript</a> and
+<a class="reference external" href="http://renpy.org">Ren'Py</a>, two of KeyLimePie's nearest neighbors.</p>
+<p>There are two key places to start when discussing KeyLimePie
+conversations in comparison to the other formats:</p>
+<ol class="arabic simple">
+<li>Choice lists/menus are constrained to 10 directions: the 8 compass
+directions, a center direction (which I consider the &quot;nevermind&quot;
+button), and the &quot;next&quot; psuedo-direction (roughly equivalent to a
+jump/goto).</li>
+<li>KeyLimePie's conversations doesn't use a single proscribed scripting
+language, it's a data model. As a data model, it can be (and usefully
+is) expressed in any of a handful of markup languages. Both languages
+in the comparison have different (with a few similarities) procedural
+scripting languages.</li>
+</ol>
+<p>Current KeyLimePie formats include JSON and YAML, with YAML the
+preferred for writing conversations in (which shares indentation-based
+formatting with both ChoiceScript and Ren'Py). By current convention,
+there is a tiny bit of embedded Python that KeyLimePie allows, sharing
+that with Ren'Py's scripting language, but the Python could be replaced
+with any embeddable language. The <a class="reference external" href="http://if.unlore.com/meffdemo/ShepardBlastos.yaml">Shepard-Blastos YAML script</a> is
+actually the first version of the script, but it consequently has some
+typos that were corrected in later versions. The next major format
+change for the script was the rewrite of it as my testbed for Celtx
+import, resulting in the <a class="reference external" href="http://if.unlore.com/meffdemo/ShepardBlastos.pdf">Celtx-formatted Shepard-Blastos script</a>.
+(I'll be writing my next few conversations directly in the Celtx
+format.)</p>
+<p>Today I wrote an actual exporter from the KeyLimePie data model to
+ChoiceScript and Ren'Py, so that I could directly point to a comparison
+of the three formats. (I found it more interesting to write a somewhat
+generally useful exporter than to manually rewrite, particularly because
+I knew it would be a quick &quot;day hack&quot;.) I have had to do a tiny bit of
+massaging of the exports, of course, but probably 98% or so of the
+process is automated. ChoiceScript needs the most massaging, simply
+because of the embedded Python, which Ren'Py supports directly.</p>
+<ul class="simple">
+<li><a class="reference external" href="http://if.unlore.com/meffdemo/shepbla.rpy">Ren'Py version of Shepard-Blastos</a></li>
+<li>ChoiceScript export currently uses a file per named node:
+<a class="reference external" href="http://if.unlore.com/meffdemo/opening.txt">opening.txt</a>, <a class="reference external" href="http://if.unlore.com/meffdemo/blastos.txt">blastos.txt</a>, <a class="reference external" href="http://if.unlore.com/meffdemo/investigate.txt">investigate.txt</a>, and <a class="reference external" href="http://if.unlore.com/meffdemo/join.txt">join.txt</a>.</li>
+</ul>
+<p>I could see some future version of the KeyLimePie data model
+specification as something of an intermediate format for cooperation
+between the engines. Certainly the export tool I built works pretty well
+for the current demo. If I ever get around to building the &quot;Visual
+KeyLimePie&quot; editor that I proposed in an earlier blog post, I could
+imagine that would be potentially quite useful to both
+ChoiceScript/Ren'Py.</p>
+<p>Some of the noteworthy differences between the formats:</p>
+<ul class="simple">
+<li>Neither ChoiceScript nor Ren'Py support KeyLimePie's pie menus, so
+directions are added to choice labels, and are obviously harder to
+play with when the directions are useful/important clues.</li>
+<li>Neither ChoiceScript nor Ren'Py seem to support the concept of
+&quot;unavailable&quot; choice. (In the Silverlight KeyLimePie engine, when
+there is no available node (based on pre-conditions) in a given
+direction the choice will be disabled/grayed out, using the label of
+the first unavailable node in that direction.) In ChoiceScript the
+choice can be removed from the list with a surrounding &quot;if&quot; for the
+precondition. Ren'Py doesn't even support surrounding an &quot;if&quot; statement
+around a choice in a menu.</li>
+<li>Ren'Py has an available &quot;jump stack&quot; (call and return) that allows for
+conversation memory. This is something that is planned for KeyLimePie
+(it's in the &quot;spec in my head&quot;), but not yet implemented in any tool
+or engine, because it's primarily a useful state machine tool for
+interaction between conversations.</li>
+<li>ChoiceScript, for obvious reasons I assume, doesn't have direct
+support for conversation styling.</li>
+<li>&quot;Fall through&quot; works subtly (and potentially dangerously, if one were
+relying solely on automatic exports) different in all three systems.</li>
+</ul>
+<p>I'm sure there are other things that I'm forgetting, but all of the more
+obvious aesthetic differences should be obvious if you peruse the
+documents linked above.</p>
+<p>This has been an interesting experiment today. I really liked working
+with Ren'Py, which was new to me when I started, and would love to see,
+and may eventually build, an extension to support KeyLimePie-style
+conversations.</p>
+<p>Probably the big lesson at the end of the day is that all three projects
+are probably much more similar than different. It was also a further
+proof for the flexibility of my &quot;data model&quot; approach.</p>

@@ -1,0 +1,119 @@
+---
+date: 2008-10-25 04:18:59.862268
+db_id: 504
+db_updated: 2008-10-25 15:28:19.181822
+layout: post
+tags: coding xna
+title: BooInterpreter Class for XnaConsole
+---
+
+<p>I've been using <a class="reference external" href="http://codeplex.com/XnaConsole">XnaConsole</a> in a couple of projects.  It's quite handy to have around, and easy to plug in to a project.  The author asks for people to share when they use it with an interpreter of a new language (he provides an <a class="reference external" href="http://codeplex.com/IronPython">IronPython</a> example).  For a recent project I wanted to use <a class="reference external" href="http://boo.codehaus.org/">Boo</a> instead, so here's my Boo interpreter:</p>
+<div class="highlight"><pre><span class="c1">//</span>
+<span class="c1">// Boo Interpreter for XNA Console</span>
+<span class="c1">//</span>
+<span class="c1">// Copyright (C) 2008 Max Battcher.  All Rights Reserved.</span>
+<span class="c1">// Licensed under the Microsoft Permissive License (Ms-PL).</span>
+<span class="k">using</span> <span class="nn">System</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">System.Collections.Generic</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">System.IO</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">System.Text</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">Boo.Lang.Compiler</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">Boo.Lang.Interpreter</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">Microsoft.Xna.Framework</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">Microsoft.Xna.Framework.Graphics</span><span class="p">;</span>
+
+
+<span class="k">namespace</span> <span class="nn">XnaConsole</span>
+<span class="p">{</span>
+    <span class="c1">/// &lt;remarks&gt;</span>
+    <span class="c1">/// This class implements an interpreter using Boo</span>
+    <span class="c1">/// &lt;/remarks&gt;</span>
+    <span class="k">public</span> <span class="k">class</span> <span class="nc">BooInterpreter</span>
+    <span class="p">{</span>
+        <span class="k">const</span> <span class="kt">string</span> <span class="n">Prompt</span> <span class="p">=</span> <span class="s">&quot;&gt;&gt;&gt; &quot;</span><span class="p">;</span>
+        <span class="k">const</span> <span class="kt">string</span> <span class="n">PromptCont</span> <span class="p">=</span> <span class="s">&quot;... &quot;</span><span class="p">;</span>
+        <span class="k">const</span> <span class="kt">string</span> <span class="n">Returned</span> <span class="p">=</span> <span class="s">&quot;&lt;&lt;&lt; {0}&quot;</span><span class="p">;</span>
+        <span class="kt">string</span> <span class="n">multi</span><span class="p">;</span>
+        <span class="k">public</span> <span class="n">XnaConsoleComponent</span> <span class="n">Console</span><span class="p">;</span>
+
+        <span class="n">InteractiveInterpreter</span> <span class="n">interpreter</span><span class="p">;</span>
+
+        <span class="k">public</span> <span class="n">InteractiveInterpreter</span> <span class="n">Interpreter</span>
+        <span class="p">{</span>
+            <span class="k">get</span> <span class="p">{</span> <span class="k">return</span> <span class="n">interpreter</span><span class="p">;</span> <span class="p">}</span>
+        <span class="p">}</span>
+
+        <span class="c1">/// &lt;summary&gt;</span>
+        <span class="c1">/// Creates a new BooInterpreter</span>
+        <span class="c1">/// &lt;/summary&gt;</span>
+        <span class="k">public</span> <span class="nf">BooInterpreter</span><span class="p">(</span><span class="n">Microsoft</span><span class="p">.</span><span class="n">Xna</span><span class="p">.</span><span class="n">Framework</span><span class="p">.</span><span class="n">Game</span> <span class="n">game</span><span class="p">,</span> <span class="n">SpriteFont</span> <span class="n">font</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">interpreter</span> <span class="p">=</span> <span class="k">new</span> <span class="n">InteractiveInterpreter</span><span class="p">();</span>
+            <span class="n">interpreter</span><span class="p">.</span><span class="n">Ducky</span> <span class="p">=</span> <span class="k">true</span><span class="p">;</span> <span class="c1">// Keep from having to make static type decisions in console</span>
+            <span class="n">interpreter</span><span class="p">.</span><span class="n">RememberLastValue</span> <span class="p">=</span> <span class="k">true</span><span class="p">;</span>
+            <span class="k">foreach</span> <span class="p">(</span><span class="n">System</span><span class="p">.</span><span class="n">Reflection</span><span class="p">.</span><span class="n">Assembly</span> <span class="n">assembly</span> <span class="k">in</span> <span class="n">System</span><span class="p">.</span><span class="n">AppDomain</span><span class="p">.</span><span class="n">CurrentDomain</span><span class="p">.</span><span class="n">GetAssemblies</span><span class="p">())</span>
+            <span class="p">{</span>
+                <span class="n">interpreter</span><span class="p">.</span><span class="n">References</span><span class="p">.</span><span class="n">Add</span><span class="p">(</span><span class="n">assembly</span><span class="p">);</span>
+            <span class="p">}</span>
+            <span class="n">interpreter</span><span class="p">.</span><span class="n">Eval</span><span class="p">(</span><span class="s">&quot;import Microsoft.Xna.Framework\nimport Microsoft.Xna.Framework.Graphics\nimport Microsoft.Xna.Framework.Content&quot;</span><span class="p">);</span>
+
+            <span class="n">multi</span> <span class="p">=</span> <span class="s">&quot;&quot;</span><span class="p">;</span>
+
+            <span class="n">Console</span> <span class="p">=</span> <span class="k">new</span> <span class="n">XnaConsoleComponent</span><span class="p">(</span><span class="n">game</span><span class="p">,</span> <span class="n">font</span><span class="p">);</span>
+            <span class="n">game</span><span class="p">.</span><span class="n">Components</span><span class="p">.</span><span class="n">Add</span><span class="p">(</span><span class="n">Console</span><span class="p">);</span>
+            <span class="n">Console</span><span class="p">.</span><span class="n">Prompt</span><span class="p">(</span><span class="n">Prompt</span><span class="p">,</span> <span class="n">Execute</span><span class="p">);</span>
+            <span class="n">AddGlobal</span><span class="p">(</span><span class="s">&quot;Console&quot;</span><span class="p">,</span> <span class="n">Console</span><span class="p">);</span>
+        <span class="p">}</span>
+
+        <span class="c1">/// &lt;summary&gt;</span>
+        <span class="c1">/// Executes boo commands from the console.</span>
+        <span class="c1">/// &lt;/summary&gt;</span>
+        <span class="c1">/// &lt;param name=&quot;input&quot;&gt;&lt;/param&gt;</span>
+        <span class="c1">/// &lt;returns&gt;Returns the execution results or error messages.&lt;/returns&gt;</span>
+        <span class="k">public</span> <span class="k">void</span> <span class="nf">Execute</span><span class="p">(</span><span class="kt">string</span> <span class="n">input</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="kt">object</span> <span class="n">last</span><span class="p">;</span>
+
+            <span class="k">try</span>
+            <span class="p">{</span>
+                <span class="k">if</span> <span class="p">((</span><span class="n">input</span> <span class="p">!=</span> <span class="s">&quot;&quot;</span><span class="p">)</span> <span class="p">&amp;&amp;</span> <span class="p">((</span><span class="n">input</span><span class="p">[</span><span class="n">input</span><span class="p">.</span><span class="n">Length</span> <span class="p">-</span> <span class="m">1</span><span class="p">].</span><span class="n">ToString</span><span class="p">()</span> <span class="p">==</span> <span class="s">&quot;:&quot;</span><span class="p">)</span> <span class="p">||</span> <span class="p">(</span><span class="n">multi</span> <span class="p">!=</span> <span class="s">&quot;&quot;</span><span class="p">)))</span> <span class="c1">//multiline block incomplete, ask for more</span>
+                <span class="p">{</span>
+                    <span class="n">multi</span> <span class="p">+=</span> <span class="n">input</span> <span class="p">+</span> <span class="s">&quot;\n&quot;</span><span class="p">;</span>
+                    <span class="n">Console</span><span class="p">.</span><span class="n">Prompt</span><span class="p">(</span><span class="n">PromptCont</span><span class="p">,</span> <span class="n">Execute</span><span class="p">);</span>
+                <span class="p">}</span>
+                <span class="k">else</span> <span class="nf">if</span> <span class="p">(</span><span class="n">multi</span> <span class="p">!=</span> <span class="s">&quot;&quot;</span> <span class="p">&amp;&amp;</span> <span class="n">input</span> <span class="p">==</span> <span class="s">&quot;&quot;</span><span class="p">)</span> <span class="c1">// end of multiline</span>
+                <span class="p">{</span>
+                    <span class="n">input</span> <span class="p">=</span> <span class="n">multi</span><span class="p">;</span> <span class="c1">// make sure that multi is cleared, even if it returns an error</span>
+                    <span class="n">multi</span> <span class="p">=</span> <span class="s">&quot;&quot;</span><span class="p">;</span>
+                <span class="p">}</span>
+
+                <span class="k">if</span> <span class="p">(</span><span class="n">multi</span> <span class="p">==</span> <span class="s">&quot;&quot;</span> <span class="p">&amp;&amp;</span> <span class="n">input</span> <span class="p">!=</span> <span class="s">&quot;&quot;</span><span class="p">)</span> <span class="c1">// execute</span>
+                <span class="p">{</span>
+                    <span class="n">CompilerContext</span> <span class="n">cc</span> <span class="p">=</span> <span class="n">interpreter</span><span class="p">.</span><span class="n">Eval</span><span class="p">(</span><span class="n">input</span><span class="p">);</span>
+                    <span class="k">foreach</span> <span class="p">(</span><span class="n">CompilerError</span> <span class="n">ce</span> <span class="k">in</span> <span class="n">cc</span><span class="p">.</span><span class="n">Errors</span><span class="p">)</span>
+                    <span class="p">{</span>
+                        <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&quot;ERROR: &quot;</span> <span class="p">+</span> <span class="n">ce</span><span class="p">.</span><span class="n">ToString</span><span class="p">());</span>
+                    <span class="p">}</span>
+                    <span class="n">last</span> <span class="p">=</span> <span class="n">interpreter</span><span class="p">.</span><span class="n">LastValue</span><span class="p">;</span>
+                    <span class="k">if</span> <span class="p">(</span><span class="n">last</span> <span class="p">!=</span> <span class="k">null</span><span class="p">)</span> <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="kt">string</span><span class="p">.</span><span class="n">Format</span><span class="p">(</span><span class="n">Returned</span><span class="p">,</span> <span class="n">last</span><span class="p">));</span>
+                    <span class="n">Console</span><span class="p">.</span><span class="n">Prompt</span><span class="p">(</span><span class="n">Prompt</span><span class="p">,</span> <span class="n">Execute</span><span class="p">);</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+            <span class="k">catch</span> <span class="p">(</span><span class="n">Exception</span> <span class="n">e</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&quot;ERROR: &quot;</span> <span class="p">+</span> <span class="n">e</span><span class="p">.</span><span class="n">ToString</span><span class="p">());</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+
+        <span class="c1">/// &lt;summary&gt;</span>
+        <span class="c1">/// Adds a global variable to the environment of the interpreter.</span>
+        <span class="c1">/// &lt;/summary&gt;</span>
+        <span class="c1">/// &lt;param name=&quot;name&quot;&gt;&lt;/param&gt;</span>
+        <span class="c1">/// &lt;param name=&quot;value&quot;&gt;&lt;/param&gt;</span>
+        <span class="k">public</span> <span class="k">void</span> <span class="nf">AddGlobal</span><span class="p">(</span><span class="kt">string</span> <span class="n">name</span><span class="p">,</span> <span class="kt">object</span> <span class="k">value</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">interpreter</span><span class="p">.</span><span class="n">SetValue</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="k">value</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>

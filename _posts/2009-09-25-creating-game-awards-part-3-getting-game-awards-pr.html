@@ -1,0 +1,370 @@
+---
+date: 2009-09-25 22:18:00.381300
+db_id: 546
+db_updated: 2009-09-25 22:18:00.381350
+layout: post
+tags: coding xna
+title: 'Creating In-Game Awards Part 3: Getting In-Game Awards Production Ready'
+---
+<p>In <a class="reference external" href="http://www.ziggyware.com/readarticle.php?article_id=217">Part 1</a> Nick Gravelyn introduced a simple framework for displaying
+award notifications in an XNA game. In <a class="reference external" href="http://www.ziggyware.com/readarticle.php?article_id=230">Part 2</a> Daniel Hanson improves
+upon the award notifications adding in simple progress notification
+support and simple support for multiple gamer profiles.</p>
+<img alt="The Updated Awards Demo" class="align-right" src="http://media.worldmaker.net/blog/awardsdemo-images/awards-demo.jpg" />
+<p>This article further improves upon the award notifications by better
+following some XNA best practices, making the notifications more
+configurable, more reusable, and more animated. The <a class="reference external" href="http://media.worldmaker.net/blog/AwardsDemo.zip">updated
+AwardsDemo</a> application includes the full <a class="reference external" href="http://darcs.net">darcs</a> source code repository
+of the changes with respect to the version presented in Part 2. This
+article will mostly follow the repository's changes in chronological
+order and you are welcome to follow along. <a class="footnote-reference" href="#id5" id="id1">[1]</a> With basic source
+control skills you can even attempt to cherry-pick some or part of the
+changes made to get a customized version of the code.</p>
+<p>(It is always a good idea to get into the habit of using a source
+control system that you trust, even on the smallest projects.)</p>
+<div class="contents topic" id="contents">
+<p class="topic-title first">Contents</p>
+<ul class="simple">
+<li><a class="reference internal" href="#best-practice-resource-strings" id="id8">Best Practice: Resource Strings</a></li>
+<li><a class="reference internal" href="#using-playerindex-rather-than-gamertag" id="id9">Using <tt class="docutils literal">PlayerIndex</tt> Rather Than <tt class="docutils literal">GamerTag</tt></a></li>
+<li><a class="reference internal" href="#more-power-to-the-notifications" id="id10">More Power to the Notifications</a><ul>
+<li><a class="reference internal" href="#using-bars-to-assess-progress" id="id11">Using Bars to Assess Progress</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#animating-the-notification" id="id12">Animating the Notification</a><ul>
+<li><a class="reference internal" href="#animating-the-progress-bar" id="id13">Animating the Progress Bar</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#go-forth-and-award-your-players" id="id14">Go Forth and Award Your Players</a></li>
+</ul>
+</div>
+<div class="section" id="best-practice-resource-strings">
+<h1><a class="toc-backref" href="#id8">Best Practice: Resource Strings</a></h1>
+<p>In the AwardsDemo for Parts 1 and 2 there were several strings that were
+left as constants at the top of source code files. This is an easily
+made faux pas that can easily come to haunt a project as it nears
+completion. It can be quite easy to forget where in a game's source code
+a particular phrase or text is located, making it harder to tune the
+output to its best and particularly making it much harder to translate
+the game into other languages.</p>
+<p>Even if you don't plan on releasing your game in multiple languages, it
+is still handy to have all of your text in one place for easy changes.
+It's also simply a good habit to get into, should the case ever arise
+that you do want to release a multi-lingual game. Happily, Visual Studio
+does a lot of work to make the best practice in this case (and many
+similar cases) an easy habit to get into.</p>
+<p>In XNA (and .NET as well) the place to store strings that may need
+changing or will need translation (localization) is a &quot;Resource file&quot;.
+Many Visual Studio templates will add one for you and adding one to a
+project without one is just like adding any other source file.</p>
+<p>When you add a resource file in a Visual Studio project it actually adds
+two files to your project. The first is the <tt class="docutils literal">.resx</tt> file which is an
+XML file that will store all of the strings (and whatever other resource
+data you might need). The other is a <tt class="docutils literal">.designer.cs</tt> file and is an
+auto-generated file that will change as you modify the <tt class="docutils literal">.resx</tt> file.
+There aren't very many reasons to edit the designer file by hand. This
+designer file provides you a handy class with static properties for
+access to your resources, in a similar way to how you might use an
+enum in your code.</p>
+</div>
+<div class="section" id="using-playerindex-rather-than-gamertag">
+<h1><a class="toc-backref" href="#id9">Using <tt class="docutils literal">PlayerIndex</tt> Rather Than <tt class="docutils literal">GamerTag</tt></a></h1>
+<p>In Part 2 to differentiate between different players unlocking awards,
+<tt class="docutils literal">GamerTag</tt> was chosen. This is an easy choice to use, but it can break
+in subtle ways. <tt class="docutils literal">GamerTag</tt> is not guaranteed to be unique and local
+profiles can share tags. The general best practice is that you should
+only use the <tt class="docutils literal">GamerTag</tt> for display and for storing information you
+should use something more appropriate.</p>
+<p><tt class="docutils literal">PlayerIndex</tt> is a very appropriate choice for storing award progress
+information for multiple players in memory. Several of XNA's examples
+use <tt class="docutils literal">PlayerIndex</tt> everywhere, so it shouldn't be too startling to see
+it here as well. <tt class="docutils literal">PlayerIndex</tt> provides a few useful benefits: it will
+be used in the revised notifications (which is discussed later in this
+article) and it should make more obvious the workflows that should be
+used with the awards component.</p>
+<ol class="arabic simple">
+<li>When a player signs in (ie, in response to
+<tt class="docutils literal">SignedInGamer.SignedIn</tt>), load the player's stored progress
+information (if there is any).</li>
+<li>When a player signs out (ie, in response to
+<tt class="docutils literal">SignedInGamer.SignedOut</tt>), save the player's award progress as
+necessary and then clear all of the progress information for that
+<tt class="docutils literal">PlayerIndex</tt>.</li>
+</ol>
+<p>Using <tt class="docutils literal">PlayerIndex</tt> in this fashion should make it more obvious that
+the awards component should not be storing more progress data than there
+are currently active players. It should also make it more obvious that
+the progress information should probably be stored in the appropriate
+per-user storage areas.</p>
+</div>
+<div class="section" id="more-power-to-the-notifications">
+<h1><a class="toc-backref" href="#id10">More Power to the Notifications</a></h1>
+<p>In Part 1 and Part 2 all of the drawing code was in <tt class="docutils literal">AwardsComponent</tt>.
+While this is certainly a valid way to do it, it also has a certain
+inflexibility should one wish to customize the way notifications are
+drawn, or to reuse the notification drawing code to draw other
+interesting screens for awards.</p>
+<p>For in game awards it is often useful to provide a screen listing all of
+the possible awards and their progress for that player. In Part 2,
+<em>Gears of War 2</em> is cited as an example of a best-in-class game for
+in-game award displays and <em>Gears of War 2</em> is a good example here as
+well: in between games, players can examine their progress in the &quot;war
+journal&quot; which displays awards in much the same way that the in-action
+notifications do. It makes a lot of sense to make the drawing code for
+awards amenable to just this sort of reuse.</p>
+<p>To this aim, the drawing code was moved into two new classes:
+<tt class="docutils literal">AwardDisplay</tt> and <tt class="docutils literal">AwardNotification</tt>. <tt class="docutils literal">AwardDisplay</tt> is meant to
+be a configurable display of an Award. <tt class="docutils literal">AwardNotification</tt> is a
+subclass of <tt class="docutils literal">AwardDisplay</tt> that configures the output to be the most
+useful for in-game notifications. <tt class="docutils literal">AwardDisplay</tt> can also be
+customized in many ways without subclassing it, using the various
+properties that it exposes.  The updated demo uses <tt class="docutils literal">AwardDisplay</tt>
+customized in this fashion to provide the hints of how to unlock the
+awards.</p>
+<p><tt class="docutils literal">AwardDisplay</tt> follows a relatively simple pattern:</p>
+<div class="highlight"><pre><span class="k">public</span> <span class="k">virtual</span> <span class="k">void</span> <span class="nf">Update</span><span class="p">(</span><span class="n">GameTime</span> <span class="n">gt</span><span class="p">);</span>
+<span class="k">public</span> <span class="k">virtual</span> <span class="k">void</span> <span class="nf">Render</span><span class="p">(</span><span class="n">SpriteBatch</span> <span class="n">batch</span><span class="p">);</span>
+</pre></div>
+<p>The <tt class="docutils literal">Update</tt> method is expected to be called in an appropriate place
+during your game's <tt class="docutils literal">Update</tt> and takes a <tt class="docutils literal">GameTime</tt> object so that
+any animation it needs to perform can be correctly timed.
+<tt class="docutils literal">AwardDisplay</tt> itself doesn't actually have any animation, but it is
+still provided so that subclasses can use it. (That is also the reason
+that both methods are marked <tt class="docutils literal">virtual</tt> so that subclasses can
+<tt class="docutils literal">override</tt> them to do things like further customized rendering or
+animation.) The <tt class="docutils literal">Render</tt> method is then the one used during the game's
+<tt class="docutils literal">Draw</tt>. It is named <tt class="docutils literal">Render</tt> to distinguish that it renders to a
+given <tt class="docutils literal">SpriteBatch</tt> rather than handling every aspect of the drawing.
+By accepting the <tt class="docutils literal">SpriteBatch</tt> as an argument, it gives you the
+freedom to prime the <tt class="docutils literal">SpriteBatch</tt> in whichever ways that you need to
+prepare it for particular layering, alpha blending, or other needs that
+your game may have.</p>
+<p>In breaking out <tt class="docutils literal">AwardDisplay</tt> from <tt class="docutils literal">AwardsComponent</tt> two more
+useful information properties were added to <tt class="docutils literal">Award</tt> that are useful to
+display to players: <tt class="docutils literal">Award.Hint</tt> and <tt class="docutils literal">Award.Description</tt>. These two
+fields come directly from the Xbox's Achievement menu: <tt class="docutils literal">Award.Hint</tt> is
+shown when the award is locked to provide a hint to a player on how to
+unlock it. <tt class="docutils literal">Award.Description</tt> is then the text shown when a player
+has unlocked the award and can reveal how an award was rewarded, some
+pithy expression about the award, or anything else that might be
+interesting to a player that unlocked the reward. (<tt class="docutils literal">AwardDisplay</tt>
+displays both with the same property, <tt class="docutils literal">AwardDisplay.ShowDescription</tt>,
+and determines automatically which string to use based upon the current
+award progress.)</p>
+<p><tt class="docutils literal">AwardDisplay</tt> also takes into account the <tt class="docutils literal">PlayerIndex</tt> when
+rendering an award. This can be important in multiplayer games so that
+players can tell at a glance which player a notification refers to.
+The notifications on the Xbox 360 all use the &quot;ring of light&quot; to mark
+which player(s) a notification is for. The updated notification
+backgrounds included in the demo provide a subtle <tt class="docutils literal">PlayerIndex</tt>
+marker based upon the &quot;ring of light&quot;. Notice the subtle green glow in
+the upper-left corner (<tt class="docutils literal">PlayerIndex.One</tt>) here:</p>
+<img alt="Focus on the &quot;ring of light&quot; glow" src="http://media.worldmaker.net/blog/awardsdemo-images/awards-demo-index.jpg" />
+<div class="section" id="using-bars-to-assess-progress">
+<h2><a class="toc-backref" href="#id11">Using Bars to Assess Progress</a></h2>
+<p>Part 2 added the concept of partial progress to awards and provided
+counters to display that progress information. Progress bars are
+important ways to provide that sort of progress information at a glance
+and also happen to use a few techniques that are good to learn in XNA
+and often become relatively common patterns. So common, in fact, that
+the progress bar code in the updated demo is a good microcosm to explore
+the updated rendering code, and once the progress bar portions of it are
+well understood the rest should follow.</p>
+<p>The progress bars make use of two textures, a back and a fill texture
+which are expected to be of the same size. The <tt class="docutils literal">AwardDisplay</tt> class
+has a set of constants based upon the texture size:</p>
+<div class="highlight"><pre><span class="c1">// The height/width (square) of the progress bar textures</span>
+<span class="k">const</span> <span class="kt">int</span> <span class="n">ProgressBarSize</span> <span class="p">=</span> <span class="m">16</span><span class="p">;</span>
+
+<span class="c1">// The width of the left/right edge for the progress bar</span>
+<span class="k">const</span> <span class="kt">int</span> <span class="n">ProgressBarEdgeWidth</span> <span class="p">=</span> <span class="m">5</span><span class="p">;</span>
+
+<span class="c1">// The width of the stretchy middle for the progress bar</span>
+<span class="k">const</span> <span class="kt">int</span> <span class="n">ProgressBarMidWidth</span> <span class="p">=</span> <span class="n">ProgressBarSize</span> <span class="p">-</span> <span class="m">2</span> <span class="p">*</span> <span class="n">ProgressBarEdgeWidth</span><span class="p">;</span>
+</pre></div>
+<p>The texture this version of the demo uses for progress bars are both 16
+pixels by 16 pixels square. The textures are split horizontally into
+three sections: the left end cap, the right end cap and a middle portion
+that will be stretched to appropriately fill an <tt class="docutils literal">AwardDisplay</tt>. (These
+constants assume that both end caps are the same size.) The
+<tt class="docutils literal">ProgressBarMidWidth</tt> constant is intentionally written to show that
+the three constants are interrelated, even though the math that the
+compiler has to perform here is trivial (the mid-width here is 6
+pixels).</p>
+<p>Using these constants, source rectangles are defined:</p>
+<div class="highlight"><pre><span class="c1">// These source rectangles deconstruct the progress bar textures</span>
+<span class="k">readonly</span> <span class="n">Rectangle</span> <span class="n">pbarSourceLeft</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Rectangle</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="n">ProgressBarEdgeWidth</span><span class="p">,</span> <span class="n">ProgressBarSize</span><span class="p">);</span>
+<span class="k">readonly</span> <span class="n">Rectangle</span> <span class="n">pbarSourceMid</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Rectangle</span><span class="p">(</span><span class="n">ProgressBarEdgeWidth</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="n">ProgressBarMidWidth</span><span class="p">,</span> <span class="n">ProgressBarSize</span><span class="p">);</span>
+<span class="k">readonly</span> <span class="n">Rectangle</span> <span class="n">pbarSourceRight</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Rectangle</span><span class="p">(</span><span class="n">ProgressBarEdgeWidth</span> <span class="p">+</span> <span class="n">ProgressBarMidWidth</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span>
+    <span class="n">ProgressBarEdgeWidth</span><span class="p">,</span> <span class="n">ProgressBarSize</span><span class="p">);</span>
+</pre></div>
+<p>Source rectangles are passed to a <tt class="docutils literal">SpriteBatch</tt> to chop the textures
+into segments.  These source rectangles are used in conjunction with
+destination rectangles to easily handle several forms of scaling and
+stretching of parts of a texture. Source rectangles refer to the
+coordinates of the source texture and destination rectangles refer to
+the screen coordinates where the source rectangle will be displayed.</p>
+<p><tt class="docutils literal">AwardDisplay.CalculateProgressBar</tt> (called by <tt class="docutils literal">AwardDisplay.Update</tt>
+when appropriate) calculates the various destination rectangles for the
+six source regions of the progress bar: left, middle, and right for both
+the background and the fill textures. The background destination
+rectangles are built to fill the entire region available for the
+progress bar. The fill rectangle is sized to represent the current
+percentage of progress unlocked. The important line here is:</p>
+<div class="highlight"><pre><span class="c1">// This is the amount of the progress bar that is filled.</span>
+<span class="kt">float</span> <span class="n">progfilled</span> <span class="p">=</span> <span class="n">MathHelper</span><span class="p">.</span><span class="n">Lerp</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="n">progwidth</span><span class="p">,</span> <span class="n">Progress</span><span class="p">.</span><span class="n">Percentage</span><span class="p">);</span>
+</pre></div>
+<p>This uses <tt class="docutils literal">MathHelper.Lerp</tt> to calculate the amount of space that the
+progress bar should show as filled. <tt class="docutils literal">MathHelper</tt> is a useful
+swiss-army knife than can be useful in many situations. <tt class="docutils literal">Lerp</tt> is a
+shorthand name, used often in game and graphics programming, for <a class="reference external" href="http://en.wikipedia.org/wiki/Linear_interpolation">linear
+interpolation</a>. Given a range and a float between zero and one,
+<tt class="docutils literal">Lerp</tt> returns a value in the range that corresponds to the float's
+position on an imaginary line.  <tt class="docutils literal">Lerp</tt> is one of a handful of
+functions in <tt class="docutils literal">MathHelper</tt> that expect a float between zero and one.
+The easiest way to think of this range is that of a percentage:
+percentages are properly between 0% and 100% and easily expressed as
+decimals (floats) between zero and one. Based upon the progress
+percentage <tt class="docutils literal">Lerp</tt> returns a value between zero and our total available
+space for the progress bar (<tt class="docutils literal">progwidth</tt>), which is all that is needed
+to determine the amount of that space that should be filled for the
+progress bar.</p>
+<p>One good resource on the reasons why these functions are normalized to
+work with floats from zero to one can be found in <a class="reference external" href="http://blogs.msdn.com/shawnhar/archive/2007/05/03/transitions-part-one-the-importance-of-curves.aspx">Shawn Hargreaves'
+post on the importance of curves</a> in relation to transition effects
+and the game state management samples. Some of the same techniques can
+be used to experiment with the transitions employed in the
+<tt class="docutils literal">AwardNotification</tt> class.</p>
+</div>
+</div>
+<div class="section" id="animating-the-notification">
+<h1><a class="toc-backref" href="#id12">Animating the Notification</a></h1>
+<p><tt class="docutils literal">AwardNotification</tt> is a subclass of <tt class="docutils literal">AwardDisplay</tt> specifically for
+use in the notification popups presented by <tt class="docutils literal">AwardsComponent</tt>. Since
+<tt class="docutils literal">AwardDisplay</tt> takes care of all the important stuff for drawing award
+progress information to the screen, <tt class="docutils literal">AwardNotification</tt> can focus on
+timing how long the notification lasts. In addition,
+<tt class="docutils literal">AwardNotification</tt> adds in simple animation during its transition on
+and then off the screen. <tt class="docutils literal">AwardNotification</tt> also animates the
+progress bar for a notification.</p>
+<p><tt class="docutils literal">AwardNotification</tt> is a very simple state machine <a class="footnote-reference" href="#id6" id="id3">[2]</a> which can be
+easily diagrammed <a class="footnote-reference" href="#id7" id="id4">[3]</a>:</p>
+<img alt="Showing -&gt; Visible -&gt; Hiding -&gt; Finished -&gt; Showing" src="http://media.worldmaker.net/blog/awardsdemo-images/notifstate.png" />
+<p><tt class="docutils literal">AwardNotification</tt> has four possible animation states, which are
+named and documented in the <tt class="docutils literal">AwardNotification.State</tt> enum. Most of
+the states are simply timed: a progress float is incremented each
+frame based upon the elapsed time and the state's length <tt class="docutils literal">TimeSpan</tt>.
+This float is kept between zero and one and is thus a percentage of time
+elapsed for that state. As mentioned earlier in this article, floats
+between zero and one, percentages, are quite useful and many functions
+are optimized to work with them.</p>
+<p>The remaining state transition that isn't a simple timer happens when
+the method <tt class="docutils literal">AwardNotification.Notify</tt> is called (as is marked in the
+diagram above). This method sets the <tt class="docutils literal">AwardNotification</tt> up for a new
+animation. It also sets a few values that are used to animate the
+progress bar.</p>
+<div class="section" id="animating-the-progress-bar">
+<h2><a class="toc-backref" href="#id13">Animating the Progress Bar</a></h2>
+<p>The <tt class="docutils literal">AwardsComponent</tt> enqueues notifications based upon
+<tt class="docutils literal">Award.ProgressIncrement</tt>. As Part 2 points out, this is something
+that <em>Gears of War 2</em> does in order to balance between too many
+notifications and not enough. What Part 2 does not point out is that
+<em>Gears of War 2</em> also steadily animates the progress bar. In that game
+the notifications appear with the round increment, but then quickly
+&quot;catch up&quot; to any additional progress that is made. This is particularly
+useful on some of the notifications to let a player know to &quot;keep doing
+what they are doing&quot;.</p>
+<p><tt class="docutils literal">AwardNotification.Notify</tt> sets the starting progress to that round
+increment, but keeps track of that award's real progress information as
+well. During the &quot;visible&quot; state of <tt class="docutils literal">AwardNotification</tt> the progress
+information is interpolated between the starting round interval and the
+current progress.</p>
+<p>There are several interpolation techniques that could be used for this,
+including <tt class="docutils literal">MathHelper.Lerp</tt> described above. In this case
+<tt class="docutils literal">AwardNotification</tt> uses a manually-tweaked <tt class="docutils literal">Curve</tt> file, created
+with the <a class="reference external" href="http://creators.xna.com/en-US/utilities/curveeditor">Curve Editor</a> utility, called <tt class="docutils literal">ProgressCurve.xml</tt>. A curve
+file is added into the content pipeline like the art assets and the
+Curve Editor is a useful visual tool for designing mathematical
+functions that can be used in any number of places in a game.</p>
+<p>Here's what the <tt class="docutils literal">ProgressCurve.xml</tt> looks like in the editor:</p>
+<img alt="Progress Curve in Curve Editor" src="http://media.worldmaker.net/blog/awardsdemo-images/progress-curve.jpg" />
+<p>In the Curve Editor the x-axis can be thought of as the input range for
+the curve and the y-axis can be thought of as the output range for the
+curve. In this particular curve the range we are interested in is
+between zero and one: the input is to be the state's timer percentage.
+The output that we are interested in is then another number between zero
+and one, which might be thought of as the &quot;real progress percentage&quot;. As
+the curve nears 100% (1.0 on the y-axis) we get closer to whatever the
+player's true progress is.</p>
+<p>In this case the idea was to highlight the round increment for a good
+period (the first 30% of the timer), quickly (but smoothly) ramp up to
+near-current progress (reaching nearly 80% of the current progress
+around 44% of the timer). The last 20% of the timer is then &quot;real-time&quot;
+showing 100% of the current progress information. It was tweaked several
+times in the Curve Editor to produce a final result that looked
+interesting when pushing the buttons quite quickly in the updated
+AwardsDemo.</p>
+<p>Curves like this may seem complicated at first, but the Curve Editor is
+a powerful tool to get mathematical formulas in an easy to use visual
+fashion. Curves edited in this fashion can replace the simple curves
+offered in <tt class="docutils literal">MathHelper</tt> like <tt class="docutils literal">Lerp</tt> and <tt class="docutils literal">SmoothStep</tt>. If curves
+are edited for the range between zero and one in both axes it is a
+simple matter to replace an instance of one of these built-in functions
+with a custom curve. Sticking to this range also makes it simple to
+chain curve evaluation with these built-in functions and even with other
+curve evaluations.</p>
+<p>For example, the progress indication animation in <tt class="docutils literal">AwardNotification</tt>
+began as simply a <tt class="docutils literal">MathHelper.Lerp</tt>, but this did not seem interesting
+enough and the curve was created to make the animation more interesting,
+but it still uses the <tt class="docutils literal">Lerp</tt> to convert from the curve's output range
+to the progress range.</p>
+</div>
+</div>
+<div class="section" id="go-forth-and-award-your-players">
+<h1><a class="toc-backref" href="#id14">Go Forth and Award Your Players</a></h1>
+<p>At this point the updated AwardDemo project is even more polished than
+in Parts 1 and 2. It is also arguably better at this point than the
+in-game notifications of many retail Xbox 360 games, albeit most of them
+exclusively rely on the 360's dashboard notifications. Xbox Live Indie
+Games don't get 360 achievements and thus don't get the 360's dashboard
+access to achievement progress screens and notifications. This project,
+taking some cues from <em>Gears of War 2</em>, which has some of the strongest
+in-game notifications and progress screens, hopefully provides a great
+tool for any Xbox Live indie game developer to have a good,
+polished-looking awards system for their games.</p>
+<hr class="docutils" />
+<table class="docutils footnote" frame="void" id="id5" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td>Once you've installed <a class="reference external" href="http://darcs.net">darcs</a>, you can get repositories with only
+the changes up until a chosen patch with <tt class="docutils literal">darcs get AwardsDemo
+AwardsDemoNew <span class="pre">--to-patch=&quot;Patch</span> Name&quot;</tt>. Another good tool to use is
+<tt class="docutils literal">darcs changes <span class="pre">--interactive</span> <span class="pre">--reverse</span></tt> (<tt class="docutils literal"><span class="pre">--interactive</span></tt> can be
+abbreviated to <tt class="docutils literal"><span class="pre">-i</span></tt>), which walks you through one patch at a time.
+Typing 'n' will move you to the next patch in order, typing 'p' will
+show you the diff (changes) made by that patch in a nice pager, and
+typing 'x' will show just the files that were affected by that patch.
+Type 'q' to quit and '?' for more help.</td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id6" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id3">[2]</a></td><td>State machines are very useful conceptual models for programming.
+There is much study available on the subject of state machines,
+particularly the subset of <a class="reference external" href="http://en.wikipedia.org/wiki/Finite-state_machine">Finite State Machines</a> (which
+<tt class="docutils literal">AwardNotification</tt> qualifies as). Don't let the wealth of material
+available on the subject scare you from the usefulness of the
+concept.</td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id7" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id4">[3]</a></td><td>This diagram was very simply created with <a class="reference external" href="http://graphviz.org">Graphviz</a> using the
+text version of the diagram that can be found in the remarks section
+of comments of the enum <tt class="docutils literal">AwardNotification.State</tt>.</td></tr>
+</tbody>
+</table>
+<!-- vim: ai spell tw=72 -->
+</div>

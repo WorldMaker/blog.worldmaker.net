@@ -8,6 +8,8 @@ url: "http://blog.worldmaker.net" # the base hostname & protocol for your site
 twitter_username: WorldMaker
 github_username:  WorldMaker
 permalink: pretty
+exclude:
+ - _archive
 
 # Collections
 collections:

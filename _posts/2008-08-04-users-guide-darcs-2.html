@@ -1,0 +1,160 @@
+---
+date: 2008-08-04 11:41:25.862731
+db_id: 481
+db_updated: 2008-08-07 04:55:46.838219
+layout: post
+tags: darcs
+title: A User's Guide to Darcs 2
+---
+<p>I've been slowly working to push all my systems to using <a class="reference external" href="http://darcs.net/">darcs</a> 2.
+Darcs 2 has some major new features and more importantly some great new
+ways to get more performance out of darcs.  However, to truly make use
+of these improvements there are a few changes from a darcs 1 setup that
+are quick to make and well worth the effort.</p>
+<div class="section" id="enable-a-global-cache">
+<h1>Enable a Global Cache</h1>
+<p>Before anything else you should enable a global cache, as this one of
+the biggest performance enhancing tools of darcs 2 and you'll benefit
+the most from the following suggestions if you enable the global cache
+first.  The global cache acts as a giant patch pool where darcs first
+looks for a patch when grabbing new patches, thus you want it to be on
+the same file system as your repositories.  On file systems that support
+the cached patches are going to be hardlinked (the patch is only stored
+once, but represented in multiple places) across all of your
+repositories.</p>
+<p>To enable a Global Cache:</p>
+<div class="highlight"><pre><span class="nv">$ </span>mkdir -p <span class="nv">$HOME</span>/.darcs/cache
+<span class="nv">$ </span><span class="nb">echo </span>cache:<span class="nv">$HOME</span>/.darcs/cache &gt; <span class="nv">$HOME</span>/.darcs/sources
+</pre></div>
+<p>In XP or Vista you can run the same commands from <tt class="docutils literal">cmd.exe</tt> (Command
+Prompt) ignore the <tt class="docutils literal">$</tt> prompts and drop the <tt class="docutils literal"><span class="pre">-p</span></tt> from the <tt class="docutils literal">mkdir</tt>,
+replacing <tt class="docutils literal">$HOME</tt> with <tt class="docutils literal"><span class="pre">C:\Documents</span> and <span class="pre">Settings\*Username*</span></tt> or
+<tt class="docutils literal"><span class="pre">C:\Users\*Username*</span></tt>, respectively.</p>
+<p>There are some other advanced things you can do in a <a class="reference external" href="http://darcs.net/manual/node5.html#SECTION00510070000000000000">sources file</a>,
+such as create per-repository caches, read-only caches and even set a
+primary source repository above any used in a <tt class="docutils literal">darcs get</tt> or <tt class="docutils literal">darcs
+pull</tt> command.</p>
+</div>
+<div class="section" id="grab-hashed-repositories">
+<h1>Grab Hashed Repositories</h1>
+<p>Once you've got a global cache set up the fastest way to start making
+good use of it is to start working with hashed repositories.  In
+addition to making use of the global cache and automatic &quot;lazy&quot; loading
+of patches, hashed repositories have better patch and pristine
+management, making darcs repositories safer from corruption and bad
+tools.</p>
+<p>To get a hashed version of a darcs 1 repository simply:</p>
+<div class="highlight"><pre><span class="nv">$ </span>darcs get --hashed old-repo new-repo
+</pre></div>
+<p>To get the most from darcs 2 you may want to convert, at the very least,
+all of your local working versions of darcs 1 repositories to hashed
+repositories.  Darcs 2 can <tt class="docutils literal">push</tt> and <tt class="docutils literal">send</tt> from a hashed
+repository to a non-hashed &quot;classic&quot; darcs 1 repository, without any
+problems.  You just have to be aware that if you share a hashed
+repository other people accessing the hashed repository will need darcs
+2.  You can use <tt class="docutils literal">get</tt> or <tt class="docutils literal">put</tt> to create a non-hashed copy for
+publishing to darcs 1 users.</p>
+<p>You <em>can</em> initialize a new repository in the hashed format by <tt class="docutils literal">darcs
+init <span class="pre">--hashed</span></tt>, but if you are starting a new project and expect it to
+be used entirely by darcs 2 users your best bet is to use the new darcs
+2 format.</p>
+</div>
+<div class="section" id="use-darcs-2-format">
+<h1>Use Darcs 2 Format</h1>
+<p>For new projects it makes a good amount of sense to require darcs 2 for
+all developers and to make new repositories in darcs 2's new format.
+The darcs 2 format fixes some long-standing darcs 1 format issues, at
+the expense of direct interoperation with darcs 1 installations.  If you
+<em>must</em> support darcs 1 users, use the hashed format above as much as
+possible.  If you are starting a new project, push developers to darcs 2
+and use darcs 2 format.  Starting a new darcs-2 format repository is
+easy and quick:</p>
+<div class="highlight"><pre><span class="nv">$ </span>darcs init --darcs-2
+</pre></div>
+</div>
+<div class="section" id="convert-old-repositories-to-darcs-2">
+<h1>Convert Old Repositories to Darcs 2</h1>
+<p>Once all developers on your project have darcs 2 installed, it's worth
+considering converting active repositories to darcs 2 format as well.
+Conversion is not trivial, but it's mostly painless.  The biggest issue
+is that conversion can only be done once for each project (as conversion
+results in new versions of some patches that won't convert the same more
+than once).  Your best bet is to take a branch that is the largest
+superset of your project and convert it, recreating the mainline and
+other subset branches from it.  It may be a good time to re-evaluate
+some of your extent branches, before converting, and deprecate or merge
+them all into your biggest unstable branch.</p>
+<p>Conversion is a very simple command in darcs 2, and it will warn of the
+above problem that projects should only be converted once (and all at
+once):</p>
+<div class="highlight"><pre><span class="nv">$ </span>darcs convert old-repo new-repo
+</pre></div>
+</div>
+<div class="section" id="summary">
+<h1>Summary</h1>
+<p>Darcs 2 provides some new useful tools and it might take a short bit to
+become accustomed to them.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="17%" />
+<col width="41%" />
+<col width="41%" />
+</colgroup>
+<thead valign="bottom">
+<tr><th class="head">Format</th>
+<th class="head">Darcs 1 push/pull</th>
+<th class="head">Darcs 2 push/pull</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr><td>darcs-1</td>
+<td>Yes</td>
+<td>Yes</td>
+</tr>
+<tr><td>hashed</td>
+<td><strong>No</strong></td>
+<td>Yes</td>
+</tr>
+<tr><td>darcs-2</td>
+<td><strong>No</strong></td>
+<td>Yes</td>
+</tr>
+</tbody>
+</table>
+<table border="1" class="docutils">
+<colgroup>
+<col width="18%" />
+<col width="18%" />
+<col width="34%" />
+<col width="29%" />
+</colgroup>
+<thead valign="bottom">
+<tr><th class="head"><!--  -->
+</th>
+<th class="head" colspan="3">Can Be Converted To</th>
+</tr>
+<tr><th class="head">Format</th>
+<th class="head">darcs-1</th>
+<th class="head">hashed</th>
+<th class="head">darcs-2</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr><td>darcs-1</td>
+<td>--</td>
+<td>Yes</td>
+<td>Yes (Once!)</td>
+</tr>
+<tr><td>hashed</td>
+<td>Yes</td>
+<td>--</td>
+<td>Yes (Once!)</td>
+</tr>
+<tr><td>darcs-2</td>
+<td><strong>No</strong></td>
+<td><strong>No</strong></td>
+<td>--</td>
+</tr>
+</tbody>
+</table>
+</div>
