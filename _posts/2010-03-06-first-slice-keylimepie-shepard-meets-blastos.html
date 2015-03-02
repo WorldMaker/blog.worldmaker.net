@@ -12,27 +12,19 @@ title: 'A First Slice of KeyLimePie: Shepard Meets Blastos'
 <img alt="http://if.unlore.com/shepbla.png" src="http://if.unlore.com/shepbla.png" />
 <p>That is directly from my visualization tool (&quot;whip&quot;), with no doctoring of any sort. It shows the entire branching layout of the conversation from start to finish, including pre-conditions. I figure that you shouldn't have much trouble following it if you have any experience with state machine diagrams and/or <em>Mass Effect</em>. You'll notice the requisite paragon/renegade checks, of course. It's a bit harder to tell from just the compass direction names, but you should also notice that I also try to stick to the directional conventions of <em>Mass Effect</em>: northern (up) choices are predominantly more paragon, while southern (down) choices are predominantly more renegade; eastern (left) choices generally lead towards the conclusion of the conversation, while western (right) choices generally lead towards additional information, but with the exception of &quot;strong&quot; renegade/paragon actions which are also westerly.</p>
 <p>Anyway, now that I've rambled enough, why don't you try actually playing through this quick/simple conversation? What follows is the first prerelease of KeyLimePie. It has some rough edges and the current UI is a bit on the crude side, I think, but I've not yet had a Graphic Designer offer to lend their skills to make KeyLimePie awesome. However, this full test conversation is playable and should give some idea of where I'm going with KeyLimePie. I'd love to hear any feedback you have on this project. You'll need Silverlight 2 to view this (presumably Moonlight 2 should also work, but I won't officially test it until after I post this):</p>
-<div class="system-message">
-<p class="system-message-title">System Message: WARNING/2 (<tt class="docutils">&lt;string&gt;</tt>, line 15)</p>
-<p>&quot;raw&quot; directive disabled.</p>
-<pre class="literal-block">
-.. raw:: html
+    <div id="silverlightControlHost">
+                <object data="data:application/x-silverlight-2," type="application/x-silverlight-2" width="480" height="320">
+                        <param name="source" value="http://if.unlore.com/KeyLimePie.meff.xap"/>
+                        <param name="background" value="white" />
+                        <param name="autoUpgrade" value="true" />
+                        <param name="enableHtmlAccess" value="true" /> <!-- Because I use it for Blend checking? -->
+                        <a href="http://go.microsoft.com/fwlink/?LinkID=124807" style="text-decoration: none;">
+                        <img src="http://go.microsoft.com/fwlink/?LinkId=108181" alt="Get Microsoft Silverlight" style="border-style: none"/>
+                        </a>
+                </object>
+                <iframe style='visibility:hidden;height:0;width:0;border:0px'></iframe>
+    </div>
 
-    &lt;div id=&quot;silverlightControlHost&quot;&gt;
-                &lt;object data=&quot;data:application/x-silverlight-2,&quot; type=&quot;application/x-silverlight-2&quot; width=&quot;480&quot; height=&quot;320&quot;&gt;
-                        &lt;param name=&quot;source&quot; value=&quot;http://if.unlore.com/KeyLimePie.meff.xap&quot;/&gt;
-                        &lt;param name=&quot;background&quot; value=&quot;white&quot; /&gt;
-                        &lt;param name=&quot;autoUpgrade&quot; value=&quot;true&quot; /&gt;
-                        &lt;param name=&quot;enableHtmlAccess&quot; value=&quot;true&quot; /&gt; &lt;!-- Because I use it for Blend checking? --&gt;
-                        &lt;a href=&quot;http://go.microsoft.com/fwlink/?LinkID=124807&quot; style=&quot;text-decoration: none;&quot;&gt;
-                        &lt;img src=&quot;http://go.microsoft.com/fwlink/?LinkId=108181&quot; alt=&quot;Get Microsoft Silverlight&quot; style=&quot;border-style: none&quot;/&gt;
-                        &lt;/a&gt;
-                &lt;/object&gt;
-                &lt;iframe style='visibility:hidden;height:0;width:0;border:0px'&gt;&lt;/iframe&gt;
-    &lt;/div&gt;
-
-</pre>
-</div>
 <table class="docutils footnote" frame="void" id="id3" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
