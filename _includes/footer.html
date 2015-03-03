@@ -1,19 +1,11 @@
-<footer class="site-footer">
+<footer id="ft" class="site-footer">
+  <div class="container">
+	<div class="col-md-6">
+		<a xmlns:sioc="http://rdfs.org/sioc/ns#" rel="sioc:has_owner" href="https://creativecommons.net/WorldMaker/"><img src="http://i.creativecommons.net/p/WorldMaker/" style="border:0px; vertical-align:middle;" /></a> Copyright &copy; 1999-2012 <a href="mailto:me@worldmaker.net">Max Battcher / WorldMaker</a>. <a href="http://creativecommons.org/licenses/by-nc-sa/3.0/">Some Rights Reserved</a>.
+	</div>
+        <div class="col-md-6 text-right">
 
-  <div class="wrapper">
-
-    <h2 class="footer-heading">{{ site.title }}</h2>
-
-    <div class="footer-col-wrapper">
-      <div class="footer-col  footer-col-1">
-        <ul class="contact-list">
-          <li>{{ site.title }}</li>
-          <li><a href="mailto:{{ site.email }}">{{ site.email }}</a></li>
-        </ul>
-      </div>
-
-      <div class="footer-col  footer-col-2">
-        <ul class="social-media-list">
+        <ul class="social-media-list list-inline">
           {% if site.github_username %}
           <li>
             <a href="https://github.com/{{ site.github_username }}">
@@ -42,14 +34,19 @@
             </a>
           </li>
           {% endif %}
+	  <li><a href="/about/">Colophon</a></li>
         </ul>
-      </div>
-
-      <div class="footer-col  footer-col-3">
-        <p class="text">{{ site.description }}</p>
-      </div>
-    </div>
-
-  </div>
-
+          <!--<a href="http://jigsaw.w3.org/css-validator/check/referer"><img src="http://media.worldmaker.net/images/fluidcss.gif" alt="validate the css" /></a>
+          <a href="http://validator.w3.org/check?uri=referer"><img src="http://media.worldmaker.net/images/fluidxhtml1.1.gif" alt="validate the css" /></a>-->
+        </div>
 </footer>
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+<script src="https://raw.github.com/ekalinin/typogr.js/master/typogr.min.js"></script>
+<script>
+$(function() {
+    $('#page-content').html(typogr.typogrify($('#page-content')));
+});
+</script> 
+

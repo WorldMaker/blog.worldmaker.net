@@ -1,11 +1,20 @@
 ---
 layout: page
-title: About
+title: Colophon
 permalink: /about/
+redirect_from:
+ - /colophon/
 ---
 
-This is the base Jekyll theme. You can find out more info about customizing your Jekyll theme, as well as basic Jekyll usage documentation at [jekyllrb.com](http://jekyllrb.com/)
+This blog is now synthesized by the two-faced [Jekyll](http://jekyllrb.com)
+in [his most common laboratory](http://pages.github.com).
 
-You can find the source code for the Jekyll new theme at: [github.com/jglovier/jekyll-new](https://github.com/jglovier/jekyll-new)
-
-You can find the source code for Jekyll at [github.com/jekyll/jekyll](https://github.com/jekyll/jekyll)
+The current design is *dancingboots 2015* once based upon
+[fluidity.com](http://www.oswd.org/design/preview/id/2540) by
+[drd](http://www.oswd.org/user/profile/id/6369), largely rewritten by me
+as a subtle customization of [Bootstrap 3.0](http://getbootstrap.com)
+via [Bootswatch](http://bootswatch.com). It uses the
+[Tango](http://tango.freedesktop.org/Tango_Icon_Theme_Guidelines) color
+palette as a reference palette and is compiled with Less. Font families
+for modern browsers are hosted by Google Web Fonts and include [Exo
+2](http://ndiscovered.com/exo-2/).
