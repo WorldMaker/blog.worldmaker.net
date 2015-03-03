@@ -1,0 +1,23 @@
+---
+layout: page
+title: DRAGONzine
+---
+
+<p>DRAGONzine was my attempt to regularly edit and publish a web-based
+magazine of sci-fi/fantasy in High School, even taking contributions
+from a few other students. At its peak I wrote around 5k-6k words in a
+month. Here are most of my own preserved contributions:</p>
+
+<dl>
+{% for issue in site.data.dzissues %}
+   <dt id="issue{{ issue[0] }}">#{{ issue[0] }}</dt>
+   <dd class="text-info">Published: {{ issue[1] }}</dd>
+   {% assign stories = site.posts | where:"dz_issue",issue[0] %}
+   {% for story in stories %}
+   <dd><h2><a href="{{ story.url | prepend: site.baseurl }}">{{ story.title }}</a></h2></dd>
+   {% if story.excerpt %}
+   <dd>{{ story.excerpt }}</dd>
+   {% endif %}
+   {% endfor %}
+{% endfor %}
+</dl>
