@@ -1,6 +1,7 @@
 ---
 layout: work
 title: '"Joe" Zhevoon'
+slug: joe-zhevoon
 worlds:
 - meta
 ---

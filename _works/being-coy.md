@@ -1,6 +1,7 @@
 ---
 layout: work
 title: Being Coy
+slug: being-coy
 worlds:
 - other
 ---

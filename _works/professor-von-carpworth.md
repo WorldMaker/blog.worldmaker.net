@@ -1,6 +1,7 @@
 ---
 layout: work
 title: Professor von Carpworth
+slug: professor-von-carpworth
 worlds:
 - psychoptrics
 ---

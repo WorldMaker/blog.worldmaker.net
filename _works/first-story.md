@@ -1,6 +1,7 @@
 ---
 layout: work
 title: The First Story
+slug: first-story
 worlds:
 - other
 ---

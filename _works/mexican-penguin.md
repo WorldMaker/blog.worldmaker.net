@@ -1,6 +1,7 @@
 ---
 layout: work
 title: Mexican Penguin
+slug: mexican-penguin
 worlds:
 - mexican-penguin
 ---

@@ -1,6 +1,7 @@
 ---
 layout: work
 title: Meta-War
+slug: meta-war
 worlds:
 - meta
 - old-man

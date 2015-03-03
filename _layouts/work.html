@@ -9,6 +9,32 @@ layout: default
 
   <article class="post-content col-md-8 col-md-offset-2">
     {{ content }}
-  </article>
 
+    {% assign stories = site.posts | where:"story_work",page.slug | sort:'story_number' %}
+    <dl>
+    {% for post in stories %}
+	<dt>#{{ post.story_number }}</dt>
+	<dd><h2><a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a></h2></dd>
+	{% if post.excerpt %}
+	<dd>{{ post.excerpt }}</dd>
+	{% endif %}
+    {% endfor %}
+    </dl>
+
+    {% if page.worlds %}
+    <div class="text-info text-center">Worlds: 
+    <ul class="list-inline">
+    {% for world in site.worlds %}
+        {% assign display = false %}
+        {% for w in page.worlds %}
+            {% if w == world.slug %}{% assign display = true %}{% endif %}
+        {% endfor %}
+        {% if display %}
+        <li><a href="{{ world.url | prepend: site.baseurl }}">{{ world.title }}</a></li>
+        {% endif %}
+    {% endfor %}
+    </ul>
+    </div>
+    {% endif %}
+  </article>
 </div>

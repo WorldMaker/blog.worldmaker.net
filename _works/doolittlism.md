@@ -1,6 +1,7 @@
 ---
 layout: work
 title: Doolittlism
+slug: doolittlism
 worlds:
 - animalstrike
 ---
