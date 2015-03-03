@@ -8,6 +8,8 @@ url: "http://blog.worldmaker.net" # the base hostname & protocol for your site
 twitter_username: WorldMaker
 github_username:  WorldMaker
 encoding: utf-8
+paginate: 50
+paginate_path: /archive:num/
 permalink: pretty
 exclude:
  - _archive

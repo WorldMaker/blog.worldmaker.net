@@ -4,21 +4,53 @@ layout: default
 
 <div class="home">
 
-  <h1 class="post-title">Posts</h1>
+  {% if paginator.page == 1 %}
+  <h1 class="post-title">Recent Posts</h1>
+  <ul class="list-inline">
+    <li><a href="/work/">My Story Works</a></li>
+    <li><a href="/world/">My Story Worlds</a></li>
+  </ul>
+  {% else %}
+  <h1 class="post-title">Post Archive Page {{ paginator.page }}</h1>
+  {% endif %}
 
   <dl class="post-list">
-    {% for post in site.posts %}
+    {% for post in paginator.posts %}
         <dt class="post-meta">{{ post.date | date: "%b %-d, %Y" }}</dt>
 
         <dd>
           <h2><a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a></h2>
         </dd>
-	{% comment %}
-        <dd>{{ post.excerpt }}</dd>
-	{% endcomment %}
     {% endfor %}
   </dl>
 
+  {% if paginator.page == 1 %}
   <p class="rss-subscribe"><a href="{{ "/feed.xml" | prepend: site.baseurl }}"><img src="http://media.worldmaker.net/images/feed-icon-32x32.png" alt="RSS Feed" /></a></p>
+  {% endif %}
 
+{% if paginator.total_pages > 1 %}
+<ul class="pagination">
+  {% if paginator.previous_page %}
+    <li><a href="{{ paginator.previous_page_path | prepend: site.baseurl | replace: '//', '/' }}">&#x25C4; Prev</a></li>
+  {% else %}
+    <li class="disabled"><a href="#">&#x25C4; Prev</a></span>
+  {% endif %}
+
+  {% for page in (1..paginator.total_pages) %}
+    {% if page == paginator.page %}
+      <li class="active"><a href="#">{{ page }}</a></li>
+    {% elsif page == 1 %}
+      <li><a href="{{ '/index.html' | prepend: site.baseurl | replace: '//', '/' }}">{{ page }}</a></li>
+    {% else %}
+      <li><a href="{{ site.paginate_path | prepend: site.baseurl | replace: '//', '/' | replace: ':num', page }}">{{ page }}</a></li>
+    {% endif %}
+  {% endfor %}
+
+  {% if paginator.next_page %}
+    <li><a href="{{ paginator.next_page_path | prepend: site.baseurl | replace: '//', '/' }}">Next &#x25BA;</a></li>
+  {% else %}
+    <li class="disabled"><a href="#">Next &#x25BA;</a></li>
+  {% endif %}
+</ul>
+{% endif %}
 </div>
