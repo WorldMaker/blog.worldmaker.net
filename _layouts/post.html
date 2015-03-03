@@ -54,6 +54,11 @@ layout: default
       <li><a href="{{ page.next.url }}">{{ page.next.title }} &#x25BA;</a></li>
     {% endif %}
   </ul>
+  <ul class="list-inline text-center">
+    {% for tag in page.tags %}
+    <li><a href="/tag/#{{ tag }}">{{ tag }}</a></li>
+    {% endfor %}
+  </ul>
 </div>
 
 <div class="row">
