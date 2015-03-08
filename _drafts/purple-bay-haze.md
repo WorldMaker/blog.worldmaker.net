@@ -69,7 +69,8 @@ question:
 
 It looks trite on paper, and it sounded trite nearly as soon as I had
 said it, but it also felt surprisingly *right*, in that moment, as my
-simplest answer to that question.
+simplest answer to that question. It does ring as a decent summary for a
+half-dozen stories and a lot of the conversations I've been having.
 
 [^1]: I've also got long rants about how much this irks me and how many
   problems I've got with the way technical interviews are and how deeply
