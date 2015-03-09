@@ -126,8 +126,9 @@ I don't know where I'm going to end up and it is stressful. But there's
 hope embedded in that stress. Hope that maybe I will get a chance to
 follow my passion to do something exciting.
 
-[^1]: I've also got long rants about how much this irks me and how many
-  problems I've got with the way technical interviews are and how deeply
-  "important" they are to most software hiring cycles.
+[^1]:
+    I've also got long rants about how much this irks me and how many
+    problems I've got with the way technical interviews are and how deeply
+    "important" they are to most software hiring cycles.
 
 <!-- vim: set ai spell tw=72 ft=markdown enc=utf-8: -->
