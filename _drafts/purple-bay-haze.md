@@ -70,10 +70,64 @@ question:
 It looks trite on paper, and it sounded trite nearly as soon as I had
 said it, but it also felt surprisingly *right*, in that moment, as my
 simplest answer to that question. It does ring as a decent summary for a
-half-dozen stories and a lot of the conversations I've been having.
+half-dozen stories and a lot of the conversations I've been having. It's
+also not far from connective tissue amongst my attempts at writing and
+game development as well as my day job goals in software engineering.
+
+It's such a simple and trite thing to say, but already in my experience
+it has been surprisingly hard to accomplish. I have too many companies
+on my resume that seemed to focus amazing amounts of energy into
+increasing net *misery* amongst their own employees. I've worked on too
+many internal applications and had a conversation in the form of:
+
+"Who are the users of this application?"
+
+"That team over there..."
+
+"Should we ask them what they want out of the application?"
+
+"Who cares?"
+
+*I care*. It shouldn't be a *rebellious act* to prioritize the feature
+and bug requests of an application's actual users. Corporate America is
+miserable enough that I certainly hope that I never understand the
+mentalities that lead to this. I hope that I can avoid ever again having
+a boss telling me to do *less work* for the customer of an application I
+am working on.
+
+I'm not sure if there's an exchange rate where having one drunk
+conversation with a man that seems to have been through fifteen years of
+Burning Man equates to half a Burning Man experience, but I do feel I
+owe some more respect to Silicon Valley than I've given it the past few
+years. I've felt that Silicon Valley is too easily hypnotized by its own
+technology and sometimes loses touch with reality, but I absolutely have
+to admit that even my worst experiences with Silicon Valley the
+companies all seemed to come from the right place and have good
+intentions. They certainly know where their passion comes from. (Even if
+maybe some of it is drugs. But who am I to judge?)
+
+I still think there is probably some other deep lesson I missed in such
+an odd conversation, but pondering if I've done enough towards my
+passion and where that might take me next in my career is certainly a
+start.
+
+---
+
+"Like you, Louisville is my hub," Jimmy answered to the question of what
+he is doing in Louisville when he could still be in Cupertino, or
+Holland where he is supposedly moving with his new fiancée. I certainly
+get that concept. A portion of my stress in this job search is the clear
+realization that to follow my passion it really is time to relocate
+somewhere else for a while. It's always hard to move and it's looking
+particularly hard staring at my finances and the emotional weight of
+leaving my current home.
+
+I don't know where I'm going to end up and it is stressful. But there's
+hope embedded in that stress. Hope that maybe I will get a chance to
+follow my passion to do something exciting.
 
 [^1]: I've also got long rants about how much this irks me and how many
   problems I've got with the way technical interviews are and how deeply
   "important" they are to most software hiring cycles.
 
-<!-- vim: set ai spell tw=72 ft=markdown: -->
+<!-- vim: set ai spell tw=72 ft=markdown enc=utf-8: -->
