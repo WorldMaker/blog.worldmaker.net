@@ -4,7 +4,7 @@ title: Composite Radial Progress Demo
 ---
 
 [Composite Radial Progress Demo](http://worldmaker.net/compradprog/)
-([source](http://github.com/WorldMaker/compradprog/) is a user
+([source](http://github.com/WorldMaker/compradprog/)) is a user
 experience idea I've had for years that I thought would be worth
 investigating. With the "modern gen" games [^3] filled to the brim with
 radial progress bars now,  I decided to build a quick prototype of this
@@ -60,16 +60,16 @@ hasn't done a loading bar or something similar already even remotely
 like my little prototype here.
 
 [^1]:
-  It may not be "every" programmer, but it certainly seems a large
-  percentage. I'm fairly convinced that this is place where a lot of
-  Unix distributions come from, for instance.
+    It may not be "every" programmer, but it certainly seems a large
+    percentage. I'm fairly convinced that this is place where a lot of
+    Unix distributions come from, for instance.
 
 [^2]:
-  Times change expectations: It's quite a bit more common these days to
-  see backwards momentum in progress bars and not surprise the users
-  that something might be wrong.
+    Times change expectations: It's quite a bit more common these days
+    to see backwards momentum in progress bars and not surprise the
+    users that something might be wrong.
 
 [^3]:
-  Even Tetris Ultimate is filled with radial progress wheels. Tetris!
-  It's a game comprised of blocks and the UI is full of circles and arcs
-  now!
+    Even Tetris Ultimate is filled with radial progress wheels. Tetris!
+    It's a game comprised of blocks and the UI is full of circles and
+    arcs now!
