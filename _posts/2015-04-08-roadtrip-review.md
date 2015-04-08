@@ -32,7 +32,7 @@ I'm just now starting to pick up on is that part of what makes me a
 my characters. That partly explains where I'm blocked with several of
 the stories sitting on my hard drive.
 
-Stops in the road trip:
+Overview of the stops in the road trip:
 
 - Brevard, NC (scenic "Land of Waterfalls")
 - Durham, NC
@@ -51,6 +51,41 @@ getting to Atlanta.
 
 There were a bunch of very scenic parts amongst the legs of the trip and
 just about everywhere I stopped was equally hospitable and interesting
-in one way or other.
+in one way or other. Savannah was a small mini-vacation of sorts and I
+got to see a few of its sights. I was given a unique tour of Huntsville
+while I was there. Alpharetta and Brevard were cheap stops at Hampton
+Suites to break up long drives in half, so I didn't see much of them
+other than very hospitable restaurants within walking distance of the
+Hampton. The Hampton in Brevard had signs encouraging one to take a hike
+amongst the forest and waterfalls nearby; I didn't follow through on
+that suggestion but it sounded like a good idea should I end up near
+there again in the future.
+
+I was rather busy in Durham so I didn't see as much of Raleigh-Durham as
+I probably should have. My attempt to sightsee there lead to my trek out
+to beautiful Hillsborough, which was as much of a failed trip as it was
+a successful bit of scenery. I had my sights on visiting a brew pub
+there (Mystery Brewing), but had not realized from the map what sort of
+a trek it was to Hillsborough: it's 30 minutes away but everyone
+(including the cab companies I asked) treats it like it's an hour or
+more away. One of those interesting sorts of time warps that exist in
+the country's geography. I got some of a feel for why that was in making
+the trip, as it does seem somewhat "off the beaten path" compared to the
+more suburbanized neighboring areas. The trip wasn't a great success
+because at the point I got to Hillsborough I had already had a busy day
+and was nervous about getting food and sleep so I turned back around
+almost immediately and ate a quick meal at a fast food place on the way
+back to that night's hotel. I was also having a strange time dealing
+with the surprising climate difference between Hillsborough and Durham,
+at least that night. Should there be a next time I would definitely be
+better prepared.
+
+I'm still waiting on some results back from the work that I put into the
+trip, but I'm hopeful and optimistic that interesting things should come
+out of the trip. I'm vague here primarily due to superstitions about
+spoiling the outcomes more so than any concern about secrecy. Like I
+said, I'm hopeful about what those outcomes might be. It was a good
+roadtrip and maybe a sign of things to come, which is part of why there
+are so many books about the great American roadtrip.
 
 <!-- vim: set ai spell tw=72 ft=markdown: -->
