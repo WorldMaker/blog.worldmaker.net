@@ -4,7 +4,7 @@ title: "Login is Terrible: Web Login the Simple Way, or Mozilla Persona Can Save
 ---
 
 Tonight I gave a talk at the [Kentucky Open Source Software meetup](http://kyoss.org)
-on *Mozilla Persona* as the login system that could save the web, if we can manage
+on [Mozilla Persona](http://persona.org) as the login system that could save the web, if we can manage
 to help it get adopted in more places. It's a safer, more private, easy to use
 alternative to the mess of technologies and disconnected password databases we
 currently use. The concept was to demonstrate Persona login into an actual real world
