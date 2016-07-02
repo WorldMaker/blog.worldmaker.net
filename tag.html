@@ -4,10 +4,10 @@ title: Tags
 ---
 
 <dl>
-{% for tag in site.tags %}
-<dt id="{{ tag[0] }}">{{ tag[0] }}</dt>
-  {% for post in tag[1] %}
-<dd><a href="{{ post.url }}">{{ post.title }}</a></dd>
+  {% for tag in site.tags %}
+  <dt id="{{ tag[0] }}">{{ tag[0] }}</dt>
+    {% for post in tag[1] %}
+  <dd><a href="{{ post.url }}">{{ post.title }}</a></dd>
+    {% endfor %}
   {% endfor %}
-{% endfor %}
 </dl>

@@ -1,40 +1,31 @@
 ---
-layout: default
+layout: page
 ---
-<div class="post">
+{{ content }}
 
-  <header class="post-header">
-    <h1 class="post-title">{{ page.title }}</h1>
-  </header>
+{% assign stories = site.posts | where:"story_work",page.slug | sort:'story_number' %}
+<dl>
+{% for post in stories %}
+<dt>#{{ post.story_number }}</dt>
+<dd><a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a></dd>
+{% if post.excerpt %}
+<dd>{{ post.excerpt }}</dd>
+{% endif %}
+{% endfor %}
+</dl>
 
-  <article class="post-content col-md-8 col-md-offset-2">
-    {{ content }}
-
-    {% assign stories = site.posts | where:"story_work",page.slug | sort:'story_number' %}
-    <dl>
-    {% for post in stories %}
-	<dt>#{{ post.story_number }}</dt>
-	<dd><h2><a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a></h2></dd>
-	{% if post.excerpt %}
-	<dd>{{ post.excerpt }}</dd>
-	{% endif %}
+{% if page.worlds %}
+<div class="text-info text-center">Worlds: 
+<ul class="list-inline">
+{% for world in site.worlds %}
+    {% assign display = false %}
+    {% for w in page.worlds %}
+        {% if w == world.slug %}{% assign display = true %}{% endif %}
     {% endfor %}
-    </dl>
-
-    {% if page.worlds %}
-    <div class="text-info text-center">Worlds: 
-    <ul class="list-inline">
-    {% for world in site.worlds %}
-        {% assign display = false %}
-        {% for w in page.worlds %}
-            {% if w == world.slug %}{% assign display = true %}{% endif %}
-        {% endfor %}
-        {% if display %}
-        <li><a href="{{ world.url | prepend: site.baseurl }}">{{ world.title }}</a></li>
-        {% endif %}
-    {% endfor %}
-    </ul>
-    </div>
+    {% if display %}
+    <li><a href="{{ world.url | prepend: site.baseurl }}">{{ world.title }}</a></li>
     {% endif %}
-  </article>
+{% endfor %}
+</ul>
 </div>
+{% endif %}

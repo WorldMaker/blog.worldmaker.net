@@ -1,68 +1,91 @@
 ---
 layout: default
 ---
-{% capture work_info %}
-      {% if page.story_work %}
-      {% assign size = site.posts | where:"story_work",page.story_work | size %}
-      {% for work in site.works %}{% if work.slug == page.story_work %} &bull; Part {{ page.story_number }} of {{ size }} in <a href="{{ work.url }}">{{ work.title }}</a>{% endif %}{% endfor %}
+<article id="co">
+  <div class="content">
+    {{ content }}
+  </div>
+
+  {% if page.story_commentary and page.story_commentary != '' %}
+  <aside class="content">
+    <h6>Commentary</h6>
+    <p>{{ page.story_commentary }}</p>
+  </aside>
+  {% endif %}
+
+  <aside>
+    <div id="disqus_thread"></div><script type="text/javascript" src="http://disqus.com/forums/worldmaker-blog/embed.js"></script><noscript><a href="http://worldmaker-blog.disqus.com/?url=ref">View the discussion thread.</a></noscript><a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+  </aside>
+</article>
+
+{% capture nav_extra %}
+  <div class="lx lxprimary">
+    <div class="lxcaption">Earthdate</div>
+    <span>{{ page.date | date: "%b %-d, %Y" }}</span>
+  </div>
+  {% if page.author %}
+  <div class="lx">
+    <div class="lxcaption">Author</div>
+    <span>{{ page.author }}</span>
+  </div>
+  {% endif %}
+  {% if page.dz_issue %}
+  <div class="lx">
+    <div class="lxcaption">DRAGONzine</div>
+    <span>First published in <a href="/work/dragonzine/#issue{{ page.dz_issue }}">DRAGONzine #{{ page.dz_issue }}</a></span>
+  </div>
+  {% endif %}
+  {% if page.meta %}
+  <div class="lx">
+    <div class="lxcaption">Meta</div>
+    <span>{{ page.meta }}</span>
+  </div>
+  {% endif %}
+  {% if page.story_work %}
+    {% assign size = site.posts | where:"story_work",page.story_work | size %}
+    {% for work in site.works %}
+      {% if work.slug == page.story_work %}
+      <div class="lx lxprimary">
+        <div class="lxcaption">Story Work</div>
+        <span>Part {{ page.story_number }} of {{ size }} in <a href="{{ work.url }}">{{ work.title }}</a></span>
+      </div>
       {% endif %}
+    {% endfor %}
+    {% assign prev_number = page.story_number | minus:1 %}
+    {% assign next_number = page.story_number | plus:1 %}
+    {% assign prev = site.posts | where:"story_work",page.story_work | where:"story_number",prev_number | first %}
+    {% assign next = site.posts | where:"story_work",page.story_work | where:"story_number",next_number | first %}
+    {% if next %}
+      <div class="lx lxprimary">
+        <div class="lxcaption">Next Chapter</div>
+        <a href="{{ next.url }}">{{ next.title }}</a>
+      </div>
+    {% endif %}
+    {% if prev %}
+      <div class="lx primary">
+        <div class="lxcaption">Previous Chapter</div>
+        <a href="{{ prev.url }}">{{ prev.title }}</a>
+      </div>
+    {% endif %}
+  {% endif %}
+  {% if page.next %}
+    <div class="lx">
+      <div class="lxcaption">Next Post</div>
+      <a href="{{ page.next.url }}">{{ page.next.title }}</a>
+    </div>
+  {% endif %}
+  {% if page.previous %}
+    <div class="lx">
+      <div class="lxcaption">Previous Post</div>
+      <a href="{{ page.previous.url }}">{{ page.previous.title }}</a>
+    </div>
+  {% endif %}
+  <div class="lx">
+    <div class="lxcaption">Tags</div>
+    <p>
+      {% for tag in page.tags %}<a class="tag" href="/tag/#{{ tag }}">{{ tag }}</a>{% endfor %}
+    </p>
+  </div>
 {% endcapture %}
 
-<div class="post row">
-
-  <header class="post-header">
-    <h1 class="post-title">{{ page.title }}</h1>
-    <p class="post-meta text-info text-center">{{ page.date | date: "%b %-d, %Y" }}{% if page.author %} • {{ page.author }}{% endif %}
-      {% if page.dz_issue %} &bull; First published in <a href="/work/dragonzine/#issue{{ page.dz_issue }}">DRAGONzine #{{ page.dz_issue }}</a>{% endif %}
-      {{ work_info }}
-      {% if page.meta %} • {{ page.meta }}{% endif %}</p>
-  </header>
-
-  <article class="post-content col-md-8 col-md-offset-2">
-    {{ content }}
-  </article>
-</div>
-
-<div class="row">
-  {% if page.story_work %}
-  <div class="xm">
-    {% if page.story_commentary and page.story_commentary != '' %}
-    <p>{{ page.story_commentary }}</p>
-    {% endif %}
-    <p>{{ work_info }}</p>
-    <ul class="pager">
-  {% assign prev_number = page.story_number | minus:1 %}
-  {% assign next_number = page.story_number | plus:1 %}
-  {% assign prev = site.posts | where:"story_work",page.story_work | where:"story_number",prev_number | first %}
-  {% assign next = site.posts | where:"story_work",page.story_work | where:"story_number",next_number | first %}
-  {% if prev %}
-  <li><a href="{{ prev.url }}">&#x25C4; {{ prev.title }}</a></li>
-  {% endif %}
-  {% if next %}
-  <li><a href="{{ next.url }}">{{ next.title }} &#x25BA;</a></li>
-  {% endif %}
-    </ul>
-  {% endif %}
-</div>
-
-<div class="row xd">
-  <ul class="pager">
-    {% if page.previous %}
-      <li><a href="{{ page.previous.url }}">&#x25C4; {{ page.previous.title }}</a></li>
-    {% endif %}
-    {% if page.next %}
-      <li><a href="{{ page.next.url }}">{{ page.next.title }} &#x25BA;</a></li>
-    {% endif %}
-  </ul>
-  <ul class="list-inline text-center">
-    {% for tag in page.tags %}
-    <li><a href="/tag/#{{ tag }}">{{ tag }}</a></li>
-    {% endfor %}
-  </ul>
-</div>
-
-<div class="row">
-<div class="xd">
-<div id="disqus_thread"></div><script type="text/javascript" src="http://disqus.com/forums/worldmaker-blog/embed.js"></script><noscript><a href="http://worldmaker-blog.disqus.com/?url=ref">View the discussion thread.</a></noscript><a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
-</div>
-</div>
+{% include navbar.html %}

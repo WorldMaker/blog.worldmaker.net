@@ -1,25 +1,15 @@
 ---
-layout: default
+layout: page
 ---
-<div class="post">
+{{ content }}
 
-  <header class="post-header">
-    <h1 class="post-title">{{ page.title }}</h1>
-  </header>
-
-  <article class="post-content col-md-8 col-md-offset-2">
-    {{ content }}
-
-    <ul>
-    {% for work in site.works %}
-        {% assign display = false %}
-        {% for w in work.worlds %}
-            {% if w == page.slug %}{% assign display = true %}{% endif %}
-        {% endfor %}
-        {% if display %}
-        <li><a href="{{ work.url | prepend: site.baseurl }}">{{ work.title }}</a></li>
-        {% endif %}
+<ul>
+{% for work in site.works %}
+    {% assign display = false %}
+    {% for w in work.worlds %}
+        {% if w == page.slug %}{% assign display = true %}{% endif %}
     {% endfor %}
-  </article>
-
-</div>
+    {% if display %}
+    <li><a href="{{ work.url | prepend: site.baseurl }}">{{ work.title }}</a></li>
+    {% endif %}
+{% endfor %}
