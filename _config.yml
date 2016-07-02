@@ -28,4 +28,5 @@ markdown: kramdown
 
 # Gems
 gems:
+ - jekyll-paginate
  - jekyll-redirect-from
