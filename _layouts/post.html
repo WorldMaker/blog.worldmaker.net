@@ -7,8 +7,8 @@ layout: default
   </div>
 
   {% if page.story_commentary and page.story_commentary != '' %}
-  <aside class="content">
-    <h6>Commentary</h6>
+  <aside class="admonition admonition-commentary">
+    <div class="admonition-title">Commentary</div>
     <p>{{ page.story_commentary }}</p>
   </aside>
   {% endif %}
@@ -80,7 +80,7 @@ layout: default
       <a href="{{ page.previous.url }}">{{ page.previous.title }}</a>
     </div>
   {% endif %}
-  <div class="lx">
+  <div class="lx lxprimary">
     <div class="lxcaption">Tags</div>
     <p>
       {% for tag in page.tags %}<a class="tag" href="/tag/#{{ tag }}">{{ tag }}</a>{% endfor %}

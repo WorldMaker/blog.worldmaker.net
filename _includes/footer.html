@@ -12,10 +12,13 @@
 </footer>
 
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
-<script src="https://raw.github.com/ekalinin/typogr.js/master/typogr.min.js"></script>
+<script src="https://cdn.rawgit.com/ekalinin/typogr.js/0.6.6/typogr.min.js"></script>
 <script>
 $(function() {
-    $('#page-content').html(typogr.typogrify($('#page-content')));
-});
+    $('.content').each(function () {
+       var $this = $(this)
+       $this.html(typogr.typogrify($this))
+    })
+})
 </script> 
 

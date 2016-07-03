@@ -55,10 +55,10 @@ layout: default
   </div>
 
   {% if paginator.next_page %}
-    <a class="button" href="{{ paginator.next_page_path | prepend: site.baseurl | replace: '//', '/' }}">Next Page</a>
+    <a class="button is-primary" href="{{ paginator.next_page_path | prepend: site.baseurl | replace: '//', '/' }}">Next Page</a>
   {% endif %}
   {% if paginator.previous_page %}
-    <a class="button" href="{{ paginator.previous_page_path | prepend: site.baseurl | replace: '//', '/' }}">Prev Page</a>
+    <a class="button is-primary" href="{{ paginator.previous_page_path | prepend: site.baseurl | replace: '//', '/' }}">Prev Page</a>
   {% endif %}
 {% endcapture %}
 
