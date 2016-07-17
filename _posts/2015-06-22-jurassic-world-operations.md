@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Post-Mortem on Jurassic World Operations
+tags: [fanwank]
 ---
 
 We've had far too many patron deaths, too many patron injuries, and too much bad publicity from this most recent incident. I'd like to propose a simple security cover to better prepare us for the next time. We all know that Isla Nublar is prone to intense Tropical Storm weather patterns from time to time. (A tropical storm was of course a contributing factor to the big Jurassic Park incident that furloughed those early efforts.) It seems easy enough that we overbuild for Tropical Storm Preparedness. We make sure to have a good coverage of security bunkers and evacuation routes.
