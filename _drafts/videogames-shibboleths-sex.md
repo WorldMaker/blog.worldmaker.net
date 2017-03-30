@@ -42,10 +42,10 @@ watching a movie, drinking in a bar...
 
 In videogames, from indie visual novels to giant AAA blockbusters such as Bioware's
 latest *Mass Effect: Andromeda*, these sorts of small social moments and at most
-heavy petting and the T&A of second base *are* sex, and I finally realize that to
-me, too, that's what qualifies, that's what I want [^3]. The issue of course, is
-that these things, too, are used as narrative shibboleths (stand-ins, symbols) for
-the act of sex itself.
+the heavy petting, the T&A, and the intimate cuddling of second base *are* sex,
+and I finally realize that to me, too, that's what qualifies, that's what I want
+[^3]. The issue of course, is that these things, too, are used as narrative
+shibboleths (stand-ins, symbols) for the act of sex itself.
 
 The obvious criticism which many others have covered well over the years is the
 criticism that ludic simplicity of these relationships and these moments (as
@@ -67,10 +67,46 @@ more *expensive*. By conflating these things too with sex, we rob them of their
 own individual nature. We start to see pursuing social intimacy [^5] as one and
 the same, kit and bundle, with sex itself. We start to require and associate,
 culturally, nearly the same costs and risk assessments and commitment needs to
-private, social intimate relationships as we do to sexual relationships.
+private, social intimate relationships as we do to sexual relationships. [^6]
 
-Several months ago this realization finally hit me that I have always had such
-a trouble with 
+I suppose I've always known the difference here, as theory, but I feel like
+I've only recently started to comprehend the consequences. So many people focus
+themselves on that long cut to black that most actually represents sex in a
+videogame. Everything else is the journey to that, the ludic grind to that few
+minutes of black screen in a videogame, and the drawn out prerequisites and
+homework to get there.
+
+So far as I've discovered, most of the ways we have to discuss these things, if
+we discuss them at all, are indirect at best, and themselves so deeply couched
+in being a "mere" part of the journey: second base is a pit stop in a baseball
+game. [^7] Sex is "going all the way". Sit-com characters and bad comedians of
+all stripes complain about dates or spouses or significant others that want to
+spend too much time, in their eyes, making the journey and not enough at the
+"destination", as if one is onerous and the other only the real part. [^8]
+
+If those spots along the "journey" to sex were so easy, we'd have better names
+for them wouldn't we? It seems to me strange how much of our evolution as a
+social species implies we need some of these things somewhat commonly, but our
+culture doesn't deign to give them stronger individual identities and names, merely
+lumping them together into a big box labelled sex and stuffed into the mental
+equivalent of an attic until "the one" arrives to unbox it for us.
+
+Is it any wonder we so many parts of our society get so worked up about kissing
+and cuddling as if they were sex when we can't separate them in videogames, or
+TV, or movies? When we don't seem to have good culturally approved ways for
+asking for them other than the complicated worlds of sex and dating?
+
+I still don't have a lot of good answers yet. I'm still trying to find my fit,
+my peace, my moments of intimacy, in this culture of ours.
+
+In a monogamy-obsessed culture, how can a person that doesn't necessarily
+"go all the way" ever compete to be "the one"? "The one" that meets every need
+of a partner; that becomes a partner's whole world? This alone is a terrible
+impostor syndrome to face. At least in a Bioware RPG like *Mass Effect* I know
+that I can savor every tiny bit of relationship as I can with the clan of
+compatriots that I find there, whether or not I "go all the way" through with
+any of them... and even if I do go "all the way" with one of them, the M-Rating
+and I only really go to somewhere near "second base".
 
 ----
 
@@ -103,3 +139,15 @@ a trouble with
     I have issues with the use of the word "platonic" here, which is a different
     rant, but feel free to connect that here if it helps provide additional
     context.
+
+[^6]:
+    Of course, this makes sense for safety reasons and assuming the worst, too,
+    but rape culture is hopefully also outside the discussion at hand.
+
+[^7]:
+    From which perspective I am perhaps an overly confused Cricket player trying
+    to figure out American baseball.
+
+[^8]:
+   I've never quite understood those 'jokes', even before I started processing my
+   sexuality. Now it's even tougher not to see them as more cries for help.
