@@ -96,17 +96,26 @@ and cuddling as if they were sex when we can't separate them in videogames, or
 TV, or movies? When we don't seem to have good culturally approved ways for
 asking for them other than the complicated worlds of sex and dating?
 
-I still don't have a lot of good answers yet. I'm still trying to find my fit,
+I realize there's also something to be said about taking a sex positive view of
+things and a very liberal definition of what constitutes sex, including all of the
+little intimate things. I agree that this can be a road to destagmatization, to
+controlling the narrative, and taking back some semblance of privacy of intimate
+acts. I don't know where the balance is, or if it can balance.  I still don't
+have a lot of good answers yet. I'm still trying to find my vocabulary, my fit,
 my peace, my moments of intimacy, in this culture of ours.
 
-In a monogamy-obsessed culture, how can a person that doesn't necessarily
-"go all the way" ever compete to be "the one"? "The one" that meets every need
-of a partner; that becomes a partner's whole world? This alone is a terrible
-impostor syndrome to face. At least in a Bioware RPG like *Mass Effect* I know
-that I can savor every tiny bit of relationship as I can with the clan of
-compatriots that I find there, whether or not I "go all the way" through with
-any of them... and even if I do go "all the way" with one of them, the M-Rating
-and I only really go to somewhere near "second base".
+My impostor syndrome, in trying to navigate various sorts of long distance
+relationships continues to ask, "In a monogamy-obsessed culture, how can a person
+that doesn't necessarily 'go all the way' ever compete to be 'the one'? In that
+pop culture *Sleepless in Seattle* way? 'The one' that meets every need
+of a partner; that becomes a partner's whole world? 'The one' that seeks to
+shrink the physical distance?" This alone is a terrible impostor syndrome to
+face [^9] and I know there are answers that don't involve sex.
+At least in a Bioware RPG like *Mass Effect* I know that I can savor every tiny
+bit of relationship as I can with the clan of compatriots that I find there,
+whether or not I "go all the way" through with any of them... and even if I do
+choose to go "all the way" with one of them, the M-Rating and I only really get to
+somewhere near "second base", which is where I feel most comfortable anyway.
 
 ----
 
@@ -151,3 +160,7 @@ and I only really go to somewhere near "second base".
 [^8]:
    I've never quite understood those 'jokes', even before I started processing my
    sexuality. Now it's even tougher not to see them as more cries for help.
+
+[^9]:
+   I realize too that fear that you might never be Tom Hanks in a romantic comedy
+   and can only pretend to try, is not an uncommon fear.
