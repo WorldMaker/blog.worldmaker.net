@@ -158,9 +158,9 @@ somewhere near "second base", which is where I feel most comfortable anyway.
     to figure out American baseball.
 
 [^8]:
-   I've never quite understood those 'jokes', even before I started processing my
-   sexuality. Now it's even tougher not to see them as more cries for help.
+    I've never quite understood those 'jokes', even before I started processing my
+    sexuality. Now it's even tougher not to see them as more cries for help.
 
 [^9]:
-   I realize too that fear that you might never be Tom Hanks in a romantic comedy
-   and can only pretend to try, is not an uncommon fear.
+    I realize too that fear that you might never be Tom Hanks in a romantic comedy
+    and can only pretend to try, is not an uncommon fear.
