@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "On Ghostbusters 2016, the Boundaries Between Ghostbusters Universes, and All the Reasons I Can Think of why GB2016 is the Same NYC as GB1984"
-tags: [ghostbusters, fanwank]
+tags: [ghostbusters, fanwank, films]
 ---
 
 This post will be full of spoilers and fanon, because that's the fun stuff. If you

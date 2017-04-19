@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Too Many Words on The Fast & The Furious Franchise
-tags: [fanwank]
+tags: [fanwank, films]
 ---
 
 I've been making my way through a rather quick marathon rewatch of *The Fast & The Furious* franchise.
