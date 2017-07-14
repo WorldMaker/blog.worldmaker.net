@@ -1,9 +1,10 @@
 ---
 layout: post
 title: An Afterword for Princesses for Planetary Peace
+date: 2017-07-14 00:50
 ---
 
-[Princesses for Planetary Peace](../princesses-planetary-peace/) began as
+[Princesses for Planetary Peace](../princesses-for-planetary-peace/) began as
 game design notes early in the summer of 2010. It was towards the end of my
 experiment in self-employment as a game developer. My major project had
 been wrecked in a (surprisingly literal) act of kaiju. I had an unsuccesful
