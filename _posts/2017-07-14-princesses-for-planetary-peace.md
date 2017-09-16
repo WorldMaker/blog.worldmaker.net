@@ -4,6 +4,10 @@ title: Princesses for Planetary Peace
 date: 2017-07-14 00:45
 tags:
   - fiction
+story_abstract: ''
+story_commentary: ''
+story_number: 1
+story_work: princesses-for-planetary-peace
 ---
 
 This was the third invitation to SPACE PRINCESS ONLINE that my young sister had sent me this month. It was just the sort of social game that encouraged you to spam all your friends and relatives to  grow your abilities in-game. I suppose my sister desperately needed another friend playing the game so she could get the next best rainbow-shitting space unicorn for her planet that the game had to offer, or something to that effect. She also kept telling me about how much she needed new members for her guild, the insipidly named *Princesses for Planetary Peace*.
