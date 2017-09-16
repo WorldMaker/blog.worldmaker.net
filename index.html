@@ -3,7 +3,7 @@ layout: default
 ---
 
 <article id="co" class="home">
-  
+
 {% if paginator.total_pages > 1 %}
 <nav class="pagination">
   {% if paginator.previous_page %}
@@ -33,6 +33,13 @@ layout: default
 {% endif %}
 
   {% if paginator.page == 1 %}
+  <p>
+    Welcome to my blog. I have rambled on the web since before blog was a word, and this archive includes a sizable chunk of that, modulo some
+    key hard drive crashes over the years. It's probably for the best some of the worst things I wrote back in college and high school are missing,
+    but I'm sure there are a few gems lost, too. If you aren't looking for anything specific, I suggest exploring <a href="/work/">my short stories</a>,
+    hopefully there might be something to entertain you, though most of them were written back in high school there are some recent gems as well.
+  </p>
+
   <p class="rss-subscribe"><a href="{{ "/feed.xml" | prepend: site.baseurl }}"><img src="http://media.worldmaker.net/images/feed-icon-32x32.png" alt="RSS Feed" /></a></p>
   {% endif %}
 
