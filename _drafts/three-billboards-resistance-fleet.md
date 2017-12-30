@@ -58,7 +58,7 @@ even came out).
 Up to this point, the only film canon hint that Vader is "redeemed" in the eyes of
 the Force is the weird implication that only Light Side force weilders somehow
 qualify for force ghosts, and some old man pretending to be Vader shows up to
-get his Yub Nub on with all the ewoks. Or sometimes there's no Yub Nub and Anakin
+get his Yub Nub on with all the ewoks. [^2] Or sometimes there's no Yub Nub and Anakin
 Skywalker's third actor is there like Vader was just a bad dream, and now
 there's a question of whether force ghosts make any sense at all because it's
 still grumpy old Obi-Wan and not cool young Obi-Wan...
@@ -95,9 +95,40 @@ be a problematic fave.
 
 So yeah, *The Last Jedi*, thanks~ for reminding me I guess.
 
-# The Case of Jason Dixon versus Poe Dameron
+# Echoes of World War II Movies
 
+Star Wars is perhaps the most mythologized echoes of World War II movies in popular
+culture. The original trilogy might be seen as a baby boomer's attempt to recreate
+the feelings of his parents' view of World War II, minus a lot of the practical
+reality. The new movies seem to be the grandchildren doing the same, in a weird sort
+of telephone way. (The prequels? Who knows? A bad echo of World War I, movies?)
 
+*Rogue One* uses this to considerable advantage. It feels fitting to the franchise
+history to reiterate one of its own glossed over details (opening crawls) as a
+clever homage to classic World War II tragedies. It's the sort of film that
+opening crawl was exactly meant to invoke, and manages to also evoke the heart of
+those old war films: everyone dies, but the good guys can still win. You can
+somewhat feel that maybe enough of the producers and writers and directors bothered
+to watch a bunch of films like *Bridge over the River Kwai*, *Das Boot*, etc,
+and tried to build a film around those ideas and Star Wars.
+
+The A-Plot by way of screen time and B-Plot by way of eponymous intent of
+*The Last Jedi* seems to me a relatively poorer echo of a war movie, to what
+I feel is its large detriment. If the movie is echoing war movies, it is trying
+to echo morally gray Vietnam-era pieces (and that, perhaps only through its own
+telephone game) While a sci-fi echo of a Vietnam-era war film is a good idea
+(see: the better parts of the *Battlestar Galactica* reboot, for instance),
+it's not a good idea, I feel, for *Star Wars*.
+
+Let's keep in mind, in *Star Wars* the table stakes, for evil, are mass
+murder at a planetary scale. This is not a franchise for "but, evil on both
+sides" arguments, this is a franchise for Hitler and Himmlear analogs in
+weird looking samurai masks to get defeated by a rag tag team with nothing
+but a lot of hope and at least a little bit of prayer to a mystic Force that
+may or may not be weird parasite bugs [^3].
+
+I mentioned, Kylo Ren already as a side qualm, so let's skip past that to the
+real loser of the "both sides" problems in *The Last Jedi*: Poe Dameron.
 
 ----
 
@@ -108,3 +139,9 @@ So yeah, *The Last Jedi*, thanks~ for reminding me I guess.
     scale here: *The Force Awakens* is squarely a *Rogue One*, which itself fits
     comfortable in its spot in the opening crawl of Episode IV on the "would watch
     again" side of my III/IV divide.
+
+[^2]:
+    I stated I would defend the ewoks, but I still reserve the right to send them
+    in as comic relief cannon fodder.
+
+[^3]: Midichlorians will forever sound more like bleach products for keyboards.
