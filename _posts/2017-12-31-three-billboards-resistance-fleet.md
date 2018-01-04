@@ -182,7 +182,7 @@ I very much believe that Poe is accountable for millions of deaths by the end
 of the film, shows no remorse or regret from his actions, and is within this
 particular film the biggest villain.
 
-# What Do We Do With a General, When He Stops Being a General?
+# What Do We Do With a General, When She Stops Being a General?
 
 *The Last Jedi* has garnered a lot of remarks about how it is about toxic
 masculinity, but a problem I see with that is that it doesn't have much to
