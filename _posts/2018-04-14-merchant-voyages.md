@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Merchant Voyages Are The Highest Stakes in *Sea of Thieves*: Respect Them"
+title: "Merchant Voyages Are The Highest Stakes in Sea of Thieves: Respect Them"
 tags: [games]
 ---
 
