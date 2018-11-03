@@ -9,14 +9,17 @@
   <a class="button is-info" href="/about/">Colophon</a>
 </footer>
 
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
-<script src="https://cdn.rawgit.com/ekalinin/typogr.js/0.6.6/typogr.min.js"></script>
-<script>
-$(function() {
-    $('.content').each(function () {
-       var $this = $(this)
-       $this.html(typogr.typogrify($this))
-    })
-})
+<script src="https://cdn.jsdelivr.net/gh/ekalinin/typogr.js@0.6.7/typogr.min.js"></script>
+<script async>
+function typogrify() {
+  document.querySelectorAll('.content').forEach(function (element) {
+    element.innerHTML = typogr.typogrify(element.innerHTML)
+  })
+}
+// `DOMContentLoaded` may fire before your script has a chance to run, so check before adding a listener
+if (document.readyState === 'loading') {
+  document.addEventListener("DOMContentLoaded", typogrify);
+} else {  // `DOMContentLoaded` already fired
+  typogrify();
+}
 </script> 
-
