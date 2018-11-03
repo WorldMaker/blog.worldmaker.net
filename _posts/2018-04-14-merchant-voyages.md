@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Merchant Voyages Are The Highest Stakes in Sea of Thieves: Respect Them"
-tags: [games]
+tags: [games, bemorepirate]
 ---
 
 I've heard several pirates openly mock the Merchant Voyages in *Sea of Thieves*,
