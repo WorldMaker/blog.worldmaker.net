@@ -239,12 +239,15 @@ calling the MCU musicly drab, but I do not agree.
 
 ----
 
-[^1]: Admittedly, a reason as well that the Avengers films' soundtracks may sound
+[^1]:
+  Admittedly, a reason as well that the Avengers films' soundtracks may sound
   generic. Silvestri defined so much of the genre's sound over the decades that a
   lot of scores sound like Silvestri.
 
-[^2]: When the X-Men finally show up in the MCU, I very much expect them to bring
+[^2]:
+  When the X-Men finally show up in the MCU, I very much expect them to bring
   the 90's TV Theme with them. That would fit the MCU well.
 
-[^3]: Said with 💖 from a fellow nerd that wrote nearly 2.5k words on this topic for
+[^3]:
+  Said with 💖 from a fellow nerd that wrote nearly 2.5k words on this topic for
   this article.
