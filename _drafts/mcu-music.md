@@ -1,8 +1,7 @@
 ---
 layout: post
 title: "The Musical Identity of the Marvel Cinematic Universe: The Composers of The Avengers"
-tags:
-- films
+tags: [films]
 ---
 
 A lot of people have watched the *Every Frame a Painting* video that claims that
