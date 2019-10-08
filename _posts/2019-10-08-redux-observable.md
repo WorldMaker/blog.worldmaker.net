@@ -208,7 +208,7 @@ bits of information:
   wait may be, and moderators approximate alarms on which ships may soon be
   at risk)
 * Voyage progress (a necessary part of approximating wait times, as most players
-  wished to finish voyages) [^5]
+  wished to finish voyages) [^6]
 
 The indications from my guild was that this particular functionality was
 particularly important, but also the toughest part, because you would need
