@@ -114,7 +114,7 @@ itself, most of not useful to large alliances).
 
 In a perfect fleet server world, it would be great to have an API to subscribe
 to in order to get a bunch of information about a server's state. (Or better yet
-a full dashboard that directly shows it. [^3] [^4])
+a full dashboard that directly shows it. [^4] [^5])
 
 Instead, fleet builders had the merest of proxies to track fleet status: voice
 channel player lists for basic ship crew status, and the fleet chat channel for
@@ -247,36 +247,36 @@ doesn't mean it wasn't a useful hobby project.
 ---
 
 [^1]:
-  One mitigation we started enforcing was that any treasure, loot, or cargo that
-  was unwanted should be dropped into the sea itself to sink making it easier
-  for the server to garbage collect it. When done as a rule, from the start of a
-  server, we pushed the old server "wonky" point sometimes as far as around
-  40-45 hours.
+    One mitigation we started enforcing was that any treasure, loot, or cargo that
+    was unwanted should be dropped into the sea itself to sink making it easier
+    for the server to garbage collect it. When done as a rule, from the start of a
+    server, we pushed the old server "wonky" point sometimes as far as around
+    40-45 hours.
 
 [^2]:
-  Made for some fun, tense last minute "sell everything we have", given with bad
-  wind it was easily possible to be fifteen minutes from the nearest outpost,
-  especially on an already lagging server with the added stressful lag of server
-  notifications from everyone else in the Alliance selling as quickly as possible.
+    Made for some fun, tense last minute "sell everything we have", given with bad
+    wind it was easily possible to be fifteen minutes from the nearest outpost,
+    especially on an already lagging server with the added stressful lag of server
+    notifications from everyone else in the Alliance selling as quickly as possible.
 
 [^3]:
-  I realize that most people refer to these as "Discord servers", but I find that
-  name somewhat dumb (as technically inaccurate, and confusing with other uses of
-  the word "server"), and much prefer Discord's own API documented name for them
-  "guilds". I realize why that term fell out of favor at it is very videogame and
-  not all groups on Discord are game players, but it's still a better term for
-  a group/team on Discord.
+    I realize that most people refer to these as "Discord servers", but I find that
+    name somewhat dumb (as technically inaccurate, and confusing with other uses of
+    the word "server"), and much prefer Discord's own API documented name for them
+    "guilds". I realize why that term fell out of favor at it is very videogame and
+    not all groups on Discord are game players, but it's still a better term for
+    a group/team on Discord.
 
 [^4]:
-  Our ships always flew Reaper's Flags, which display their location at all times
-  on the server's map, even and especially when didn't control a full server.
-  This made it easier for spotting the lucky circumstances if someone managed to
-  match a fresh ship on our server. It sometimes deterred would be PvP players
-  as players would sometimes skip servers full of Reaper's Flags. (Other times
-  it encouraged them, especially during the social media blow back against fleet
-  servers.) Alliances themselves also give full such surveillance among members.
-  Given the existing in game "double" opt-in to surveillance, having an
-  out-of-game map display, at least, wouldn't be hugely game changing.
+    Our ships always flew Reaper's Flags, which display their location at all times
+    on the server's map, even and especially when didn't control a full server.
+    This made it easier for spotting the lucky circumstances if someone managed to
+    match a fresh ship on our server. It sometimes deterred would be PvP players
+    as players would sometimes skip servers full of Reaper's Flags. (Other times
+    it encouraged them, especially during the social media blow back against fleet
+    servers.) Alliances themselves also give full such surveillance among members.
+    Given the existing in game "double" opt-in to surveillance, having an
+    out-of-game map display, at least, wouldn't be hugely game changing.
 
 [^5]:
   As long as I'm wishing for ponies here, let's not forget it would be lovely to
