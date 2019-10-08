@@ -1,6 +1,6 @@
 ---
 title: "Some Thoughts on Building a Discord Bot with redux-observable"
-tags: [coding, games]
+tags: [coding, games, bemorepirate]
 ---
 
 Thought I'd talk about a fun little project I built that was mostly finished but
