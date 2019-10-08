@@ -279,11 +279,11 @@ doesn't mean it wasn't a useful hobby project.
     out-of-game map display, at least, wouldn't be hugely game changing.
 
 [^5]:
-  As long as I'm wishing for ponies here, let's not forget it would be lovely to
-  have private or semi-private server management APIs. It would be great to spin
-  up ships and send player invites without the messiness of daily luck and
-  talking to people.
+    As long as I'm wishing for ponies here, let's not forget it would be lovely to
+    have private or semi-private server management APIs. It would be great to spin
+    up ships and send player invites without the messiness of daily luck and
+    talking to people.
 
 [^6]:
-  Here so much is a wish for an API directly to pull that information from the
-  game itself.
+    Here so much is a wish for an API directly to pull that information from the
+    game itself.
