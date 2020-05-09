@@ -23,6 +23,22 @@ collections:
     output: true
     permalink: /work/:path/
 
+# Default front matter
+defaults:
+  -
+    scope:
+      path: ""  
+      type: "drafts"
+    values:
+      layout: "post"
+  -
+    scope:
+      path: ""  
+      type: "posts"
+    values:
+      layout: "post"
+
+
 # Build settings
 markdown: kramdown
 
