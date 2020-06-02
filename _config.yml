@@ -42,7 +42,7 @@ defaults:
 # Build settings
 markdown: kramdown
 
-# Gems
-gems:
+# Plugins
+plugins:
  - jekyll-paginate
  - jekyll-redirect-from
