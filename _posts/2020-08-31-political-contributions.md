@@ -1,6 +1,6 @@
 ---
 title: My Position on Political Contributions
-tags: politics, uspol, ignore-me
+tags: politics uspol ignore-me
 ---
 
 I apologize for this brief interruption of a self-imposed promise to not post
