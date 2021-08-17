@@ -187,3 +187,11 @@ something will spark in follow up meals. Good science needs replication, so
 if anyone else wants try their hand at this experiment I would be
 curious to hear about any replication studies.
 
+# Experiment 1 Update 1
+
+I realized that the wasabi guac was discoloring at a faster rate than I
+prefer and remembered that citric acid can help slow that so I
+added a ton of lime juice into the wasabi guac. The lime was a strong
+improvement to the overall taste of the wasabi guac, both on tortilla
+chips and in a leftovers burrito. I will need to remember it the next
+time I make a wasabi guac.
