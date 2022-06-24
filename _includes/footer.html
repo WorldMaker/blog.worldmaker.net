@@ -9,17 +9,6 @@
   <a class="button is-info" href="/about/">Colophon</a>
 </footer>
 
-<script src="https://cdn.jsdelivr.net/gh/ekalinin/typogr.js@0.6.7/typogr.min.js"></script>
-<script async>
-function typogrify() {
-  document.querySelectorAll('.content').forEach(function (element) {
-    element.innerHTML = typogr.typogrify(element.innerHTML)
-  })
-}
-// `DOMContentLoaded` may fire before your script has a chance to run, so check before adding a listener
-if (document.readyState === 'loading') {
-  document.addEventListener("DOMContentLoaded", typogrify);
-} else {  // `DOMContentLoaded` already fired
-  typogrify();
-}
-</script> 
+<div id="lb1"></div><div id="lb2"></div><div id="lb3"></div><div id="lb4"></div><div id="lb5"></div><div id="lb6"></div>
+
+<script async src="{{ site.baseurl }}/assets/index.js"></script>

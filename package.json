@@ -1,0 +1,23 @@
+{
+  "name": "blog.worldmaker.net",
+  "version": "1.0.0",
+  "description": "My personal blog",
+  "main": "index.js",
+  "scripts": {
+    "copy:theme": "robocopy /MIR node_modules/lcars-moderne/dist assets",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/WorldMaker/blog.worldmaker.net.git"
+  },
+  "author": "Max Battcher <me@worldmaker.net>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/WorldMaker/blog.worldmaker.net/issues"
+  },
+  "homepage": "https://github.com/WorldMaker/blog.worldmaker.net#readme",
+  "dependencies": {
+    "lcars-moderne": "^2.0.0"
+  }
+}
