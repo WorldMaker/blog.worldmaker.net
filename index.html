@@ -5,27 +5,27 @@ layout: default
 <article id="co" class="home">
 
 {% if paginator.total_pages > 1 %}
-<nav class="pagination">
+<nav class="pagination" role="navigation" aria-label="pagination">
   {% if paginator.previous_page %}
-    <a class="button" href="{{ paginator.previous_page_path | prepend: site.baseurl | replace: '//', '/' }}">&#x25C4; Prev</a>
+    <a class="pagination-previous" href="{{ paginator.previous_page_path | prepend: site.baseurl | replace: '//', '/' }}">&#x25C4; Prev</a>
   {% else %}
-    <a class="button is-disabled" href="#">&#x25C4; Prev</a>
+    <a class="pagination-previous is-disabled" href="#">&#x25C4; Prev</a>
   {% endif %}
   
   {% if paginator.next_page %}
-    <a class="button" href="{{ paginator.next_page_path | prepend: site.baseurl | replace: '//', '/' }}">Next &#x25BA;</a>
+    <a class="pagination-next" href="{{ paginator.next_page_path | prepend: site.baseurl | replace: '//', '/' }}">Next &#x25BA;</a>
   {% else %}
-    <a class="button is-disabled" href="#">Next &#x25BA;</a></li>
+    <a class="pagination-next is-disabled" href="#">Next &#x25BA;</a></li>
   {% endif %}
 
-  <ul>
+  <ul class="pagination-list">
   {% for page in (1..paginator.total_pages) %}
     {% if page == paginator.page %}
-      <li><a class="button is-primary" href="#">{{ page }}</a></li>
+      <li><a class="pagination-link is-current" href="#">{{ page }}</a></li>
     {% elsif page == 1 %}
-      <li><a class="button" href="{{ '/index.html' | prepend: site.baseurl | replace: '//', '/' }}">{{ page }}</a></li>
+      <li><a class="pagination-link" href="{{ '/index.html' | prepend: site.baseurl | replace: '//', '/' }}">{{ page }}</a></li>
     {% else %}
-      <li><a class="button" href="{{ site.paginate_path | prepend: site.baseurl | replace: '//', '/' | replace: ':num', page }}">{{ page }}</a></li>
+      <li><a class="pagination-link" href="{{ site.paginate_path | prepend: site.baseurl | replace: '//', '/' | replace: ':num', page }}">{{ page }}</a></li>
     {% endif %}
   {% endfor %}
   </ul>
