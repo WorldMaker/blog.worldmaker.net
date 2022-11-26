@@ -30,7 +30,7 @@ producer, most famously a producer of Star Wars. Interestingly, it
 doesn't seem to have been budget overruns or the other usual reasons
 for a production to bust: that producer went through a messy divorce
 that allegedly included awarding the ex-wife the royalties from Star
-Wars which was exactly where the _Slipstream_budget was coming from.
+Wars which was exactly where the _Slipstream_ budget was coming from.
 Oops.
 
 I thought _Slipstream_ wild and mostly fun. It was sometimes hilarious
