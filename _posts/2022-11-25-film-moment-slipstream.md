@@ -103,6 +103,8 @@ handcuffs.
 Other than that it was a fun "so (intentionally) bad it is good" movie
 with an interesting "lost classic" history and vibe to it.
 
+----
+
 [^1]: Does that imply the eventual existence of an _Earthworld_
-and a _Fireworld_? No one will expect it when the _Fireworld_ movie
-drops.
+    and a _Fireworld_? No one will expect it when the _Fireworld_ movie
+    drops.
