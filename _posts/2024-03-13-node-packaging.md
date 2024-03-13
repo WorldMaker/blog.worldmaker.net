@@ -130,8 +130,8 @@ simpler form of `"exports"` and ignore all the suggestions regarding
 ```json
 {
     "exports": {
-      ".": "./index.js",
-      "./optional-cool-thing": "./cool.js"
+        ".": "./index.js",
+        "./optional-cool-thing": "./cool.js"
     }
 }
 ```
