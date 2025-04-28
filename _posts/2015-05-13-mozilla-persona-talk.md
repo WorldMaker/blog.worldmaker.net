@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "Login is Terrible: Web Login the Simple Way, or Mozilla Persona Can Save Us (If We Save It)"
+tags: [persona]
 ---
 
 Tonight I gave a talk at the [Kentucky Open Source Software meetup](http://kyoss.org)
