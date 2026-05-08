@@ -1,0 +1,23 @@
+---
+layout: page.vto
+type: meta-work
+title: DRAGONzine
+---
+
+<p>DRAGONzine was my attempt to regularly edit and publish a web-based
+magazine of sci-fi/fantasy in High School, even taking contributions
+from a few other students. At its peak I wrote around 5k-6k words in a
+month. Here are most of my own preserved contributions:</p>
+
+<dl>
+{{ for id, date of dzissues }}
+   <dt id="issue{{ id }}">#{{ id }}</dt>
+   <dd class="text-info">Published: {{ date }}</dd>
+   {{ for story of search.pages(`dz_issue=${id}`) }}
+   <dd><h2><a href="{{ story.url }}">{{ story.title }}</a></h2></dd>
+   {{ if story.excerpt }}
+   <dd>{{ story.excerpt }}</dd>
+   {{ /if }}
+   {{ /for }}
+{{ /for }}
+</dl>

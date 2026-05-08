@@ -1,0 +1,26 @@
+---
+layout: page.vto
+---
+{{ content }}
+
+<dl>
+{{ for post of search.pages(`story_work=${slug}`, 'order story_number') }}
+<dt>#{{ post.story_number }}</dt>
+<dd><a class="post-link" href="{{ post.url }}">{{ post.title }}</a></dd>
+{{ if post.excerpt }}
+<dd>{{ post.excerpt }}</dd>
+{{ /if }}
+{{ /for }}
+</dl>
+
+{{ if worlds }}
+<div class="text-info text-center">Worlds: 
+<ul class="list-inline">
+{{ for world of search.pages("type=world") }}
+    {{ if worlds.includes(world.slug) }}
+    <li><a href="{{ world.url }}">{{ world.title }}</a></li>
+    {{ /if }}
+{{ /for }}
+</ul>
+</div>
+{{ /if }}

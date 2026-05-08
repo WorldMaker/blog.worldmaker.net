@@ -1,0 +1,110 @@
+---
+layout: default.vto
+---
+<article id="co">
+  <div class="content">
+    {{ content }}
+  </div>
+
+  {{ if story_commentary && story_commentary != '' }}
+  <aside class="admonition admonition-commentary">
+    <div class="admonition-title">Commentary</div>
+    <p>{{ story_commentary }}</p>
+  </aside>
+  {{ /if }}
+
+  <hr />
+
+  <aside id="comments">
+    <script src="https://giscus.app/client.js"
+        data-repo="WorldMaker/blog.worldmaker.net"
+        data-repo-id="MDEwOlJlcG9zaXRvcnkzMTUwOTI2OA=="
+        data-category="Posts"
+        data-category-id="DIC_kwDOAeDLFM4Cbq2u"
+        data-mapping="pathname"
+        data-strict="0"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="bottom"
+        data-theme="preferred_color_scheme"
+        data-lang="en"
+        data-loading="lazy"
+        crossorigin="anonymous"
+        async>
+    </script>
+  </aside>
+</article>
+
+{{ set nav_extra }}
+  <div class="lx lxprimary">
+    <div class="lxcaption">Earthdate</div>
+    <span>{{ page.date | date: "%b %-d, %Y" }}</span>
+  </div>
+  {{ if author }}
+  <div class="lx">
+    <div class="lxcaption">Author</div>
+    <span>{{ author }}</span>
+  </div>
+  {{ /if }}
+  {{ if dz_issue }}
+  <div class="lx">
+    <div class="lxcaption">DRAGONzine</div>
+    <span>First published in <a href="/work/dragonzine/#issue{{ dz_issue }}">DRAGONzine #{{ dz_issue }}</a></span>
+  </div>
+  {{ /if }}
+  {{ if meta }}
+  <div class="lx">
+    <div class="lxcaption">Meta</div>
+    <span>{{ meta }}</span>
+  </div>
+  {{ /if }}
+  {{ if story_work }}
+    {{ set size = search.pages(`story_work=${story_work}`).length }}
+    {{ for work of search.pages('type=work') }}
+      {{ if work.slug == story_work }}
+      <div class="lx lxprimary">
+        <div class="lxcaption">Story Work</div>
+        <span>Part {{ story_number }} of {{ size }} in <a href="{{ work.url }}">{{ work.title }}</a></span>
+      </div>
+      {{ /if }}
+    {{ /for }}
+    {{ set prev_number = story_number - 1 }}
+    {{ set next_number = story_number + 1 }}
+    {{ set prev = search.page(`story_work=${story_work} story_number=${prev_number}`) }}
+    {{ set next = search.page(`story_work=${story_work} story_number=${next_number}`) }}
+    {{ if next }}
+      <div class="lx lxprimary">
+        <div class="lxcaption">Next Chapter</div>
+        <a href="{{ next.url }}">{{ next.title }}</a>
+      </div>
+    {{ /if }}
+    {{ if prev }}
+      <div class="lx primary">
+        <div class="lxcaption">Previous Chapter</div>
+        <a href="{{ prev.url }}">{{ prev.title }}</a>
+      </div>
+    {{ /if }}
+  {{ /if }}
+  {{ set prev = search.previousPage(url, "type=post") }}
+  {{ set next = search.nextPage(url, "type=post") }}
+  {{ if next }}
+    <div class="lx">
+      <div class="lxcaption">Next Post</div>
+      <a href="{{ next.url }}">{{ next.title }}</a>
+    </div>
+  {{ /if }}
+  {{ if prev }}
+    <div class="lx">
+      <div class="lxcaption">Previous Post</div>
+      <a href="{{ prev.url }}">{{ prev.title }}</a>
+    </div>
+  {{ /if }}
+  <div class="lx lxprimary">
+    <div class="lxcaption">Tags</div>
+    <p>
+      {{ for idx, tag of page.tags }}<a class="tag is-rounded" href="/tag/{{ tag }}">{{ tag }}</a>{{ /for }}
+    </p>
+  </div>
+{{ /set }}
+
+{{ include "navbar.vto" { nav_extra } }}

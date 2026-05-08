@@ -1,0 +1,12 @@
+---
+layout: page.vto
+---
+{{ content }}
+
+<ul>
+{{ for work of search.pages('type=work') }}
+    {{ if work.worlds.includes(slug) }}
+    <li><a href="{{ work.url }}">{{ work.title }}</a></li>
+    {{ /if }}
+{{ /for }}
+</ul>
