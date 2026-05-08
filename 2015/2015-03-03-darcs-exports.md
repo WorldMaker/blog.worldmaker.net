@@ -4,7 +4,7 @@ tags:
  - coding
  - darcs
  - musdex
- - Debtstack
+ - debtstack
  - tokdiff
 ---
 
