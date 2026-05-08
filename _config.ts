@@ -1,9 +1,16 @@
 import lume from "lume/mod.ts"
 import extractDate from 'lume/plugins/extract_date.ts'
 import feed from 'lume/plugins/feed.ts'
+import footnote from 'npm:markdown-it-footnote'
 import redirects from "lume/plugins/redirects.ts"
 
-const site = lume()
+const markdown = {
+    plugins: [
+        footnote,
+    ],
+}
+
+const site = lume({}, { markdown })
 
 site.copy('assets')
 site.copy('favicon.ico')
