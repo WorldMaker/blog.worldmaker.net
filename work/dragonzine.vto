@@ -12,9 +12,9 @@ month. Here are most of my own preserved contributions:</p>
 <dl>
 {{ for id, date of dzissues }}
    <dt id="issue{{ id }}">#{{ id }}</dt>
-   <dd class="text-info">Published: {{ date }}</dd>
+   <dd class="text-info">Published: {{ date.toLocaleString(undefined, { year: 'numeric', month: 'short', day: 'numeric' }) }}</dd>
    {{ for story of search.pages(`dz_issue=${id}`) }}
-   <dd><h2><a href="{{ story.url }}">{{ story.title }}</a></h2></dd>
+   <dd class="title"><a href="{{ story.url }}">{{ story.title }}</a></dd>
    {{ if story.excerpt }}
    <dd>{{ story.excerpt }}</dd>
    {{ /if }}

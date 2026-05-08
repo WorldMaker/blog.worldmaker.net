@@ -38,7 +38,7 @@ layout: default.vto
 {{ set nav_extra }}
   <div class="lx lxprimary">
     <div class="lxcaption">Earthdate</div>
-    <span>{{ page.date | date: "%b %-d, %Y" }}</span>
+    <span>{{ date.toLocaleString(undefined, { year: 'numeric', month: 'short', day: 'numeric' }) }}</span>
   </div>
   {{ if author }}
   <div class="lx">
@@ -99,12 +99,14 @@ layout: default.vto
       <a href="{{ prev.url }}">{{ prev.title }}</a>
     </div>
   {{ /if }}
+  {{ if tags && tags.length > 0 }}
   <div class="lx lxprimary">
     <div class="lxcaption">Tags</div>
     <p>
-      {{ for idx, tag of page.tags }}<a class="tag is-rounded" href="/tag/{{ tag }}">{{ tag }}</a>{{ /for }}
+      {{ for idx, tag of tags }}<a class="tag is-rounded" href="/tag/{{ tag }}">{{ tag }}</a>{{ /for }}
     </p>
   </div>
+  {{ /if }}
 {{ /set }}
 
 {{ include "navbar.vto" { nav_extra } }}
