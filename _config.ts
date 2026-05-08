@@ -12,6 +12,9 @@ site.use(extractDate())
 
 site.use(feed({
     output: ['feed.xml', 'rss.xml', 'feed/latest/index.html', 'node/feed/index.html', 'feed.json'],
+    query: "type=post",
+    sort: "date=desc",
+    limit: 20,
 }))
 
 site.use(redirects())
