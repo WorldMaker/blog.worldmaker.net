@@ -2,9 +2,8 @@
 date: 2012-03-19 23:38:55.037343
 db_id: 821
 db_updated: 2012-03-19 23:41:19.025431
-layout: post
-permalink: /2012/mar/19/dynamically-data-binding-columns-xaml/
-tags: c# silverlight xaml
+url: /2012/mar/19/dynamically-data-binding-columns-xaml/
+tags: [csharp, silverlight, xaml]
 title: Dynamically Data-binding Columns in XAML
 ---
 <p>There are times when you find that you need to dynamically set the columns in a Silverlight <tt class="docutils literal">DataGrid</tt>: perhaps you've got a need to let users configure the columns or your columns are based on some part of your data model. I've seen several anti-patterns that are in various states of broken and/or over-complicated, such as the one I removed from a code base that managed to build a column for every cell in the <tt class="docutils literal">DataGrid</tt>. <a class="footnote-reference" href="#id3" id="id1">[1]</a> While Silverlight and WPF now both support stronger (but different implementations) ways to auto-generate columns for more complicated dynamic data structures, there are still times where it is preferable to use a combination of hand-edited columns and columns built against things very specific to your data model. To save me from having to rewrite the class myself ever again (having done so twice), and to possibly help save other people from the broken versions I've seen posted to various webpages, here's my solution to dynamically bind columns from XAML:</p>
