@@ -12,7 +12,7 @@ month. Here are most of my own preserved contributions:</p>
 <dl>
 {{ for id, date of dzissues }}
    <dt id="issue{{ id }}">#{{ id }}</dt>
-   <dd class="text-info">Published: {{ date.toLocaleString(undefined, { year: 'numeric', month: 'short', day: 'numeric' }) }}</dd>
+   <dd class="text-info">Published: {{ Temporal.PlainDate.from(date).toLocaleString(undefined, { year: 'numeric', month: 'short', day: 'numeric' }) }}</dd>
    {{ for story of search.pages(`dz_issue=${id}`) }}
    <dd class="title"><a href="{{ story.url }}">{{ story.title }}</a></dd>
    {{ if story.excerpt }}
