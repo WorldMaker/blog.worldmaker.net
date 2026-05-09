@@ -4,7 +4,7 @@ title: Tags
 ---
 
 <ul>
-{{ for tag of search.values("tags", "type=post") }}
+{{ for tag of search.values("tags", "type=post").sort() }}
     {{ if tag != "" }}
     <li><a href="/tag/{{ tag }}/">{{ tag }}</a></li>
     {{ /if }}
