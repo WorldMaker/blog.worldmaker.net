@@ -10,7 +10,7 @@ const markdown = {
     ],
 }
 
-const site = lume({}, { markdown })
+const site = lume({ location: new URL('https://blog.worldmaker.net')}, { markdown })
 
 site.copy('assets')
 site.copy('favicon.ico')
@@ -22,6 +22,12 @@ site.use(feed({
     query: "type=post",
     sort: "date=desc",
     limit: 20,
+    info: {
+        title: "Blog.WorldMaker.net",
+        description: "Max Battcher's personal blog",
+        authorName: "Max Battcher",
+        authorUrl: "https://worldmaker.net",
+    }
 }))
 
 site.use(redirects())

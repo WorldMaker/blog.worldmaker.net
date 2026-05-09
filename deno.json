@@ -1,7 +1,7 @@
 {
   "nodeModulesDir": "auto",
   "imports": {
-    "lume/": "https://cdn.jsdelivr.net/gh/lumeland/lume@3.2.4/",
+    "lume/": "https://cdn.jsdelivr.net/gh/lumeland/lume@8afe451818720821acedadfc970b9edd664fa2b9/",
     "lume/jsx-runtime": "https://cdn.jsdelivr.net/gh/oscarotero/ssx@0.1.14/jsx-runtime.ts"
   },
   "permissions": {
@@ -66,7 +66,7 @@
   },
   "lint": {
     "plugins": [
-      "https://cdn.jsdelivr.net/gh/lumeland/lume@3.2.4/lint.ts"
+      "https://cdn.jsdelivr.net/gh/lumeland/lume@8afe451818720821acedadfc970b9edd664fa2b9/lint.ts"
     ],
     "rules": {
       "exclude": [
