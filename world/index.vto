@@ -1,0 +1,13 @@
+---
+layout: page.vto
+type: meta-world
+title: Story Worlds
+---
+
+Various worlds used in some of my stories.
+
+<ul>
+{{ for world of search.pages('type=world') }}
+    <li><a href="{{ world.url }}">{{ world.title }}</a></li>
+{{ /for }}
+</ul>

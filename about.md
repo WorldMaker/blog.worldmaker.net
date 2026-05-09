@@ -1,13 +1,13 @@
 ---
-layout: page
+layout: page.vto
 title: Colophon
 permalink: /about/
-redirect_from:
- - /colophon/
+oldUrl: /colophon/
 ---
 
-This blog is now synthesized by the two-faced [Jekyll](http://jekyllrb.com)
-in [his most common laboratory](http://pages.github.com).
+This blog is now built with [Lume].
+
+[Lume]: https://lume.land
 
 The current design is *LCARS Moderne 2.0 (2022)* based primarily on *Star Trek: The Next Generation*,
 my own 1999 site design, and modern ideas of my own. It uses [Bulma](http://bulma.io) as a base
