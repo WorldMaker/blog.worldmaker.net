@@ -1,5 +1,5 @@
 ---
-title: Railnet
+title: RailNet
 slug: railnet
 worlds:
 - railnet
