@@ -1,0 +1,77 @@
+---
+layout: default.vto
+---
+
+<article id="co" class="home">
+
+{{ if pagination.totalPages > 1 }}
+<nav class="pagination" role="navigation" aria-label="pagination">
+  {{ if pagination.previous }}
+    <a class="pagination-previous" href="{{ pagination.previous }}">&#x25C4; Prev</a>
+  {{ else }}
+    <a class="pagination-previous is-disabled" href="#">&#x25C4; Prev</a>
+  {{ /if }}
+  
+  {{ if pagination.next }}
+    <a class="pagination-next" href="{{ pagination.next }}">Next &#x25BA;</a>
+  {{ else }}
+    <a class="pagination-next is-disabled" href="#">Next &#x25BA;</a></li>
+  {{ /if }}
+
+  <ul class="pagination-list">
+  {{ for page of pagination.totalPages }}
+    {{ if page == pagination.page }}
+      <li><a class="pagination-link is-current" href="#">{{ page }}</a></li>
+    {{ else if page == 1 }}
+      <li><a class="pagination-link" href="/">{{ page }}</a></li>
+    {{ else }}
+      <li><a class="pagination-link" href="/archive/{{ page }}/">{{ page }}</a></li>
+    {{ /if }}
+  {{ /for }}
+  </ul>
+</nav>
+{{ /if }}
+
+  {{ if pagination.page == 1 }}
+  <p>
+    Welcome to my blog. I have rambled on the web since before blog was a word, and this archive includes a sizable chunk of that, modulo some
+    key hard drive crashes over the years. It's probably for the best some of the worst things I wrote back in college and high school are missing,
+    but I'm sure there are a few gems lost, too. If you aren't looking for anything specific, I suggest exploring <a href="/work/">my short stories</a>,
+    hopefully there might be something to entertain you, though most of them were written back in high school there are some recent gems as well.
+  </p>
+
+  <p class="rss-subscribe"><a href="/feed.xml"><img src="/assets/feed-icon-32x32.png" alt="RSS Feed" /></a></p>
+  {{ /if }}
+
+  <dl class="content">
+    {{ set lastDate = null }}
+    {{ for post of results }}
+      {{ set date = new Date(post.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }) }}
+      {{ if lastDate != date }}
+        <dt>{{ date }}</dt>
+        {{ set lastDate = date }}
+      {{ /if }}
+        <dd>
+          <a href="{{ post.url }}">{{ post.title }}</a>
+        </dd>
+    {{ /for }}
+  </dl>
+</article>
+
+{{ set nav_extra }}
+  <div class="lx lxprimary">
+    <div class="lxcaption">Stories</div>
+    <a href="/tag/fiction/">Fiction tag</a>
+    <a href="/work/">My Story Works</a>
+    <a href="/world/">My Story Worlds</a>
+  </div>
+
+  {{ if pagination.next }}
+    <a class="button is-primary" href="{{ pagination.next }}">Next Page</a>
+  {{ /if }}
+  {{ if pagination.previous }}
+    <a class="button is-primary" href="{{ pagination.previous }}">Prev Page</a>
+  {{ /if }}
+{{ /set }}
+
+{{ include "navbar.vto" }}
