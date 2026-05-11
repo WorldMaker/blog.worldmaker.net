@@ -17,8 +17,7 @@ site.copy('favicon.ico')
 
 site.use(extractDate())
 
-site.use(feed({
-    output: ['feed.xml', 'rss.xml', 'feed/latest/index.html', 'node/feed/index.html', 'feed.json'],
+const mainFeed = {
     query: "type=post",
     sort: "date=desc",
     limit: 20,
@@ -28,6 +27,20 @@ site.use(feed({
         authorName: "Max Battcher",
         authorUrl: "https://worldmaker.net",
     }
+}
+
+site.use(feed({
+    output: ['feed.xml', 'rss.xml', 'feed/latest/index.html', 'node/feed/index.html'],
+    ...mainFeed,
+    info: {
+        ...mainFeed.info,
+        self: 'feed.xml',
+    }
+}))
+
+site.use(feed({
+    output: ['feed.json'],
+    ...mainFeed,
 }))
 
 site.use(redirects())
