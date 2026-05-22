@@ -7,9 +7,9 @@ layout: default.vto
   </div>
 
   {{ if story_commentary && story_commentary != '' }}
-  <aside class="admonition admonition-commentary">
+  <aside class="admonition admonition-commentary content">
     <div class="admonition-title">Commentary</div>
-    <p>{{ story_commentary }}</p>
+    {{ story_commentary |> md }}
   </aside>
   {{ /if }}
 
