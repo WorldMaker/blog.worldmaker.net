@@ -8,6 +8,7 @@ export default function* tagsPages({ search }: Lume.Data) {
         yield {
             url: `/tag/${tag}/`,
             tag,
+            lcars_theme: tag === 'fiction' ? 'tngancillary' : undefined,
         }
     }
 }
