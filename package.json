@@ -18,6 +18,9 @@
   },
   "homepage": "https://github.com/WorldMaker/blog.worldmaker.net#readme",
   "dependencies": {
-    "lcars-moderne": "^2.0.3"
+    "lcars-moderne": "^2.1.1"
+  },
+  "devDependencies": {
+    "@types/node": "^25.9.1"
   }
 }
