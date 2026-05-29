@@ -2,10 +2,12 @@ import lume from "lume/mod.ts"
 import extractDate from 'lume/plugins/extract_date.ts'
 import feed from 'lume/plugins/feed.ts'
 import footnote from 'npm:markdown-it-footnote'
+import { alertPlugin } from 'npm:markdown-it-github-alert'
 import redirects from "lume/plugins/redirects.ts"
 
 const markdown = {
     plugins: [
+        alertPlugin,
         footnote,
     ],
 }
