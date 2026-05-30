@@ -4,6 +4,7 @@ import feed from 'lume/plugins/feed.ts'
 import footnote from 'npm:markdown-it-footnote'
 import { alertPlugin } from 'npm:markdown-it-github-alert'
 import Shiki from 'npm:@shikijs/markdown-it'
+import typogr from 'npm:typogr'
 import redirects from "lume/plugins/redirects.ts"
 
 const markdown = {
@@ -50,5 +51,14 @@ site.use(feed({
 }))
 
 site.use(redirects())
+
+site.process(['.html'], (pages) => {
+    for (const page of pages) {
+        const content = page.document.querySelectorAll('.content')
+        for (const node of content) {
+            node.innerHTML = typogr(node.innerHTML).typogrify()
+        }
+    }
+})
 
 export default site
