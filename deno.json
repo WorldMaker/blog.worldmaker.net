@@ -1,7 +1,7 @@
 {
   "nodeModulesDir": "auto",
   "imports": {
-    "lume/": "https://cdn.jsdelivr.net/gh/lumeland/lume@47b65b7492c79b4cdd17940e350a9a0f8394a08e/",
+    "lume/": "https://cdn.jsdelivr.net/gh/lumeland/lume@64a6980368cb5573cd752a250e7a8c005e35591a/",
     "lume/jsx-runtime": "https://cdn.jsdelivr.net/gh/oscarotero/ssx@0.1.15/jsx-runtime.ts"
   },
   "permissions": {
@@ -47,6 +47,10 @@
     "portless": {
       "description": "Run the site with portless",
       "command": "portless blog pwsh -NoProfile -Command 'deno task lume -s -p $env:PORT'"
+    },
+    "new": {
+      "description": "Create new content or code using artifacts",
+      "command": "deno task lume new"
     }
   },
   "compilerOptions": {
@@ -61,12 +65,13 @@
   ],
   "allowScripts": {
     "deny": [
-      "npm:sharp"
+      "npm:sharp",
+      "npm:@parcel/watcher"
     ]
   },
   "lint": {
     "plugins": [
-      "https://cdn.jsdelivr.net/gh/lumeland/lume@47b65b7492c79b4cdd17940e350a9a0f8394a08e/lint.ts"
+      "https://cdn.jsdelivr.net/gh/lumeland/lume@64a6980368cb5573cd752a250e7a8c005e35591a/lint.ts"
     ],
     "rules": {
       "exclude": [
