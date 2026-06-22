@@ -1,0 +1,29 @@
+name: Lume Dry Run
+
+on:
+  # Runs on pull requests targeting the default branch
+  push:
+    branches: ['main']
+  pull_request:
+    branches: ['main']
+
+jobs:
+  # Build job
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Deno
+        # uses: denoland/setup-deno@v1
+        uses: denoland/setup-deno@61fe2df320078202e33d7d5ad347e7dcfa0e8f31 # v1.1.2
+        with:
+          deno-version: v2.x
+
+      # Needs a deno install because of the package.json
+      - name: Deno install dependencies
+        run: deno install
+
+      - name: Run site build
+        run: deno task build --dry-run
