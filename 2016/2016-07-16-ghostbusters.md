@@ -176,10 +176,10 @@ nuclear accelerator pointed in their direction.
 
 # What About Those Cameos?
 
-{:.notification.is-primary}
-If you hadn't noticed yet, this post contains spoilers for *Ghostbusters (2016)*.
-Please watch it if you have not; this post should remain in existence until after
-you return.
+> [!Warning]
+> If you hadn't noticed yet, this post contains spoilers for *Ghostbusters (2016)*.
+> Please watch it if you have not; this post should remain in existence until after
+> you return.
 
 The closest *Ghostbusters (2016)* gets to textually providing data counter to
 the theory that it exists in the same universe as its cinematic forbears is the
@@ -239,9 +239,9 @@ the point.)
 
 # That Stinger, Though
 
-{:.notification.is-warning}
-Final warning, there are major, major spoilers here for the end of
-*Ghostbusters (2016)*, especially the post-credits stinger.
+> [!Caution]
+> Final warning, there are major, major spoilers here for the end of
+> *Ghostbusters (2016)*, especially the post-credits stinger.
 
 Finally, the biggest reason of all that I want to believe that *Ghostbusters (2016)*
 is happening in the same universe as *Ghostbusters* (1984) is the way that GB2016
@@ -263,4 +263,3 @@ the original Ghostbusters.
 [^STID]: Let's not get me started on how angry I still am about Khan Noonien Singh in STID.
 
 <!-- End of Line -->
----
