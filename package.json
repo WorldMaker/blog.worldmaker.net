@@ -1,11 +1,21 @@
 {
   "name": "blog.worldmaker.net",
+  "private": true,
+  "type": "module",
+  "allowScripts": {
+    "esbuild": false,
+    "fsevents": false,
+    "@parcel/watcher": false
+  },
   "version": "1.0.0",
   "description": "My personal blog",
   "main": "index.js",
   "scripts": {
     "copy:theme": "robocopy /MIR node_modules/lcars-moderne/dist assets",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "serve": "lume build -s",
+    "build": "lume build",
+    "portless": "portless blog pwsh -NoProfile -Command \"npx lume build -s -p $env:PORT\"",
+    "test": "lume build --dry-run"
   },
   "repository": {
     "type": "git",
@@ -18,7 +28,16 @@
   },
   "homepage": "https://github.com/WorldMaker/blog.worldmaker.net#readme",
   "dependencies": {
-    "lcars-moderne": "^2.1.5"
+    "@lumeland/lume": "^4.0.2",
+    "@lumeland/plugin-extract-date": "^1.0.0",
+    "@lumeland/plugin-feed": "^1.0.0",
+    "@lumeland/plugin-redirects": "^1.0.0",
+    "@shikijs/markdown-it": "^4.6.0",
+    "@types/markdown-it-footnote": "^3.0.4",
+    "lcars-moderne": "^2.1.5",
+    "markdown-it-footnote": "^4.0.0",
+    "markdown-it-github-alert": "^1.0.6",
+    "typogr": "^0.6.8"
   },
   "devDependencies": {
     "@types/node": "^25.9.1"
