@@ -1,5 +1,5 @@
 {
-  "name": "blogworldmakernet",
+  "name": "blog.worldmaker.net",
   "private": true,
   "type": "module",
   "allowScripts": {
@@ -7,8 +7,30 @@
     "fsevents": false,
     "@parcel/watcher": false
   },
+  "version": "1.0.0",
+  "description": "My personal blog",
+  "main": "index.js",
   "scripts": {
+    "copy:theme": "robocopy /MIR node_modules/lcars-moderne/dist assets",
     "serve": "lume build -s",
-    "build": "lume build"
+    "build": "lume build",
+    "portless": "portless blog pwsh -NoProfile -Command \"npx lume -s -p $env:PORT\"",
+    "test": "lume build --dry-run"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/WorldMaker/blog.worldmaker.net.git"
+  },
+  "author": "Max Battcher <me@worldmaker.net>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/WorldMaker/blog.worldmaker.net/issues"
+  },
+  "homepage": "https://github.com/WorldMaker/blog.worldmaker.net#readme",
+  "dependencies": {
+    "lcars-moderne": "^2.1.5"
+  },
+  "devDependencies": {
+    "@types/node": "^25.9.1"
   }
 }
