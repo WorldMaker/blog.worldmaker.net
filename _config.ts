@@ -1,11 +1,11 @@
-import lume from "lume/mod.ts"
-import extractDate from 'lume/plugins/extract_date.ts'
-import feed from 'lume/plugins/feed.ts'
-import footnote from 'npm:markdown-it-footnote'
-import { alertPlugin } from 'npm:markdown-it-github-alert'
-import Shiki from 'npm:@shikijs/markdown-it'
-import typogr from 'npm:typogr'
-import redirects from "lume/plugins/redirects.ts"
+import lume from "@lumeland/lume"
+import extractDate from "@lumeland/plugin-extract-date"
+import feed from "@lumeland/plugin-feed"
+import footnote from "markdown-it-footnote"
+import { alertPlugin } from "markdown-it-github-alert"
+import Shiki from "@shikijs/markdown-it"
+import typogr from "typogr"
+import redirects from "@lumeland/plugin-redirects"
 
 const markdown = {
     plugins: [
