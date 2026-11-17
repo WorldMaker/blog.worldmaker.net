@@ -14,7 +14,7 @@
     "copy:theme": "robocopy /MIR node_modules/lcars-moderne/dist assets",
     "serve": "lume build -s",
     "build": "lume build",
-    "portless": "portless blog pwsh -NoProfile -Command \"npx lume -s -p $env:PORT\"",
+    "portless": "portless blog pwsh -NoProfile -Command \"npx lume build -s -p $env:PORT\"",
     "test": "lume build --dry-run"
   },
   "repository": {
